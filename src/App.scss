@@ -1,0 +1,322 @@
+@import './styles/variables.scss';
+@import './styles/forms.scss';
+
+/* @media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
+
+/* 
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+.Navbar {
+  display: flex;
+  height: 3rem;
+  justify-content: space-between;
+  gap: 1em;
+
+  img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    padding: .5em 1em;
+  }
+}
+
+main {
+  display: flex;
+  flex-flow: row nowrap;
+  min-height: 100vh;
+
+  .Sidebar {
+    background-color: $secondary-color;
+    flex: 3 1 20%;
+    padding: 1em;
+
+    &.closed {
+      height: 100vh;
+      width: 1em;
+      flex: 0;
+    }
+
+    .fa-solid.fa-bug {
+      float: right;
+    }
+
+    .Title {
+      display: flex;
+      justify-content: center;
+      margin-top: 0;
+      padding-top: 1em;
+    }
+
+    .Options {
+      list-style: none;
+      width: 100%;
+      padding: 1em;
+
+      li {
+        padding: .4em;
+      }
+    }
+  }
+
+  .Main {
+    flex: 1 3 75%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+    padding: 2em;
+  }
+}
+
+.Menu {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.76);
+  color: white;
+  margin-bottom: 0;
+  padding: .3em;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+
+.Footer {
+  background-color: $primaryLight-color;
+  height: 5em;
+  margin-top: auto;
+}
+
+
+.TodoApp {
+  .AddTodo {
+    width: 17em;
+
+    .datetimeInput {
+      display: flex;
+      flex-flow: column;
+      width: 80%;
+    }
+  }
+
+  .TodoList {
+    list-style: none;
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0;
+
+    .Todo.checked {
+      text-decoration: line-through;
+    }
+
+    .Todo {
+      padding: .2em 1em;
+
+      .fa-solid.fa-trash-can {
+        color: rgb(109, 13, 13);
+
+      }
+    }
+  }
+}
+
+/**
+  Buttons
+*/
+
+.btn {
+  width: 5em;
+  height: 1.9em;
+  margin: 1em;
+  border-radius: 7%;
+  font-size: 1.2em;
+  border: none;
+
+  &-primary {
+    @extend .btn;
+    background-color: $primary-color;
+    color: whitesmoke;
+    border: solid .1em $primaryLight-color;
+
+    &:hover {
+      background-color: $primaryHover-color;
+    }
+  }
+
+  &-secondary {
+    @extend .btn;
+    background-color: $primaryLight-color;
+
+    &:hover {
+      border: 2px solid $primary-color;
+    }
+  }
+}
+
+.signUp {
+  position: relative;
+  width: 93px;
+  height: 40px;
+  top: 50%;
+  margin-top: -20px;
+  border-radius: 25px;
+  margin-right: -39px;
+  font-size: 16px;
+  line-height: 1.5;
+  z-index: 5;
+  background-color: $primary-color;
+  color: #ffffff;
+  border: none;
+
+  &:hover {
+    background-color: $primaryHover-color;
+  }
+}
+
+.login {
+  position: relative;
+  width: 112px;
+  height: 40px;
+  top: 50%;
+  margin-top: -20px;
+  background-color: $primaryLight-color;
+  border-radius: 25px;
+  padding-left: 39px;
+  font-size: 16px;
+  line-height: 1.5;
+  z-index: 4;
+  border: none;
+
+  &:hover {
+    border: 2px solid $primary-color;
+  }
+}
+
+.login-title {
+  margin-top: 0;
+}
+
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 1em;
+}
+
+
+:disabled {
+  opacity: 30%;
+  pointer-events: none;
+}
+
+.btn-todo {
+  font-weight: 900;
+  color: #ffffff;
+  background-color: $primary-color;
+  border: 1px solid $primaryLight-color;
+}
+
+datalist {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  writing-mode: horizontal-lr;
+  width: 100%;
+}
+
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 0;
+}
+
+
+.InputHeight input {
+  width: 4em;
+}
+
+// ToggleCheckbox Style
+/* The switch - the box around the slider */
+.ToggleCheckbox {
+  display:flex;
+  align-content: center;
+  justify-content: space-between;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $primaryLight-color;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: $primary-color;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px $primary-color;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
