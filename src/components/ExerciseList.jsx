@@ -8,7 +8,7 @@ const ExerciseList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:4000/api/gains/exercises");
+                const response = await fetch(`${process.env.REACT_APP_SERVER}api/gains/exercises`);
                 const newData = await response.json();
                 setExercises(newData);
             } catch (error) {
@@ -21,10 +21,10 @@ const ExerciseList = () => {
     const displayExercises = exercises && exercises.map(e => <li>{e.name + '\n' + e.movements}</li>);
 
     return (
-        <div>
+        <>
             <AddExercise />
             <ul>{displayExercises}</ul>
-        </div>
+        </>
     );
 }
 

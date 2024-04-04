@@ -31,8 +31,8 @@ const TodoApp = ({ list }) => {
     }, []);
 
     async function getTodoList() {
-        // return fetch(`http://localhost:4000/api/profiles/${user._id}/todos/read`)
-        return fetch(`http://localhost:4000/api/profiles/${profile_id}/todos/read`)
+        // return fetch(`${process.env.REACT_APP_SERVER}api/profiles/${user._id}/todos/read`)
+        return fetch(`${process.env.REACT_APP_SERVER}api/profiles/${profile_id}/todos/read`)
             .then(res => res.json())
             .then(data => {
                 let sortByDueDate = data.sort((a, b) => new Date(a.due_date_and_time) - new Date(b.due_date_and_time));
@@ -44,8 +44,8 @@ const TodoApp = ({ list }) => {
     async function onAddHandler() {
         const saveTodo = { description, isDone: false, dueDateAndTime }
         if (description.length !== 0) {
-            // const response = await fetch(`http://localhost:4000/api/profiles/${user._id}/todo/create`,
-            const response = await fetch(`http://localhost:4000/api/profiles/${profile_id}/todo/create`,
+            // const response = await fetch(`${process.env.REACT_APP_SERVER}api/profiles/${user._id}/todo/create`,
+            const response = await fetch(`${process.env.REACT_APP_SERVER}api/profiles/${profile_id}/todo/create`,
                 { method: 'post', body: JSON.stringify(saveTodo), headers: { "Content-Type": "application/json" } })
             const data = await response.json();
             setDescription('') && setDueDate('');
@@ -55,8 +55,8 @@ const TodoApp = ({ list }) => {
     };
 
     async function onDeleteHandler(todo_id) {
-        const response = await fetch(`http://localhost:4000/api/profiles/${profile_id}/todos/${todo_id}/delete`, { method: 'DELETE' });
-        // const response = await fetch(`http://localhost:4000/api/profiles/${user._id}/todos/${todo_id}/delete`, { method: 'DELETE' });
+        const response = await fetch(`${process.env.REACT_APP_SERVER}api/profiles/${profile_id}/todos/${todo_id}/delete`, { method: 'DELETE' });
+        // const response = await fetch(`${process.env.REACT_APP_SERVER}api/profiles/${user._id}/todos/${todo_id}/delete`, { method: 'DELETE' });
         const data = await response.json();
         data && getTodoList();
     };
@@ -80,8 +80,8 @@ const TodoApp = ({ list }) => {
 
     async function onUpdateHandler(todo_id) {
         const newTodo = todoList.filter(todo => todo._id === todo_id).map(todo => Object.assign({}, { ...todo, is_done: !todo.is_done }));
-        // const response = await fetch(`http://localhost:4000/api/profiles/${user._id}/todos/${todo_id}/updateOne`, { method: 'PUT', body: JSON.stringify(newTodo), headers: { "Content-Type": "application/json" } });
-        const response = await fetch(`http://localhost:4000/api/profiles/${profile_id}/todos/${todo_id}/updateOne`, { method: 'PUT', body: JSON.stringify(newTodo), headers: { "Content-Type": "application/json" } });
+        // const response = await fetch(`${process.env.REACT_APP_SERVER}api/profiles/${user._id}/todos/${todo_id}/updateOne`, { method: 'PUT', body: JSON.stringify(newTodo), headers: { "Content-Type": "application/json" } });
+        const response = await fetch(`${process.env.REACT_APP_SERVER}api/profiles/${profile_id}/todos/${todo_id}/updateOne`, { method: 'PUT', body: JSON.stringify(newTodo), headers: { "Content-Type": "application/json" } });
         const data = await response.json();
         data && getTodoList();
     }
@@ -90,7 +90,7 @@ const TodoApp = ({ list }) => {
         <div className="TodoApp">
             <div className="AddTodo">
                 <i onClick={() => setEditingMode(!onEditing)} title="Edit mode: remove task or edit description" className="fa-solid fa-pen" />
-                <i onClick={onHandleGroupClick} title="Group mode: click before selecting which task to group" className="fa-solid fa-cubes-stacked" />
+                {/* <i onClick={onHandleGroupClick} title="Group mode: click before selecting which task to group" className="fa-solid fa-cubes-stacked" /> */}
                 <input value={description} type="text" onChange={(e) => setDescription(e.target.value)} />
                 <Button styleName="btn-todo" isDisabled={!isReady} handleClick={onAddHandler} >+</Button>
 

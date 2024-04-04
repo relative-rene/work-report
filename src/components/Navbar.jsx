@@ -2,14 +2,15 @@ import React from 'react';
 import Button from './UI/Button';
 import { useAuth } from '../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
-
+import vutruvianLogo from '../assets/vutruvianLogo.jpeg';
 const quickLinksMenu = [
     { pageTitle: 'Sets', path: "sets" },
     { pageTitle: 'Stats', path: "stats" },
     { pageTitle: 'Exercises', path: "exercises" },
     { pageTitle: 'Programs', path: "routines" },
-    { pageTitle: 'Meals', path: "mealplanner" },
-    { pageTitle: 'Recovery', path: "recovery" }
+    // { pageTitle: 'Meals', path: "mealplanner" },
+    { pageTitle: 'Recovery', path: "recovery" },
+    { pageTitle: 'Reports', path: "report" }
 ];
 
 const Navbar = () => {
@@ -20,7 +21,7 @@ const Navbar = () => {
         <>
             <header className="Navbar">
                 <div className="Logo">
-                    <img src="assets/vutruvianLogo.jpeg" alt="vutruvian logo" />
+                    <img src={vutruvianLogo} alt="vutruvian logo" />
                 </div>
                 {user?._id ?
                     <div className="logout-container">

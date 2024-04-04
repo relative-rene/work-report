@@ -23,7 +23,7 @@ export const AddExercise = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:4000/api/gains/exercises/create", { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+        const response = await fetch(`${process.env.REACT_APP_SERVER}api/gains/exercises/create`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
             response.status < 300 ? alert('Success') : alert('Failure: ', response.statusText);
     }
 
