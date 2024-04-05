@@ -17,14 +17,14 @@ export const AuthProvider = ({ children }) => {
     // Other authentication-related functions (login, logout, etc.) go here
 
     const register = async (formValues) => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}auth/register`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/auth/register`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
         const data = await response.json();
         setUser({...data})
 
     }
 
     const login = async (formValues) => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}auth/login`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/auth/login`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
         const data = await response.json();
         setUser({...data})
     }
