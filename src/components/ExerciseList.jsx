@@ -8,7 +8,8 @@ const ExerciseList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_SERVER}api/gains/exercises`);
+                console.log('fetchData', REACT_APP_SERVER);
+                const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises`);
                 const newData = await response.json();
                 setExercises(newData);
             } catch (error) {

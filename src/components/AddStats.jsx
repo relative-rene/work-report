@@ -33,7 +33,7 @@ export default function AddStats() {
 
     async function handleSave(e) {
         e.preventDefault();
-        const response = await fetch(`${process.env.REACT_APP_SERVER}api/profiles/${user._id}/stats/create`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/stats/create`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
         console.log(response);
     }
     return (

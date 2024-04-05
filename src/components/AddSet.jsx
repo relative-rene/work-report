@@ -7,7 +7,8 @@ const AddSet = () => {
     const { user } = useAuth();
     useEffect(() => {
         async function getData() {
-            const response = await fetch(`${process.env.REACT_APP_SERVER}api/gains/exercises`);
+            console.log('addSet', process.env.REACT_APP_SERVER)
+            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises`);
             const data = await response.json();
             setExercises([...data]);
         }
@@ -18,7 +19,7 @@ const AddSet = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        fetch(`${process.env.REACT_APP_SERVER}api/profiles/${user._id}/set/create`,
+        fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/set/create`,
             { method: form.method, body: JSON.stringify(Object.fromEntries(formData.entries())), headers: { "Content-Type": "application/json" } })
             .then(response => response.json())
     }
