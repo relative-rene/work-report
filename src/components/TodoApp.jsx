@@ -90,14 +90,17 @@ const TodoApp = ({ list }) => {
         <div className="TodoApp">
             <div className="AddTodo">
                 <i onClick={() => setEditingMode(!onEditing)} title="Edit mode: remove task or edit description" className="fa-solid fa-pen" />
-                {/* <i onClick={onHandleGroupClick} title="Group mode: click before selecting which task to group" className="fa-solid fa-cubes-stacked" /> */}
+                
+                {/*TODO consider adding grouping funcitonality.  
+                    <i onClick={onHandleGroupClick} title="Group mode: click before selecting which task to group" className="fa-solid fa-cubes-stacked" /> 
+                */}
                 <input value={description} type="text" onChange={(e) => setDescription(e.target.value)} />
                 <Button styleName="btn-todo" isDisabled={!isReady} handleClick={onAddHandler} >+</Button>
 
                 {description &&
                     <label className="datetimeInput">
                         Complete By
-                        <input value={dueDateAndTime} min={minDateValue} onChange={(e) => setDueDate(e.target.value)} type="datetime-local" />
+                        <input value={dueDateAndTime} min={minDateValue} onChange={(e) => setDueDate((e.target.value).toUTCString())} type="datetime-local" />
                     </label>}
             </div>
             <ul className="TodoList">

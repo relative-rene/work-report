@@ -8,7 +8,7 @@ const Sidebar = ({ navigation }) => {
             {isOpen ?
                 <>
                     <i onClick={() => setVisibility(false)} className="fa-solid fa-bug" />
-                    <h2 className="Title">Coming Up</h2>
+                    <h2 className="Title">Kaizen</h2>
                     <TodoApp list={[]} />
                 </> :
                 <i onClick={() => setVisibility(true)} className="fa-solid fa-feather" />

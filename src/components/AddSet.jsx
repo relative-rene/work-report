@@ -7,7 +7,6 @@ const AddSet = () => {
     const { user } = useAuth();
     useEffect(() => {
         async function getData() {
-            console.log('addSet', process.env.REACT_APP_SERVER)
             const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises`);
             const data = await response.json();
             setExercises([...data]);

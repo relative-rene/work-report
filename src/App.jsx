@@ -16,7 +16,7 @@ import './App.scss';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/work-report">
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
