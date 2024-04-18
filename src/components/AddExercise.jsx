@@ -18,13 +18,13 @@ export const AddExercise = () => {
 
     const handleCancel = (e) => {
         e.preventDefault()
-        setFormValues({ name: null, muscle_group: null, primary_muscle: null, balance:null });
+        setFormValues({ name: null, muscle_group: null, primary_muscle: null, balance: null });
     }
 
     const handleSave = async (e) => {
         e.preventDefault();
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises/create`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
-            response.status < 300 ? alert('Success') : alert('Failure: ', response.statusText);
+        response.status < 300 ? alert('Success') : alert('Failure: ', response.statusText);
     }
 
 
@@ -37,7 +37,7 @@ export const AddExercise = () => {
                 selectedVal={formValues['balance'] || 'Select form'}
                 nameForId="balance"
                 label="Balance"
-                options={[{ displayName: "Symmetrical"}, {displayName: "Asymmetrical" },]} />
+                options={[{ displayName: "Symmetrical" }, { displayName: "Asymmetrical" },]} />
             <Select
                 updateForm={handleFormUpdate}
                 selectedVal={formValues['muscle_group'] || 'Choose a muscle group'}

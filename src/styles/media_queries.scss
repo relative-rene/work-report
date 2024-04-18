@@ -1,0 +1,14 @@
+@media screen and (max-width: 768px) {
+    main.MainContainer {
+        display: flex;
+        flex-flow: column nowrap;
+
+        .Sidebar{
+            flex:0;
+        }
+        &.closed{
+            flex:0 0 1rem;
+        }
+    }
+}
+

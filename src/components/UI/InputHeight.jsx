@@ -36,7 +36,7 @@ const InputHeight = ({ updateForm, standard }) => {
                         </label>
                                 <input min="0" max="12" type="number" value={inches} onChange={(e) => handleInput(e.target.value, 'inches')} />
                         </div> :
-                        < div className="Input">
+                        < div className="InputComponent">
                                 <label>Height in cm</label>
                                 <input type="number" value={cm} onChange={(e) => handleInput(e.target.value)} />
                         </div>

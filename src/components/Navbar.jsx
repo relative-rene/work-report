@@ -34,7 +34,7 @@ const Navbar = () => {
                 }
 
             </header>
-            <ul className="Menu">
+            <ul className="NavbarMenu">
                 {options}
             </ul>
         </>
