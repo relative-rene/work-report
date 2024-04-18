@@ -2,21 +2,27 @@ import React, { useState } from 'react';
 import Input from './UI/Input';
 import Button from './UI/Button';
 import { useAuth } from '../hooks/useAuth';
-
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const initialState = { first_name: '', last_name: '', date_of_birth: '', email: '', password: '' }
     const [formValues, setFormValues] = useState(initialState);
     const [isVisible, setVisibility] = useState(false);
     const [status, setStatus] = useState('typing');
-    const {user, register} = useAuth();
+    const { user, register } = useAuth();
+    const navigate = useNavigate();
 
     const handleSave = async (e) => {
         e.preventDefault();
         setStatus('isSending');
-        await register(formValues);
-        setStatus('typing')
-        
+        const isSuccess = await register(formValues);
+        console.log('isSuccess', isSuccess);
+        if (isSuccess) {
+            setStatus('typing');
+            navigate('/sets');
+        } else {
+            setStatus('type');
+        }
     }
 
     const handleCancel = () => {

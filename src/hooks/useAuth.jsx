@@ -19,14 +19,21 @@ export const AuthProvider = ({ children }) => {
     const register = async (formValues) => {
         const response = await fetch(`${process.env.REACT_APP_SERVER}/auth/register`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
         const data = await response.json();
-        setUser({...data})
-
+        setUser({ ...data });
+        return response.status < 300;
     }
 
     const login = async (formValues) => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/auth/login`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
-        const data = await response.json();
-        setUser({...data})
+        let response;
+        try {
+            response = await fetch(`${process.env.REACT_APP_SERVER}/auth/login`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+            const data = await response.json();
+            setUser(data);
+            return data;
+        } catch (error) {
+            console.error('error', error);
+            return null;
+        }
     }
     const logout = () => setUser(null);
 

@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
 import Button from './UI/Button';
 import Input from './UI/Input';
 import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 
 export const Login = ({ onSend, onCancel }) => {
     const [isVisible, setVisability] = useState(false);
     const [formValues, setFormValues] = useState({ email: null, password: null });
     const { login } = useAuth();
+    const navigate = useNavigate();
 
     const onSubmit = async () => {
-         return login(formValues);
+        const response = await login(formValues);
+        response.message ? alert("Login Failed", response.message) : navigate('/reports');
     }
 
     const toggleView = () => {
