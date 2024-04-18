@@ -5,10 +5,14 @@ import Button from './UI/Button';
 import { useAuth } from '../hooks/useAuth';
 import InputHeight from './UI/InputHeight';
 import ToggleCheckbox from './UI/ToggleCheckbox';
+import { useNavigate } from 'react-router-dom';
+
+
 export default function AddStats() {
     const { user } = useAuth();
+    const navigate = useNavigate();
     const [standard, setStandard] = useState('Metric');
-
+    const [isReady, setAvailability] = useState(true);
     const [formValues, setFormValues] = useState({
         weight: null,
         height: null,
@@ -23,7 +27,7 @@ export default function AddStats() {
 
     const handleFormUpdate = (target, val) => {
         console.log(formValues, target, val);
-            setFormValues({ ...formValues, [target]: val });
+        setFormValues({ ...formValues, [target]: val });
     }
 
     async function handleCancel(e) {
@@ -33,14 +37,18 @@ export default function AddStats() {
 
     async function handleSave(e) {
         e.preventDefault();
+        setAvailability(false)
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/stats/create`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
-        console.log(response);
+        const data = response.json();
+        data.message ? alert("Login Failed", data.message) : navigate('/reports');
+        setAvailability(true)
+
     }
     return (
         <form action="POST">
             <h2>Add Stats</h2>
             <Input inputType="number" inputVal={formValues.weight || ''} label="Weight in lbs" targetVal="weight" updateForm={handleFormUpdate} />
-            <ToggleCheckbox updateForm={(val)=>setStandard(val)} label={standard} />
+            <ToggleCheckbox updateForm={(val) => setStandard(val)} label={standard} />
             <InputHeight standard={standard} updateForm={handleFormUpdate} />
             <Input inputType="number" inputVal={formValues.age || ''} label="Age" targetVal="age" updateForm={handleFormUpdate} />
             <Select
@@ -64,7 +72,7 @@ export default function AddStats() {
             }
             <div className="action-container">
                 <Button handleClick={handleCancel} styleName="__btn--secondary">Cancel</Button>
-                <Button handleClick={handleSave} styleName="__btn--primary">Save</Button>
+                <Button isDisabled={!isReady} handleClick={handleSave} styleName="__btn--primary">Save</Button>
             </div>
         </form>)
 }

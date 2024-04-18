@@ -7,7 +7,7 @@ import { MUSCLE_GROUPS, PRIMARY_MUSCLES } from '../data/constants';
 
 export const AddExercise = () => {
     const [formValues, setFormValues] = useState({ name: null, balance: null, muscle_group: null, primary_muscle: null });
-
+    const [ isReady, setAvailability]= useState(true);
     const handleFormUpdate = (target, val) => {
         if (target === 'muscle_group') {
             setFormValues({ ...formValues, primary_muscle: null, [target]: val });
@@ -23,8 +23,10 @@ export const AddExercise = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
+        setAvailability(false);
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises/create`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
-        response.status < 300 ? alert('Success') : alert('Failure: ', response.statusText);
+        response.message ? alert('Failure: ', response.statusText):alert('Success');
+        setAvailability(true);
     }
 
 
@@ -53,7 +55,7 @@ export const AddExercise = () => {
                     options={PRIMARY_MUSCLES[formValues.muscle_group]} />}
             <div className="action-container">
                 <Button handleClick={handleCancel} styleName="__btn--secondary">Cancel</Button>
-                <Button handleClick={handleSave} styleName="__btn--primary">Save</Button>
+                <Button isDisabled={!isReady} handleClick={handleSave} styleName="__btn--primary">Save</Button>
             </div>
         </form>)
 

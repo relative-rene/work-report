@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 const AddSet = () => {
     const [exercises, setExercises] = useState([]);
     const [selectedExercise, setSelected] = useState([{ name: null, balance: null }]);
+    const [ isReady, setAvailability]= useState(true);
+
     const { user } = useAuth();
+    const navigate = useNavigate();
+    
     useEffect(() => {
         async function getData() {
             const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises`);
@@ -18,9 +23,12 @@ const AddSet = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/set/create`,
-            { method: form.method, body: JSON.stringify(Object.fromEntries(formData.entries())), headers: { "Content-Type": "application/json" } })
-            .then(response => response.json())
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/set/create`,
+            { method: form.method, body: JSON.stringify(Object.fromEntries(formData.entries())), headers: { "Content-Type": "application/json" } });
+        const data = response.json();
+        data.message ? alert("Login Failed", data.message) : navigate('/reports');
+
+
     }
 
     async function handleSelectedExercise(val) {
@@ -65,7 +73,7 @@ const AddSet = () => {
             }
             <div className="action-container">
                 <button className="__btn--secondary" type="reset">Reset</button>
-                <button className="__btn--primary" type="save">Save</button>
+                <button isdisabled={!isReady} className="__btn--primary" type="save">Save</button>
             </div>
         </form>
     );
