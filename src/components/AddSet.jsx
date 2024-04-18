@@ -31,7 +31,7 @@ const AddSet = () => {
     const optionsList = exercises.map((entry, i) => <option value={entry.name + ":" + entry._id} key={`exercise-${i}`}>{entry.name}</option>);
 
     return (
-        <form className="prForm" method="post" onSubmit={handleSubmit}>
+        <form className="pr-form" method="post" onSubmit={handleSubmit}>
             <h2>Log Set</h2>
             <div className="form-group">
                 <label>Date and Time</label>
@@ -64,8 +64,8 @@ const AddSet = () => {
                 </div>
             }
             <div className="action-container">
-                <button className="btn-secondary" type="reset">Reset</button>
-                <button className="btn-primary" type="save">Save</button>
+                <button className="__btn--secondary" type="reset">Reset</button>
+                <button className="__btn--primary" type="save">Save</button>
             </div>
         </form>
     );

@@ -63,8 +63,8 @@ export default function AddStats() {
                 </>
             }
             <div className="action-container">
-                <Button handleClick={handleCancel} styleName="btn-secondary">Cancel</Button>
-                <Button handleClick={handleSave} styleName="btn-primary">Save</Button>
+                <Button handleClick={handleCancel} styleName="__btn--secondary">Cancel</Button>
+                <Button handleClick={handleSave} styleName="__btn--primary">Save</Button>
             </div>
         </form>)
 }

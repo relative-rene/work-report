@@ -62,7 +62,7 @@ const TodoApp = ({ list }) => {
 
     return (
         <div className="TodoApp">
-            <div className="AddTodo">
+            <div className="add-todo-form">
                 <i onClick={() => setEditingMode(!onEditing)} title="Edit mode: remove task or edit description" className="fa-solid fa-pen fa-lg" />
                 <input value={description} type="text" onChange={(e) => setDescription(e.target.value)} />
                 <Button styleName="btn-todo" isDisabled={!isReady} handleClick={onAddHandler} >+</Button>

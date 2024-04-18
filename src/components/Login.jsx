@@ -31,8 +31,8 @@ export const Login = ({ onSend, onCancel }) => {
             </Input>
 
             <div className="action-container">
-                <Button styleName="btn-primary" handleClick={onSubmit}>Login</Button>
-                <Button styleName="btn-secondary" handleClick={onCancel}>Cancel</Button>
+                <Button styleName="__btn--secondary" handleClick={onCancel}>Cancel</Button>
+                <Button styleName="__btn--primary" handleClick={onSubmit}>Login</Button>
             </div>
         </form>
     )

@@ -9,9 +9,9 @@ const ToggleCheckbox = ({ updateForm, label }) => {
     return (
         <div className="ToggleCheckbox">
             <span>{label}</span>
-            <label className="switch">
+            <label className="__switch">
                 <input onChange={handleToggle} type="checkbox" />
-                <span className="slider round"></span>
+                <span className="__slider--round"></span>
             </label>
         </div>
     );

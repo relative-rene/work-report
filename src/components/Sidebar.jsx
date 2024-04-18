@@ -4,7 +4,7 @@ import TodoApp from './TodoApp';
 const Sidebar = ({ navigation }) => {
     const [isOpen, setVisibility] = useState(false);
     return (
-        <section className={isOpen ? "Sidebar" : "Sidebar closed"}>
+        <section className={isOpen ? "Sidebar" : "Sidebar--closed"}>
             {isOpen ?
                 <>
                     <i onClick={() => setVisibility(false)} className="fa-solid fa-bug" />

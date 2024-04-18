@@ -2,21 +2,7 @@
 @import './styles/forms.scss';
 @import './styles/media_queries.scss';
 
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
 
-/* 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
 body,
 html {
   margin: 0;
@@ -68,7 +54,7 @@ html {
     padding: 1em;
     flex: 2 1 350px;
 
-    &.closed {
+    &--closed {
       flex: 0 1 1em;
     }
 
@@ -112,7 +98,7 @@ html {
 
 
 .TodoApp {
-  .AddTodo {
+  .add-todo-form {
     display: flex;
     justify-content: center;
 
@@ -143,12 +129,12 @@ html {
     flex-flow: column wrap;
     padding: 0;
 
-    .Todo.checked {
-      text-decoration: line-through;
-    }
-
     .Todo {
       padding: .2rem 1rem;
+
+      &--checked {
+        text-decoration: line-through;
+      }
 
       .fa-solid.fa-trash-can {
         color: rgb(109, 13, 13);
@@ -162,7 +148,7 @@ html {
   Buttons
 */
 
-.btn {
+.__btn {
   width: 5rem;
   height: 1.9rem;
   margin: 1rem;
@@ -170,8 +156,7 @@ html {
   font-size: 1.2rem;
   border: none;
 
-  &-primary {
-    @extend .btn;
+  &--primary {
     background-color: $primary-color;
     color: whitesmoke;
     border: solid .1rem $primaryLight-color;
@@ -181,8 +166,7 @@ html {
     }
   }
 
-  &-secondary {
-    @extend .btn;
+  &--secondary {
     background-color: $primaryLight-color;
 
     &:hover {

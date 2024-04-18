@@ -8,7 +8,7 @@ function Todo({ description, due_date_and_time, is_done, onDelete, onUpdate, tod
     const dueDate = `${weekday} ${month} ${date}, ${year} ${time}`;
 
     return (
-        <li key={'task-' + todo_id} className={is_done ? "Todo checked" : "Todo"}>
+        <li key={'task-' + todo_id} className={is_done ? "Todo--checked" : "Todo"}>
             <input type="checkbox" onChange={() => onUpdate(todo_id)} checked={is_done} />
             {isEditing ?
                 <>
