@@ -5,10 +5,10 @@ import Layout from './components/Layout';
 import NoPage from './components/NoPage';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import Table from './components/UI/Table';
 import MealPlanner from './components/Meals';
 import AddStats from './components/AddStats';
 import AddSet from './components/AddSet';
+import AddBodyFat from './components/AddBodyFat';
 import { AuthenticatedRoute } from './components/AuthenticatedRoute';
 import { AuthProvider } from './hooks/useAuth';
 
@@ -35,7 +35,7 @@ function App() {
               </AuthenticatedRoute>
             } />
             <Route path="/reports" />
-            <Route path="/journey" element={<Table tableData={[]} />} />
+            <Route path="/body_fat" element={<AddBodyFat />} />
             <Route path="/mealplanner" element={<MealPlanner />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/login" element={<Login />} />

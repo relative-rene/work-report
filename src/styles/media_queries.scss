@@ -2,13 +2,5 @@
     main.MainContainer {
         display: flex;
         flex-flow: column nowrap;
-
-        .Sidebar{
-            flex:0;
-        }
-        &.closed{
-            flex:0 0 1rem;
-        }
     }
 }
-

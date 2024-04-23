@@ -15,6 +15,36 @@ form {
   align-items: center;
   justify-content: space-evenly;
   margin-top: 1rem;
+
+  &__btn--primary {
+    @extend .btn;
+    background-color: $primary-color;
+    color: whitesmoke;
+    border: solid .1rem $primaryLight-color;
+
+    &:hover {
+      background-color: $primaryHover-color;
+    }
+  }
+
+  &__btn--secondary {
+    @extend .btn;
+    background-color: $primaryLight-color;
+
+    &:hover {
+      border: 2px solid $primary-color;
+    }
+  }
+
+}
+
+.btn {
+  width: 5rem;
+  height: 1.9rem;
+  margin: 1rem;
+  border-radius: 7%;
+  font-size: 1.2rem;
+  border: none;
 }
 
 .checkbox-option {
@@ -23,30 +53,29 @@ form {
 
 
 .InputComponent {
+  
   label {
     justify-content: space-between;
     font-size: 1rem;
-  }
 
-  input {
-    width: 100%;
-    margin: .5rem 0;
-    font-size: 1.2rem;
-    line-height: 1.7rem;
-    border-radius: 2%;
-    border: 1px solid gainsboro;
-  }
+    input {
+      width: 100%;
+      margin: .5rem 0;
+      font-size: 1.2rem;
+      padding: .3rem .1rem;
+      border-radius: 2%;
+      border: 1px solid gainsboro;
+    }
 
-  input:focus {
-    outline:3px solid $primaryLight-color;
-    border:1px solid $primary-color;
+    input:focus {
+      outline: 3px solid $primaryLight-color;
+      border: 1px solid $primary-color;
+    }
   }
-
 }
 
 
 // ToggleCheckbox Style
-
 .ToggleCheckbox {
   display: flex;
   align-content: center;
@@ -58,13 +87,26 @@ form {
   display: inline-block;
   width: 60px;
   height: 34px;
-}
 
-/* Hide default HTML checkbox */
-.__switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked+.__slider {
+      background-color: $primary-color;
+    }
+
+    &:focus+.__slider {
+      box-shadow: 0 0 1px $primary-color;
+    }
+
+    &:checked+.__slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+  }
 }
 
 /* The slider */
@@ -78,63 +120,53 @@ form {
   background-color: $primaryLight-color;
   -webkit-transition: .4s;
   transition: .4s;
-}
 
-.__slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked+.__slider {
-  background-color: $primary-color;
-}
-
-input:focus+.__slider {
-  box-shadow: 0 0 1px $primary-color;
-}
-
-input:checked+.__slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.__slider.__round {
-  border-radius: 34px;
-}
-
-.__slider.__round:before {
-  border-radius: 50%;
-}
-
-
-.SelectComponent{
-  display:flex;
-  flex-flow: column nowrap;
-  gap: 1rem;
-  margin:1rem 0;
-
-  label{
-    font-size:1em;
+  &:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
 
   }
+}
+
+.--round {
+  border-radius: 34px;
+
+  &:before {
+    border-radius: 50%;
+  }
+}
+
+
+
+.SelectComponent {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+  margin: 1rem 0;
+
+  label {
+    font-size: 1em;
+
+  }
+
   select {
-    font-size:1.2rem;
-    margin:.05rem 0;
-    option:hover{
+    font-size: 1.2rem;
+    padding: .4em .1em;
+
+    option:hover {
       background-color: $primaryLight-color;
     }
   }
-  select:focus{
-      outline:3px solid $primaryLight-color;
-      border:1px solid $primary-color;
-    }
+
+  select:focus {
+    outline: 3px solid $primaryLight-color;
+    border: 1px solid $primary-color;
+  }
 }

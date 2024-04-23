@@ -24,6 +24,13 @@ html {
     width: 100%;
     padding: .5rem 1rem;
   }
+
+  .logout-container{
+    display:flex;
+    align-items: flex-end;
+    padding:1em;
+  }
+  
 }
 
 .NavbarMenu {
@@ -51,11 +58,13 @@ html {
     display: flex;
     flex-flow: column nowrap;
     background-color: $secondary-color;
-    padding: 1em;
-    flex: 2 1 350px;
+    padding: 1em 1em 2em 3em;
+    flex: 2 0 320px;
 
     &--closed {
-      flex: 0 1 1em;
+      background-color: $secondary-color;
+      flex: 0 0 2em;
+      padding:1em .1em 0 1em;
     }
 
     .fa-solid.fa-bug {
@@ -100,163 +109,156 @@ html {
 .TodoApp {
   .add-todo-form {
     display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
+    gap: 1em;
 
-    .fa-solid.fa-pen.fa-lg {
+    .description-container {
       display: flex;
-      align-items: center;
-    }
-
-    input {
-      flex: 70%;
-    }
-
-    input:focus {
-      outline: 3px solid $primaryLight-color;
-      border: 1px solid $primary-color;
-    }
-
-    .datetimeInput {
-      display: flex;
-      flex-flow: column;
-      width: 80%;
-    }
-  }
-
-  .TodoList {
-    list-style: none;
-    display: flex;
-    flex-flow: column wrap;
-    padding: 0;
-
-    .Todo {
-      padding: .2rem 1rem;
-
-      &--checked {
-        text-decoration: line-through;
+      flex-flow: column nowrap;
+      .fa-solid.fa-square-pen.fa-xl {
+        color: rgb(241, 136, 136)
       }
 
-      .fa-solid.fa-trash-can {
-        color: rgb(109, 13, 13);
+      &__button {
+        color: $primary-color;
+      }
 
+      &__input {
+        width: 80%;
+        font-size: 1.2em;
+      }
+
+      &__input:focus {
+        outline: 3px solid $primaryLight-color;
+        border: 1px solid $primary-color;
+      }
+    }
+
+    .duedate-container {
+      display: flex;
+      flex-flow: column nowrap;
+
+      &__input {
+        width: 80%;
+        font-size: 1.4em;
+      }
+      &__button {
+        background-color: #04AA6D;
+        color: white;
+        width: 50%;
+        margin: 0 auto;
+        border-radius: 10px;
+        height: 3em;
+        font-size: 1em;
+      }
+    }
+
+    .TodoList {
+      list-style: none;
+      display: flex;
+      flex-flow: column wrap;
+      padding: 0;
+
+      .Todo {
+        padding: .2rem 1rem;
+
+        &--checked {
+          text-decoration: line-through;
+        }
+
+        .fa-solid.fa-trash-can {
+          color: rgb(109, 13, 13);
+
+        }
       }
     }
   }
 }
 
-/**
+  /**
   Buttons
 */
 
-.__btn {
-  width: 5rem;
-  height: 1.9rem;
-  margin: 1rem;
-  border-radius: 7%;
-  font-size: 1.2rem;
-  border: none;
-
-  &--primary {
+  .signUp {
+    position: relative;
+    width: 93px;
+    height: 40px;
+    top: 50%;
+    margin-top: -20px;
+    border-radius: 25px;
+    margin-right: -39px;
+    font-size: 16px;
+    line-height: 1.5;
+    z-index: 5;
     background-color: $primary-color;
-    color: whitesmoke;
-    border: solid .1rem $primaryLight-color;
+    color: #ffffff;
+    border: none;
 
     &:hover {
       background-color: $primaryHover-color;
     }
   }
 
-  &--secondary {
+  .login {
+    position: relative;
+    width: 112px;
+    height: 40px;
+    top: 50%;
+    margin-top: -20px;
     background-color: $primaryLight-color;
+    border-radius: 25px;
+    padding-left: 39px;
+    font-size: 16px;
+    line-height: 1.5;
+    z-index: 4;
+    border: none;
 
     &:hover {
       border: 2px solid $primary-color;
     }
   }
-}
 
-.signUp {
-  position: relative;
-  width: 93px;
-  height: 40px;
-  top: 50%;
-  margin-top: -20px;
-  border-radius: 25px;
-  margin-right: -39px;
-  font-size: 16px;
-  line-height: 1.5;
-  z-index: 5;
-  background-color: $primary-color;
-  color: #ffffff;
-  border: none;
-
-  &:hover {
-    background-color: $primaryHover-color;
+  .login-title {
+    margin-top: 0;
   }
-}
 
-.login {
-  position: relative;
-  width: 112px;
-  height: 40px;
-  top: 50%;
-  margin-top: -20px;
-  background-color: $primaryLight-color;
-  border-radius: 25px;
-  padding-left: 39px;
-  font-size: 16px;
-  line-height: 1.5;
-  z-index: 4;
-  border: none;
 
-  &:hover {
-    border: 2px solid $primary-color;
+  .form-group {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem;
+    .input {
+      font-size:1.2em;
+    }
   }
-}
-
-.login-title {
-  margin-top: 0;
-}
 
 
-.form-group {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin: 1rem;
-}
+  :disabled {
+    opacity: 30%;
+    pointer-events: none;
+  }
+
+  datalist {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    writing-mode: horizontal-lr;
+    width: 100%;
+  }
+
+  option {
+    padding: 0;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    margin: 0;
+  }
 
 
-:disabled {
-  opacity: 30%;
-  pointer-events: none;
-}
-
-.btn-todo {
-  font-weight: 900;
-  color: #ffffff;
-  background-color: $primary-color;
-  border: 1px solid $primaryLight-color;
-}
-
-datalist {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  writing-mode: horizontal-lr;
-  width: 100%;
-}
-
-option {
-  padding: 0;
-}
-
-input[type="range"] {
-  width: 100%;
-  margin: 0;
-}
-
-
-.InputHeight input {
-  width: 4rem;
-}
+  .InputHeight input {
+    width: 4rem;
+  }
