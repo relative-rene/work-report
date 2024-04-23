@@ -4,7 +4,6 @@ import AddExercise from './AddExercise';
 const ExerciseList = () => {
     let [exercises, setExercises] = useState([]);
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -19,7 +18,7 @@ const ExerciseList = () => {
         fetchData();
     }, []);
 
-    const displayExercises = exercises && exercises.map(e => <li>{e.name + '\n' + e.movements}</li>);
+    const displayExercises = exercises && exercises.map(e => <li>{e.name + '\n' + e.muscle_group+'\n'+e.balance +'\n'+e.primary_muscle}</li>);
 
     return (
         <>

@@ -32,8 +32,8 @@ export const Login = ({ onSend, onCancel }) => {
                 <Input updateForm={onUpdateFormValue} targetVal="password" label="Password" inputType={isVisible ? "text" : "password"}>
                     <i onClick={toggleView} className={isVisible ? "fa solid fa-eye" : "fa solid fa-eye-slash"}></i></Input>
                 <div className="action-container">
-                    <Button styleName="__btn--secondary" handleClick={onCancel}>Cancel</Button>
-                    <Button isDisabled={!isReady} styleName="__btn--primary" handleClick={onSubmit}>Login</Button>
+                    <Button styleName="action-container__btn--secondary" handleClick={onCancel}>Cancel</Button>
+                    <Button isDisabled={!isReady} styleName="action-container__btn--primary" handleClick={onSubmit}>Login</Button>
                 </div>
         </form>
     );

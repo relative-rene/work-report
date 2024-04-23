@@ -28,8 +28,6 @@ export const AddExercise = () => {
         response.message ? alert('Failure: ', response.statusText):alert('Success');
         setAvailability(true);
     }
-
-
     return (
         <form>
             <h2>Add Exercise</h2>
@@ -54,8 +52,8 @@ export const AddExercise = () => {
                     label="Primary Muscle"
                     options={PRIMARY_MUSCLES[formValues.muscle_group]} />}
             <div className="action-container">
-                <Button handleClick={handleCancel} styleName="__btn--secondary">Cancel</Button>
-                <Button isDisabled={!isReady} handleClick={handleSave} styleName="__btn--primary">Save</Button>
+                <Button handleClick={handleCancel} styleName="action-container__btn--secondary">Cancel</Button>
+                <Button isDisabled={!isReady} handleClick={handleSave} styleName="action-container__btn--primary">Save</Button>
             </div>
         </form>)
 

@@ -9,8 +9,9 @@ const quickLinksMenu = [
     { pageTitle: 'Exercises', path: "exercises" },
     { pageTitle: 'Programs', path: "routines" },
     // { pageTitle: 'Meals', path: "mealplanner" },
-    { pageTitle: 'Recovery', path: "recovery" },
-    { pageTitle: 'Reports', path: "report" }
+    // { pageTitle: 'Recovery', path: "recovery" },
+    { pageTitle: 'Reports', path: "report" },
+    { pageTitle: 'Body Fat', path: "body_fat" }
 ];
 
 const Navbar = () => {

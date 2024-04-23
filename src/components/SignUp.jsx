@@ -46,8 +46,8 @@ const SignUp = () => {
                 <i onClick={(e) => setVisibility(!isVisible)} className={isVisible ? "fa solid fa-eye" : "fa solid fa-eye-slash"}></i>
             </Input>
             <div className="action-container">
-                <Button handleClick={handleCancel} isDisabled={status === 'isSending'} styleName="__btn--secondary">Cancel</Button>
-                <Button handleClick={handleSave} isDisabled={status === 'isSending'} styleName="__btn--primary">Save</Button>
+                <Button handleClick={handleCancel} isDisabled={status === 'isSending'} styleName="action-container__btn--secondary">Cancel</Button>
+                <Button handleClick={handleSave} isDisabled={status === 'isSending'} styleName="action-container__btn--primary">Save</Button>
             </div>
         </form>
     )
