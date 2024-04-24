@@ -26,7 +26,7 @@ const AddSet = () => {
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/set/create`,
             { method: form.method, body: JSON.stringify(Object.fromEntries(formData.entries())), headers: { "Content-Type": "application/json" } });
         const data = response.json();
-        data.message ? alert("Login Failed", data.message) : navigate('/reports');
+        data.message ? alert("Add Set Failed", data.message) : alert('Add Set Success')
     }
 
     async function handleSelectedExercise(val) {
