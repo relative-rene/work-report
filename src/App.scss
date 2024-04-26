@@ -1,14 +1,31 @@
 @import './styles/variables.scss';
 @import './styles/forms.scss';
 @import './styles/media_queries.scss';
-
+@import './styles/splash.scss';
 
 body,
 html {
+  font-family: 'Open Sans', sans-serif;
   margin: 0;
+  min-height: 100vh;
+  background-color: #292a2b;
+  font-size: 16px;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Verdana;
+  }
 
   #root {
     flex: 100%;
+  }
+
+  .Layout {
+    background-color: #ffffff;
   }
 }
 
@@ -18,19 +35,21 @@ html {
   justify-content: space-between;
   gap: 1rem;
 
-  img {
-    object-fit: contain;
-    height: 100%;
-    width: 100%;
-    padding: .5rem 1rem;
+  .Logo {
+    img {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+      padding: .5rem 1rem;
+    }
   }
 
-  .logout-container{
-    display:flex;
+  .logout-container {
+    display: flex;
     align-items: flex-end;
-    padding:1em;
+    padding: 1em;
   }
-  
+
 }
 
 .NavbarMenu {
@@ -64,7 +83,7 @@ html {
     &--closed {
       background-color: $secondary-color;
       flex: 0 0 2em;
-      padding:1em .1em 0 1em;
+      padding: 1em .1em 0 1em;
     }
 
     .fa-solid.fa-bug {
@@ -116,12 +135,14 @@ html {
     .description-container {
       display: flex;
       flex-flow: column nowrap;
+
       .fa-solid.fa-square-pen.fa-xl {
         color: rgb(241, 136, 136)
       }
 
       &__button {
         color: $primary-color;
+        font-family: Tahoma;
       }
 
       &__input {
@@ -143,6 +164,7 @@ html {
         width: 80%;
         font-size: 1.4em;
       }
+
       &__button {
         background-color: #04AA6D;
         color: white;
@@ -151,114 +173,146 @@ html {
         border-radius: 10px;
         height: 3em;
         font-size: 1em;
+        font-family: Tahoma;
       }
     }
+  }
 
-    .TodoList {
-      list-style: none;
-      display: flex;
-      flex-flow: column wrap;
-      padding: 0;
+  .TodoList {
+    list-style: none;
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0;
 
-      .Todo {
-        padding: .2rem 1rem;
+    .Todo {
+      padding: .2rem 1rem;
 
-        &--checked {
-          text-decoration: line-through;
-        }
+      &--checked {
+        text-decoration: line-through;
+      }
 
-        .fa-solid.fa-trash-can {
-          color: rgb(109, 13, 13);
+      .fa-solid.fa-trash-can {
+        color: rgb(109, 13, 13);
 
-        }
       }
     }
   }
 }
 
-  /**
+/**
   Buttons
 */
 
-  .signUp {
-    position: relative;
-    width: 93px;
-    height: 40px;
-    top: 50%;
-    margin-top: -20px;
-    border-radius: 25px;
-    margin-right: -39px;
-    font-size: 16px;
-    line-height: 1.5;
-    z-index: 5;
-    background-color: $primary-color;
-    color: #ffffff;
-    border: none;
+.signUp-btn {
+  position: relative;
+  width: 93px;
+  height: 40px;
+  top: 50%;
+  margin-top: -20px;
+  border-radius: 25px;
+  margin-right: -39px;
+  font-size: 16px;
+  line-height: 1.5;
+  z-index: 5;
+  background-color: $primary-color;
+  color: #ffffff;
+  border: none;
 
-    &:hover {
-      background-color: $primaryHover-color;
-    }
+  &:hover {
+    background-color: $primaryHover-color;
+  }
+}
+
+.login-btn {
+  position: relative;
+  width: 112px;
+  height: 40px;
+  top: 50%;
+  margin-top: -20px;
+  background-color: $primaryLight-color;
+  border-radius: 25px;
+  padding-left: 39px;
+  font-size: 16px;
+  line-height: 1.5;
+  z-index: 4;
+  border: none;
+
+  &:hover {
+    border: 2px solid $primary-color;
   }
 
-  .login {
-    position: relative;
-    width: 112px;
-    height: 40px;
-    top: 50%;
-    margin-top: -20px;
-    background-color: $primaryLight-color;
-    border-radius: 25px;
-    padding-left: 39px;
-    font-size: 16px;
-    line-height: 1.5;
-    z-index: 4;
-    border: none;
+}
 
-    &:hover {
-      border: 2px solid $primary-color;
-    }
+
+.form-group {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem;
+
+  .input {
+    font-size: 1.2em;
+  }
+}
+
+
+:disabled {
+  opacity: 30%;
+  pointer-events: none;
+}
+
+datalist {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  writing-mode: horizontal-lr;
+  width: 100%;
+}
+
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 0;
+}
+
+
+.InputHeight input {
+  width: 4rem;
+}
+
+
+.Backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Modal {
+  position: fixed;
+  z-index: 500;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 3px 5px 2px $black;
+  left: clamp(20%, 25%, 40%);
+  top: 8em;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+
+  &.--closed {
+    transform: translateY(-100vh);
+    opacity: 0;
   }
 
-  .login-title {
-    margin-top: 0;
+  &.--open {
+    transform: translateY(0);
+    opacity: 1;
   }
-
-
-  .form-group {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    gap: 1rem;
-    margin: 1rem;
-    .input {
-      font-size:1.2em;
-    }
-  }
-
-
-  :disabled {
-    opacity: 30%;
-    pointer-events: none;
-  }
-
-  datalist {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    writing-mode: horizontal-lr;
-    width: 100%;
-  }
-
-  option {
-    padding: 0;
-  }
-
-  input[type="range"] {
-    width: 100%;
-    margin: 0;
-  }
-
-
-  .InputHeight input {
-    width: 4rem;
-  }
+}

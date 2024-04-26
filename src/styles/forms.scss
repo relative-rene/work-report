@@ -1,6 +1,7 @@
 form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border-radius: 3px;
   padding: 2em 2.5rem;
   box-shadow:
@@ -39,11 +40,12 @@ form {
 }
 
 .btn {
-  width: 5rem;
-  height: 1.9rem;
+  width: 6rem;
+  height: 2rem;
   margin: 1rem;
-  border-radius: 7%;
+  border-radius: 4%;
   font-size: 1.2rem;
+  font-family:Trebuchet MS;
   border: none;
 }
 
@@ -51,9 +53,17 @@ form {
   padding: .5rem;
 }
 
+.create-account {
+  display:flex;
+  justify-content: flex-end;
+  font-size: .8rem;
+}
+.browser-back{
+  font-size:.8rem;
+}
 
 .InputComponent {
-  
+
   label {
     justify-content: space-between;
     font-size: 1rem;
@@ -61,7 +71,7 @@ form {
     input {
       width: 100%;
       margin: .5rem 0;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       padding: .3rem .1rem;
       border-radius: 2%;
       border: 1px solid gainsboro;

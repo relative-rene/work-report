@@ -1,6 +1,17 @@
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 760px) {
     main.MainContainer {
         display: flex;
         flex-flow: column nowrap;
+    }
+    #root .Modal {
+        left:20%;
+        width:60%
+    }
+}
+
+@media screen and (max-width: 500px){
+    #root .Modal{
+        left:0;
+        width:100%;
     }
 }
