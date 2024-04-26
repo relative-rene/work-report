@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TodoApp from './TodoApp';
+import TodoApp from '../components/TodoApp';
 
 const Sidebar = ({ navigation }) => {
     const [isOpen, setVisibility] = useState(false);

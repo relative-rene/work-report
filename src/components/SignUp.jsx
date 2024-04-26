@@ -9,7 +9,7 @@ const SignUp = () => {
     const [formValues, setFormValues] = useState(initialState);
     const [isVisible, setVisibility] = useState(false);
     const [status, setStatus] = useState('typing');
-    const { user, register } = useAuth();
+    const { register } = useAuth();
     const navigate = useNavigate();
 
     const handleSave = async (e) => {
@@ -36,7 +36,7 @@ const SignUp = () => {
 
 
     return (
-        <form>
+        <form className="sign-up-form">
             <h2>Sign Up</h2>
             <Input inputVal={formValues.first_name} updateForm={handleFormUpdate} targetVal="first_name" label="First Name" />
             <Input inputVal={formValues.last_name} updateForm={handleFormUpdate} targetVal="last_name" label="Last Name" />

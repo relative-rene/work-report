@@ -47,12 +47,12 @@ export default function AddStats() {
         setAvailability(false)
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/stats/create`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
         const data = response.json();
-        data.message ? alert("Login Failed", data.message) : navigate('/reports');
+        data.message ? alert("Login Failed", data.message) : navigate('/work-report/hub/reports');
         setAvailability(true)
     }
 
     return (
-        <form action="POST">
+        <form>
             <h2>Add Stats</h2>
             <Input inputType="date" inputVal={formValues.date || ''} label="Date" targetVal="date" updateForm={handleFormUpdate} />
             <Input inputType="number" inputVal={formValues.age || ''} label="Age" targetVal="age" updateForm={handleFormUpdate} />

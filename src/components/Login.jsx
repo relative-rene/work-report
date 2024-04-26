@@ -2,7 +2,7 @@ import React, { useState, } from 'react';
 import Button from './UI/Button';
 import Input from './UI/Input';
 import { useAuth } from '../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 export const Login = ({ onSend, onCancel }) => {
@@ -15,7 +15,7 @@ export const Login = ({ onSend, onCancel }) => {
     const onSubmit = async () => {
         setAvailability(false);
         const response = await login(formValues);
-        response.message ? alert("Login Failed", response.message) : navigate('/reports');
+        response.message ? alert("Login Failed", response.message) : navigate('/work-report/hub/reports');
         setAvailability(true);
     }
 
@@ -27,10 +27,15 @@ export const Login = ({ onSend, onCancel }) => {
     }
     return (
         <form>
-            <h2 className="login-title">Login In</h2>
+            <Link className="browser-back" to={()=>navigate(-1)}>Back</Link>
+            <h1>Login</h1>
                 <Input updateForm={onUpdateFormValue} targetVal="email" label="Email" inputType="email" />
                 <Input updateForm={onUpdateFormValue} targetVal="password" label="Password" inputType={isVisible ? "text" : "password"}>
                     <i onClick={toggleView} className={isVisible ? "fa solid fa-eye" : "fa solid fa-eye-slash"}></i></Input>
+
+                {/* <span onClick={()=> console.log('create-account')} className="create-account" href="rareurl.com">Create Account</span> */}
+                <Link className="create-account" to="/sign-up">Create Account</Link>
+
                 <div className="action-container">
                     <Button styleName="action-container__btn--secondary" handleClick={onCancel}>Cancel</Button>
                     <Button isDisabled={!isReady} styleName="action-container__btn--primary" handleClick={onSubmit}>Login</Button>

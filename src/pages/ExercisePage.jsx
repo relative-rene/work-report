@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import AddExercise from './AddExercise';
+import React, {useEffect, useState} from 'react';
+import AddExercise from '../components/AddExercise';
 
-const ExerciseList = () => {
+
+const ExercisePage = () => {
     let [exercises, setExercises] = useState([]);
 
     useEffect(() => {
@@ -25,8 +26,7 @@ const ExerciseList = () => {
             <AddExercise />
             <ul>{displayExercises}</ul>
         </>
-    );
+    )
 }
 
-
-export default ExerciseList;
+export default ExercisePage;

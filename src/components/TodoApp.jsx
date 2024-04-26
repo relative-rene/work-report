@@ -85,9 +85,7 @@ const TodoApp = ({ list }) => {
             <ul className="TodoList">
                 {todos}
             </ul>
-            <div className="action-container">
-                <i disabled className="fa-solid fa-square-pen fa-2xl" onClick={() => setEditingMode(!onEditing)} title="Edit mode: remove task or edit description" />
-            </div>
+            <i disabled className="fa-solid fa-square-pen fa-2xl" onClick={() => setEditingMode(!onEditing)} title="Edit mode: remove task or edit description" />
         </div>
     );
 }
