@@ -12,7 +12,7 @@ const quickLinksMenu = [
 
 const Navbar = ({handleLogin}) => {
     const { user, logout } = useAuth();
-    const options = quickLinksMenu.map((vm, idx) => <li key={"menu-" + idx}><Link to={vm.path + "/" + user._id}>{vm.pageTitle}</Link></li>);
+    const options = quickLinksMenu.map((vm, idx) => <li key={"menu-" + idx}><Link to={vm.path + "/"}>{vm.pageTitle}</Link></li>);
     return (
         <>
             <header className="Navbar">

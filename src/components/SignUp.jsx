@@ -16,7 +16,6 @@ const SignUp = () => {
         e.preventDefault();
         setStatus('isSending');
         const isSuccess = await register(formValues);
-        console.log('isSuccess', isSuccess);
         if (isSuccess) {
             setStatus('typing');
             navigate('/sets');
