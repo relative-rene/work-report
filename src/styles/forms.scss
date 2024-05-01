@@ -3,11 +3,19 @@ form {
   flex-direction: column;
   justify-content: space-between;
   border-radius: 3px;
-  padding: 2em 2.5rem;
+  padding: 1em 2em 2.5rem;
   box-shadow:
     inset 0 -3em 3em rgba(0, 0, 0, 0.1),
     0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    nav {
+      display:flex;
+      justify-content: space-between;
+    }
+    .form-title{
+      display:flex;
+      justify-content: center;
+    }
 }
 
 .action-container {
@@ -67,6 +75,10 @@ form {
   label {
     justify-content: space-between;
     font-size: 1rem;
+    .fa.solid.fa-eye-slash{
+      display:flex;
+      justify-content: flex-end;
+    }
 
     input {
       width: 100%;

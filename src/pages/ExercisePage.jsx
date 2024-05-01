@@ -4,21 +4,6 @@ import AddExercise from '../components/AddExercise';
 
 const ExercisePage = () => {
     let [exercises, setExercises] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                console.log('fetchData', process.env.REACT_APP_SERVER);
-                const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises`);
-                const newData = await response.json();
-                setExercises(newData);
-            } catch (error) {
-                console.error(`Error fetching data:`, error);
-            }
-        }
-        fetchData();
-    }, []);
-
     const displayExercises = exercises && exercises.map(e => <li>{e.name + '\n' + e.muscle_group + '\n' + e.balance + '\n' + e.primary_muscle}</li>);
 
     return (

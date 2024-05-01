@@ -1,5 +1,5 @@
 import React from 'react';
-
+import BarChart from '../components/D3/BarChart';
 
 
 
@@ -11,7 +11,7 @@ const GettingStartedPage = () => {
                 <p>The mind is a fickle thing, some folks focus on the good, others dwell on the bad.
                 Regardless of your disposition there is a preference and in time there will be blind spots.
                 When we are commited to succeed, we cannot accept our error prone minds, we must document our effort.
-               This application was created to track your work effort in <bold>Sets</bold> and outcomes in <bold>Stats</bold>.
+               This application was created to track your work effort in <b>Sets</b> and outcomes in <b>Stats</b>.
                When you commit to logging your program, you will be rewarded with reports.
                These reports will help you define your gains in physique and strength.
             </p>
@@ -78,8 +78,9 @@ const GettingStartedPage = () => {
             </div>
             <div>
                 <h5>Diet</h5>
-                <p>What to eat is a big topic and their are many ways of living.
+                <p>What to eat is a big topic and their are many ways of living.</p>
                 <h6>Calories</h6>
+                <p>
                 The scientific literature on this topic is pretty clear.
                     a. Crash dieting is unsustainable and can cause adverse affects on the body, so it should be avoided.
                     b. Ideally you should calculate your maintenence calories and increase or decrease your intake depending on goals.
@@ -121,6 +122,7 @@ const GettingStartedPage = () => {
                 Kaizen is a term that defines a philosophy of incremental progress.
                 You will better know it as a todo list. Complete the task and prosper.
             </p>
+            <BarChart dataset={[20,30,24,80,55]} />
 
             </div>
         </>
