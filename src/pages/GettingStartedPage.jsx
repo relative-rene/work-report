@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import LineChart from '../components/D3/LineChart';
 import { useOutletContext } from 'react-router-dom';
 
 
 const GettingStartedPage = () => {
-    let { exercises, allSets } = useOutletContext();
+    let {allSets } = useOutletContext();
     return (
         <>
             <section className="getting-started_peel">

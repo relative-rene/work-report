@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Select from './UI/Select';
 import Input from './UI/Input';
 import Button from './UI/Button';
 import { useAuth } from '../hooks/useAuth';

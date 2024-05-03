@@ -34,7 +34,7 @@ const AddSet = ({ exercises }) => {
             </div>
             <div className="form-group">
                 <label>Select an exercise: </label>
-                <select value={selectedExercise.name} onChange={(e) => handleSelectedExercise(e)} name="selectedExercise">
+                <select value={`${selectedExercise.name}:${selectedExercise._id}`} onChange={(e) => handleSelectedExercise(e)} name="selectedExercise">
                     <option>Choose an option</option>
                     {exercises.map((entry, i) => <option value={entry.name + ":" + entry._id} key={`exercise-${i}`}>{entry.name}</option>)}
                 </select>

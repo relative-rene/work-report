@@ -62,10 +62,11 @@ form {
 }
 
 .create-account {
-  display:flex;
-  justify-content: flex-end;
+  display:inline;
+  float:right;
   font-size: .8rem;
 }
+
 .browser-back{
   font-size:.8rem;
 }
@@ -87,6 +88,9 @@ form {
       padding: .3rem .1rem;
       border-radius: 2%;
       border: 1px solid gainsboro;
+      &.--invalid{
+        outline: solid 1px red;
+      }
     }
 
     input:focus {
@@ -191,4 +195,9 @@ form {
     outline: 3px solid $primaryLight-color;
     border: 1px solid $primary-color;
   }
+}
+
+
+.error-message{
+  color:red;
 }

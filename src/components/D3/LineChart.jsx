@@ -61,7 +61,7 @@ function LineChart({ svgWidth, svgHeight, data }) {
             .attr("d", valueLine)
     }
 
-    useEffect(() => { buildGraph(svgWidth, svgHeight, data) }, []);
+    useEffect(() => { buildGraph(svgWidth, svgHeight, data) }, [svgWidth,svgHeight,data]);
 
 
     return <svg className="line-chart"></svg>;

@@ -57,7 +57,7 @@ const EditSet = () => {
                     <label>Weight in lbs: </label>
                     <input defaultValue={set ? set.set_weight : ''} name="set_weight" type="number" />
                 </div>
-                {set.right_reps || selectedExercise && selectedExercise.balance === 'asymmetrical' ?
+                {set.right_reps ||( selectedExercise && selectedExercise.balance === 'asymmetrical') ?
                     <div className="form-group">
                         <label>Right Side Reps: </label>
                         <input defaultValue={set ? set.right_reps : ''} name="right_reps" type="number" />

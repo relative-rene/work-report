@@ -5,7 +5,7 @@ import AddSet from '../components/AddSet';
 const SetsPage = () => {
     const { exercises, allSets } = useOutletContext();
     // const groupedData = groupByKey(setsData,  "exercise_name");
-    const displayData = allSets.map(e => <li>{e.date_and_time.substring(0,10) }:::::
+    const displayData = allSets.map(e => <li>{e.date_and_time.substring(0,10) }:
                             <Link to={"/work-report/hub/sets/edit/" + e._id}>{e.exercise_name}</Link></li>)
 
     return (
@@ -15,7 +15,7 @@ const SetsPage = () => {
             <div className="string-chart"></div>
             <AddSet exercises={exercises} />
             <div>
-                <ul style={{"list-style": "none"}}>{displayData}</ul>
+                <ul style={{"listStyle": "none"}}>{displayData}</ul>
             </div>
         </>
     )
