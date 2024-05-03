@@ -8,7 +8,6 @@ import GettingStartedPage from './pages/GettingStartedPage';
 import ExercisesPage from './pages/ExercisePage';
 import Layout from './layout/Layout';
 import Login from './components/Login';
-import { LoadClientData } from './loaders';
 import { AuthenticatedRoute } from './components/AuthenticatedRoute';
 
 const CatchAll = () => {

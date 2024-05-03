@@ -1,32 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 
-const AddSet = () => {
-    const [exercises, setExercises] = useState([]);
+const AddSet = ({ exercises }) => {
     const [selectedExercise, setSelected] = useState([{ name: null, balance: null }]);
-    const [isReady, setAvailability] = useState(true);
-
+    const [isBtnReady, setBtnAvailability] = useState(true);
     const { user } = useAuth();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        async function getData() {
-            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises`);
-            const data = await response.json();
-            setExercises([...data]);
-        }
-        getData();
-    }, []);
 
     async function handleSubmit(e) {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
+        setBtnAvailability(false);
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/set/create`,
             { method: form.method, body: JSON.stringify(Object.fromEntries(formData.entries())), headers: { "Content-Type": "application/json" } });
-        const data = response.json();
-        data.message ? alert("Add Set Failed", data.message) : alert('Add Set Success')
+        const { message } = response.json();
+        message ? alert("Add Set Failed", message) : alert('Add Set Success')
+        setBtnAvailability(true);;
     }
 
     async function handleSelectedExercise(val) {
@@ -34,11 +23,11 @@ const AddSet = () => {
         setSelected(exercise);
     }
 
-    const optionsList = exercises.map((entry, i) => <option value={entry.name + ":" + entry._id} key={`exercise-${i}`}>{entry.name}</option>);
+    // const optionsList = exercises.map((entry, i) => <option value={entry.name + ":" + entry._id} key={`exercise-${i}`}>{entry.name}</option>);
 
     return (
-        <form className="pr-form" method="post" onSubmit={handleSubmit}>
-            <h2>Log Set</h2>
+        <form method="post" onSubmit={handleSubmit}>
+            <h2 className="form-title">Log Set</h2>
             <div className="form-group">
                 <label>Date</label>
                 <input name="date_and_time" type="date" />
@@ -47,14 +36,14 @@ const AddSet = () => {
                 <label>Select an exercise: </label>
                 <select value={selectedExercise.name} onChange={(e) => handleSelectedExercise(e)} name="selectedExercise">
                     <option>Choose an option</option>
-                    {optionsList}
+                    {exercises.map((entry, i) => <option value={entry.name + ":" + entry._id} key={`exercise-${i}`}>{entry.name}</option>)}
                 </select>
             </div>
             <div className="form-group">
                 <label>Weight in lbs: </label>
                 <input name="set_weight" type="number" />
             </div>
-            { selectedExercise && selectedExercise[0].balance === 'asymmetrical' ?
+            { selectedExercise && selectedExercise.balance === 'asymmetrical' ?
                 <div className="form-group">
                     <label>Right Side Reps: </label>
                     <input name="right_reps" type="number" />
@@ -69,7 +58,7 @@ const AddSet = () => {
             }
             <div className="action-container">
                 <button className="action-container__btn--secondary" type="reset">Reset</button>
-                <button isdisabled={!isReady} className="action-container__btn--primary" type="save">Save</button>
+                <button disabled={!isBtnReady} className="action-container__btn--primary" type="save">Save</button>
             </div>
         </form>
     );

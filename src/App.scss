@@ -3,13 +3,20 @@
 @import './styles/media_queries.scss';
 @import './styles/splash.scss';
 
+
+// debug overflow css
+// *{
+//   *{
+//     outline:1px solid red;
+//   }
+// }
 body,
 html {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
-  min-height: 100vh;
-  background-color: #292a2b;
   font-size: 16px;
+  display:flex;
+  flex-flow:column nowrap;
 
   h1,
   h2,
@@ -300,11 +307,12 @@ input[type="range"] {
   z-index: 500;
   background-color: white;
   border: 1px solid #ccc;
-  box-shadow: 3px 5px 2px $black;
-  left: clamp(20%, 25%, 40%);
+  box-shadow: 7px 9px 4px $black;
+  left: clamp(22%, 28%, 40%);
   top: 8em;
   box-sizing: border-box;
   transition: all 0.3s ease-out;
+  width: clamp(320px, 510px, 650px);
 
   &.--closed {
     transform: translateY(-100vh);
@@ -315,4 +323,37 @@ input[type="range"] {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+
+.getting-started_peel{
+  padding:1em 1em 3em;
+  position:relative;
+  display:grid;
+  place-items: center;
+}
+.getting-started_peel:nth-child(odd) {
+  background-color: $secondary-color;
+}
+.getting-started_peel:not(:last-child):after,
+.getting-started_peel:not(:last-child)::before{
+  position:absolute;
+  content: '';
+  width:50px;
+  height:50px;
+  background:#fff;
+  bottom:-.4em;
+  z-index: 100;
+}
+.getting-started_peel:nth-child(odd)::after,
+.getting-started_peel:nth-child(odd)::before{
+  background-color: $secondary-color;
+}
+.getting-started_peel::after{
+  left:50%;
+  transform:skew(0,-20deg)
+}
+.getting-started_peel::before{
+  right:50%;
+  transform:skew(0,20deg)
 }
