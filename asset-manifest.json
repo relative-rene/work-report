@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/work-report/static/css/main.7aab0333.css",
-    "main.js": "/work-report/static/js/main.80668825.js",
+    "main.css": "/work-report/static/css/main.60b29ed7.css",
+    "main.js": "/work-report/static/js/main.285165ac.js",
     "static/js/453.d0743133.chunk.js": "/work-report/static/js/453.d0743133.chunk.js",
     "static/media/vutruvianLogo.jpeg": "/work-report/static/media/vutruvianLogo.b7e032c205f25c88eb67.jpeg",
     "index.html": "/work-report/index.html",
-    "main.7aab0333.css.map": "/work-report/static/css/main.7aab0333.css.map",
-    "main.80668825.js.map": "/work-report/static/js/main.80668825.js.map",
+    "main.60b29ed7.css.map": "/work-report/static/css/main.60b29ed7.css.map",
+    "main.285165ac.js.map": "/work-report/static/js/main.285165ac.js.map",
     "453.d0743133.chunk.js.map": "/work-report/static/js/453.d0743133.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7aab0333.css",
-    "static/js/main.80668825.js"
+    "static/css/main.60b29ed7.css",
+    "static/js/main.285165ac.js"
   ]
 }
