@@ -15,11 +15,11 @@ const AddSet = ({ exercises }) => {
             { method: form.method, body: JSON.stringify(Object.fromEntries(formData.entries())), headers: { "Content-Type": "application/json" } });
         const { message } = response.json();
         message ? alert("Add Set Failed", message) : alert('Add Set Success')
-        setBtnAvailability(true);;
+        setBtnAvailability(true);
     }
 
     async function handleSelectedExercise(val) {
-        const exercise = exercises.filter(exercise => exercise.name === val.target.value.split(':')[0]);
+        const exercise = exercises.filter(exercise => exercise.name === val.target.value.split(':')[0])[0];
         setSelected(exercise);
     }
 

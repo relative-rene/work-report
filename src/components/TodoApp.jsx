@@ -39,7 +39,6 @@ const TodoApp = ({ list }) => {
         const saveTodo = { description, isDone: false, dueDateAndTime: new Date(dueDateAndTime).toUTCString() }
         if (description.length !== 0) {
             const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todo/create`,
-                // const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${profile_id}/todo/create`,
                 { method: 'post', body: JSON.stringify(saveTodo), headers: { "Content-Type": "application/json" } })
             const data = await response.json();
             setDescription('') && setDueDate('');
