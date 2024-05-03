@@ -5,7 +5,7 @@ import Login from '../components/Login';
 import Modal from '../components/UI/Modal';
 import Sidebar from './Sidebar';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import SignUp from '../components/SignUp';
 import { useAuth } from '../hooks/useAuth';
 import { getExerciseData } from '../services/exercise.service';
@@ -19,14 +19,14 @@ function Layout() {
     const [isSignupVisible, setSignupVisibility] = useState(false);
     const [isLoginVisible, setLoginVisibility] = useState(false);
 
-    useEffect(() => {
-        getExerciseData().then(exer => setExercises(exer));
+    useMemo(() => {
+        getExerciseData().then(setExercises).catch(err => console.error(err));
         reloadUser().then(user => {
             setLoginVisibility(false);
             navigate('/work-report/hub/getting-started');
-            getSetData(user._id).then(set => updateSets(set));
+            getSetData(user._id).then(updateSets).catch(err => console.error(err));
         });
-    }, []);
+    }, [exercises, allSets]);
 
     const onHandleLogin = (hasAnAccount) => {
         hasAnAccount ? setLoginVisibility(true) : setSignupVisibility(true);
@@ -43,7 +43,9 @@ function Layout() {
             </main>
             <Footer />
             <Modal show={isLoginVisible} closeModal={() => setLoginVisibility(false)}>
-                <Login onCancel={() => setLoginVisibility(false)} onSend={() => setLoginVisibility(false)} />
+                <Login 
+                    onCancel={() => setLoginVisibility(false)} 
+                    onSend={() => setLoginVisibility(false)} />
             </Modal>
             <Modal show={isSignupVisible} closeModal={() => setSignupVisibility(false)}>
                 <SignUp />

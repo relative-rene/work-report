@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Input from '../UI/Input';
 
 
 
@@ -11,12 +10,8 @@ const InputHeight = ({ updateForm, standard }) => {
 
         const handleInput = (val, targetVal) => {
                 if (standard === 'Imperical') {
-                        if (targetVal === 'feet') {
-                                setFeet(val)
-                        } else {
-                                setInches(val);
-                        }
-                        const height =   ((feet * 30.48) + (inches * 2.54)).toFixed();
+                targetVal === 'feet'? setFeet(val): setInches(val);
+                        const height = ((feet * 30.48) + (inches * 2.54)).toFixed();
                         setConverted(height)
                         updateForm('height', height);
                 } else {

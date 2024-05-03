@@ -9,6 +9,7 @@ import ExercisesPage from './pages/ExercisePage';
 import Layout from './layout/Layout';
 import Login from './components/Login';
 import { AuthenticatedRoute } from './components/AuthenticatedRoute';
+import React, {Suspense} from 'react';
 
 const CatchAll = () => {
     setTimeout(() => {
@@ -19,7 +20,11 @@ const CatchAll = () => {
 const router = createBrowserRouter([
     { path: '/work-report', element: <SplashPage /> },
     {
-        path: '/work-report/hub/', element: <Layout />,
+        path: '/work-report/hub/', element: 
+        <Suspense>
+            <Layout />
+        </Suspense>
+        ,
         children: [
             { path: 'login', element: <Login /> },
             { path: 'getting-started', element: <GettingStartedPage /> },
