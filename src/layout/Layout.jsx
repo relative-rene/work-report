@@ -8,49 +8,42 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SignUp from '../components/SignUp';
 import { useAuth } from '../hooks/useAuth';
-import { getExerciseData } from '../services/exercise.service';
-import { getSetData } from '../services/set.service';
+import { useData } from '../hooks/useData';
 
 function Layout() {
-    const navigate = useNavigate();
-    const { user, reloadUser } = useAuth();
-    const [exercises, setExercises] = useState([]);
-    const [allSets, updateSets] = useState([]);
+    const { reloadUser } = useAuth();
+    const { loadData } = useData();
     const [isSignupVisible, setSignupVisibility] = useState(false);
     const [isLoginVisible, setLoginVisibility] = useState(false);
 
-    useEffect(() => {
-        getExerciseData().then(res=>setExercises(res)).catch(err => console.error(err));
-        reloadUser().then(user => {
-            setLoginVisibility(false);
-            navigate('/work-report/hub/getting-started');
-            getSetData(user._id).then(updateSets).catch(err => console.error(err));
-        });
-    }, []);
+    useEffect(()=>{
+        reloadUser()
+            .then(user => loadData(user._id))
+            .catch(err => console.error(err));
+    },[])
 
-    const handleLogin = (hasAnAccount) => {
+    const onLoginFlow = (hasAnAccount) => {
         hasAnAccount ? setLoginVisibility(true) : setSignupVisibility(true);
     }
 
-    const handleCancel = ()=>{
-        console.log('triggered')
+    const onLoginComplete = () => {
         setLoginVisibility(false);
     }
 
     return (
         <div className="Layout">
-            <Navbar handleLogin={handleLogin} />
+            <Navbar handleLogin={onLoginFlow} />
             <main className="MainContainer">
                 <Sidebar />
                 <Main>
-                    <Outlet context={{ exercises, allSets }} />
+                    <Outlet />
                 </Main>
             </main>
             <Footer />
             <Modal show={isLoginVisible} closeModal={() => setLoginVisibility(false)}>
-                <Login 
-                    onCancel={handleCancel} 
-                    onSend={() => setLoginVisibility(false)} />
+                <Login
+                    onCloseModal={onLoginComplete}
+                />
             </Modal>
             <Modal show={isSignupVisible} closeModal={() => setSignupVisibility(false)}>
                 <SignUp />

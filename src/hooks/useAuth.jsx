@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
             return null;
         }
     }
-    const logout = () => {
+    const logout = async () => {
         setUser(null);
         localStorage.clear();
     }

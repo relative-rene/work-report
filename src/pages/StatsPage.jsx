@@ -1,16 +1,14 @@
-import React, { use } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddStats from '../components/AddStats';
 import { useAuth } from '../hooks/useAuth';
-
+import {getStatData} from '../services/stat.service';
+import { useData } from '../hooks/useData';
 const StatsPage = () => {
-    const { user } = useAuth();
-    let data = 'Default Data';
-
-    if (!!user) {
-        data = fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/read_stats`).then(res => res.json());
-        console.log('data', data);
-        
-    }
+    const { stats } = useData();
+    
+    useEffect(()=>{
+        console.log('stats', stats);
+    },[stats])
     return (
         <>
             <AddStats />

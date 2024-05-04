@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { Link, useNavigate, useParams, useOutletContext } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import  ModalNavbar from '../components/ModalNavbar';
+import { useData } from '../hooks/useData';
 
 const EditSet = () => {
     const { set_id } = useParams();
-    const { exercises, allSets } = useOutletContext();
     const [selectedExercise, setSelected] = useState([{ name: null, balance: null }]);
     const [isReady, setAvailability] = useState(true);
-    const navigate = useNavigate();
     const { user } = useAuth();
-
+    const { sets, exercises } = useData();
+    
     async function handleUpdateSet(e) {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-
-        console.log(Object.fromEntries(formData));
-        console.log('onClicked')
         setAvailability(false);
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/set/create`,
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/create_set`,
             { method: form.method, body: JSON.stringify(Object.fromEntries(formData.entries())), headers: { "Content-Type": "application/json" } });
         const data = response.json();
         data.message ? alert("Add Set Failed", data.message) : alert('Add Set Success')
@@ -27,18 +25,14 @@ const EditSet = () => {
 
     async function handleSelectedExercise(val) {
         const exercise = exercises.filter(exercise => exercise.name === val.target.value.split(':')[0])[0];
-        console.log(exercise);
         setSelected(exercise)
     }
     const optionsList = exercises.map((entry, i) => <option value={entry.name + ":" + entry._id} key={`exercise-${i}`}>{entry.name}</option>);
-    const set = allSets && allSets.find(set => set._id === set_id);
+    const set = sets && sets.find(set => set._id === set_id);
     return (
         <>
             <form method="post" onSubmit={handleUpdateSet}>
-                <nav>
-                    <Link className="browser-back" to={() => navigate(-1)}>Back</Link>
-                    <i onClick={() => alert('Fix me add Cancel')} className="fa-solid fa-bug" />
-                </nav>
+                <ModalNavbar />
                 <h2 className="form-title">Edit Set</h2>
                 <div className="form-group">
                     <label>Date</label>

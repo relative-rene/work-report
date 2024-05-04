@@ -3,8 +3,9 @@ import Button from './UI/Button';
 import Input from './UI/Input';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate, Link } from 'react-router-dom';
+import ModalNavbar from './ModalNavbar';
 
-const Login = ({ onSend, onCancel }) => {
+const Login = ({ onCloseModal}) => {
     const [isPasswordVisible, setPasswordVisability] = useState(false);
     const [formValues, setFormValues] = useState({ email: null, password: null });
     const [isReady, setAvailability] = useState(true);
@@ -18,10 +19,13 @@ const Login = ({ onSend, onCancel }) => {
         if (response.message) {
             setAvailability(true);
             alert("Login Failed", response.message);
+            return;
         } else {
             setAvailability(true);
             navigate('/work-report/hub/reports');
+            return onCloseModal();
         }
+
     }
 
     const toggleView = () => {
@@ -34,10 +38,7 @@ const Login = ({ onSend, onCancel }) => {
 
     return (
         <form onSubmit={onSubmit}>
-            <nav>
-                <Link className="browser-back" to={() => navigate(-1)}>Back</Link>
-                <i onClick={onCancel} className="fa-solid fa-bug" />
-            </nav>
+            <ModalNavbar closeModal={onCloseModal}/>
             <h1 className="form-title">Login</h1>
             <Input
                 updateForm={onUpdateFormValue}
@@ -59,7 +60,7 @@ const Login = ({ onSend, onCancel }) => {
             </div>
 
             <div className="action-container">
-                <Button styleName="action-container__btn--secondary" handleClick={onCancel}>Cancel</Button>
+                <Button styleName="action-container__btn--secondary" handleClick={onCloseModal}>Cancel</Button>
                 <Button isDisabled={!isReady} styleName="action-container__btn--primary" inputType="save">Login</Button>
             </div>
         </form>

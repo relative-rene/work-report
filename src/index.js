@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './hooks/useAuth';
+import { DataProvider } from './hooks/useData';
 
 import router from './router';
 import './App.scss';
@@ -10,7 +11,9 @@ import './App.scss';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <DataProvider>
+        <RouterProvider router={router} />
+      </DataProvider>
     </AuthProvider>
   </React.StrictMode>
 );

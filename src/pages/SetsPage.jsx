@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AddSet from '../components/AddSet';
+import { useData } from '../hooks/useData';
 
-const SetsPage = () => {
-    const { exercises, allSets } = useOutletContext();
-    const displayData = allSets.map(e => <li>{e.date_and_time.substring(0,10) }:
-                            <Link to={"/work-report/hub/sets/edit/" + e._id}>{e.exercise_name}</Link></li>)
+function SetsPage(){
+    const {exercises, sets} = useData();
+    const displayData = sets && sets.map(e => <li>{`${e.date_and_time.substring(0,10)}   `} <Link to={"/work-report/hub/sets/edit/" + e._id}>{e.exercise_name}</Link></li>)
 
     return (
         <>

@@ -2,7 +2,8 @@ import React, { useRef, useState } from 'react'
 
 const Input = ({ updateForm, label, targetVal, inputVal, inputType, validations, children }) => {
     const inputRef = useRef();
-    const [hasErrors, setErrors] = useState(false)
+    const [hasErrors, setErrors] = useState(false);
+
     const isValid = () => {
         inputRef.current.value.length === 0 ||
             inputRef.current &&
@@ -14,7 +15,6 @@ const Input = ({ updateForm, label, targetVal, inputVal, inputType, validations,
 
     return (
         <div className="InputComponent">
-            {console.log(validations)}
             <label>{label}  {children}
                 <input
                     minLength={validations ? validations.minLength : 0}

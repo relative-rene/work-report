@@ -9,7 +9,7 @@ function StatsForm({ data, title }){
     const [standard, setStandard] = useState('Metric');
     const [isReady, setAvailability] = useState(true);
     const [formValues, setFormValues] = useState(INIT_STATS);
-    useEffect(() => {console.log(data) }, []);
+    useEffect(() => {console.log('data', data) }, []);
 
     const handleFormUpdate = (target, val) => {
         console.log(formValues, target, val);

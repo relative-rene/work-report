@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
+import  ModalNavbar from '../components/ModalNavbar';
 
 const AddSet = ({ exercises }) => {
     const [selectedExercise, setSelected] = useState([{ name: null, balance: null }]);
@@ -11,7 +12,7 @@ const AddSet = ({ exercises }) => {
         const form = e.target;
         const formData = new FormData(form);
         setBtnAvailability(false);
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/set/create`,
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/create_set`,
             { method: form.method, body: JSON.stringify(Object.fromEntries(formData.entries())), headers: { "Content-Type": "application/json" } });
         const { message } = response.json();
         message ? alert("Add Set Failed", message) : alert('Add Set Success')
@@ -27,6 +28,7 @@ const AddSet = ({ exercises }) => {
 
     return (
         <form method="post" onSubmit={handleSubmit}>
+            <ModalNavbar />
             <h2 className="form-title">Log Set</h2>
             <div className="form-group">
                 <label>Date</label>

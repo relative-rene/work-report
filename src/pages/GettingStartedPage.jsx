@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import LineChart from '../components/D3/LineChart';
-import { useOutletContext } from 'react-router-dom';
+import { useData } from '../hooks/useData';
 
 
 const GettingStartedPage = () => {
-    let {allSets } = useOutletContext();
+    let { sets } = useData();
+    
     return (
         <>
             <section className="getting-started_peel">
@@ -150,7 +151,9 @@ const GettingStartedPage = () => {
 
             </section>
             <section width="100%" height="100%">
-                {allSets.length ? <LineChart svgHeight={500} svgWidth={960} data={allSets} /> : "...Loading"}
+                <Suspense fallback={<h2>...Loading</h2>}>
+                    <LineChart svgHeight={500} svgWidth={960} data={sets} />
+                </Suspense>
             </section>
         </>
     )
