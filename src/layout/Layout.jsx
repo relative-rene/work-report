@@ -19,22 +19,27 @@ function Layout() {
     const [isSignupVisible, setSignupVisibility] = useState(false);
     const [isLoginVisible, setLoginVisibility] = useState(false);
 
-    useMemo(() => {
-        getExerciseData().then(setExercises).catch(err => console.error(err));
+    useEffect(() => {
+        getExerciseData().then(res=>setExercises(res)).catch(err => console.error(err));
         reloadUser().then(user => {
             setLoginVisibility(false);
             navigate('/work-report/hub/getting-started');
             getSetData(user._id).then(updateSets).catch(err => console.error(err));
         });
-    }, [exercises, allSets]);
+    }, []);
 
-    const onHandleLogin = (hasAnAccount) => {
+    const handleLogin = (hasAnAccount) => {
         hasAnAccount ? setLoginVisibility(true) : setSignupVisibility(true);
+    }
+
+    const handleCancel = ()=>{
+        console.log('triggered')
+        setLoginVisibility(false);
     }
 
     return (
         <div className="Layout">
-            <Navbar handleLogin={onHandleLogin} />
+            <Navbar handleLogin={handleLogin} />
             <main className="MainContainer">
                 <Sidebar />
                 <Main>
@@ -44,7 +49,7 @@ function Layout() {
             <Footer />
             <Modal show={isLoginVisible} closeModal={() => setLoginVisibility(false)}>
                 <Login 
-                    onCancel={() => setLoginVisibility(false)} 
+                    onCancel={handleCancel} 
                     onSend={() => setLoginVisibility(false)} />
             </Modal>
             <Modal show={isSignupVisible} closeModal={() => setSignupVisibility(false)}>
