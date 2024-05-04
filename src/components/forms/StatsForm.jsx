@@ -1,43 +1,27 @@
-import React, { useState } from 'react';
-import ToggleCheckbox from './UI/ToggleCheckbox';
-import InputHeight from './UI/InputHeight';
-import Button from './UI/Button';
-import Input from './UI/Input';
-import { INIT_STATS } from '../data/constants';
-import { useAuth } from '../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import React, {  useState, useEffect } from 'react';
+import { INIT_STATS } from '../../data/constants';
+import ToggleCheckbox from '../UI/ToggleCheckbox';
+import InputHeight from '../UI/InputHeight';
+import Button from '../UI/Button';
+import Input from '../UI/Input';
 
-export default function AddStats() {
-    const { user } = useAuth();
-    const navigate = useNavigate();
-
-
+function StatsForm({ data, title }){
     const [standard, setStandard] = useState('Metric');
     const [isReady, setAvailability] = useState(true);
     const [formValues, setFormValues] = useState(INIT_STATS);
+    useEffect(() => {console.log(data) }, []);
 
     const handleFormUpdate = (target, val) => {
         console.log(formValues, target, val);
         setFormValues({ ...formValues, [target]: val });
     }
 
-    async function handleCancel(e) {
-        e.preventDefault()
-        setFormValues({ name: null, muscle_group: null, primary_muscle: null });
-    }
-
-    async function handleSave(e) {
-        e.preventDefault();
-        setAvailability(false)
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/stats/create`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
-        const data = response.json();
-        data.message ? alert("Login Failed", data.message) : navigate('/work-report/hub/reports');
-        setAvailability(true)
-    }
+    const handleCancel = () => { console.log('handleCancel') }
+    const handleSave = () => { console.log('handleSave') }
 
     return (
         <form>
-            <h2>Add Stats</h2>
+            <h2 className="form-title">{title}</h2>
             <Input inputType="date" inputVal={formValues.date || ''} label="Date" targetVal="date" updateForm={handleFormUpdate} />
             <Input inputType="number" inputVal={formValues.age || ''} label="Age" targetVal="age" updateForm={handleFormUpdate} />
             <Input inputType="number" inputVal={formValues.weight || ''} label="Weight in lbs" targetVal="weight" updateForm={handleFormUpdate} />
@@ -56,7 +40,9 @@ export default function AddStats() {
             <Input inputType="number" inputVal={formValues.left_leg || ''} label="Left leg cm" targetVal="left_leg" updateForm={handleFormUpdate} />
             <div className="action-container">
                 <Button handleClick={handleCancel} styleName="action-container__btn--secondary">Cancel</Button>
-                <Button isDisabled={!isReady} handleClick={handleSave} styleName="action-container__btn--primary">Save</Button>
+                <Button handleClick={handleSave} isDisabled={!isReady} styleName="action-container__btn--primary">Save</Button>
             </div>
-        </form>)
+        </form>);
 }
+
+export default StatsForm;

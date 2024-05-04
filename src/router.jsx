@@ -10,6 +10,7 @@ import Layout from './layout/Layout';
 import Login from './components/Login';
 import { AuthenticatedRoute } from './components/AuthenticatedRoute';
 import React, {Suspense} from 'react';
+import EditStats from "./components/EditStats";
 
 const CatchAll = () => {
     setTimeout(() => {
@@ -30,7 +31,8 @@ const router = createBrowserRouter([
             { path: 'getting-started', element: <GettingStartedPage /> },
             { path: 'sets', element: <AuthenticatedRoute><SetsPage /> </AuthenticatedRoute> },
             { path: "sets/edit/:set_id", element: <EditSet /> },
-            { path: 'stats', element: <AuthenticatedRoute><StatsPage /></AuthenticatedRoute> },
+            { path: "stats", element: <AuthenticatedRoute><StatsPage /></AuthenticatedRoute>},
+            { path: 'stats/edit/:stat_id', element: <EditStats /> },
             { path: 'reports', element: <ReportsPage /> },
             { path: 'exercises', element: <ExercisesPage /> }
         ]

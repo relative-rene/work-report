@@ -1,24 +1,20 @@
-import React from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+import React, { use } from 'react';
 import AddStats from '../components/AddStats';
-
+import { useAuth } from '../hooks/useAuth';
 
 const StatsPage = () => {
-    const { allSets } = useOutletContext();
-    // const groupedData = groupByKey(setsData,  "exercise_name");
-    const displayData = allSets.map(e => <li>{e.date_and_time.substring(0, 10)}:
-                            <Link to={"/work-report/hub/sets/edit/" + e._id}>{e.exercise_name}</Link></li>)
+    const { user } = useAuth();
+    let data = 'Default Data';
 
+    if (!!user) {
+        data = fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/read_stats`).then(res => res.json());
+        console.log('data', data);
+        
+    }
     return (
         <>
-            <div className="className">Recent PRs</div>
-            <div className="className">Progressive Overload</div>
-            <div className="string-chart"></div>
             <AddStats />
-            <div>
-                <ul style={{ "listStyle": "none" }}>{displayData}</ul>
-            </div>
         </>
     );
 }
-    export default StatsPage;
+export default StatsPage;

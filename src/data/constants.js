@@ -15,3 +15,21 @@ export const PRIMARY_MUSCLES = {
     "core": [{ displayName: "Upper" }, { displayName: "Lower" }, { displayName: "Obliques" }],
     "delts": [{ displayName: "Anterior" }, { displayName: "Posterior" }, { displayName: "Medial" }]
 }
+
+export const INIT_STATS = {
+    date: null,
+    age: null,
+    weight: null,
+    body_fat: null,
+    height: null,
+    neck: null,
+    chest: null,
+    belly: null,
+    butt: null,
+    left_arm: null,
+    right_arm: null,
+    left_forearm: null,
+    right_forearm: null,
+    left_leg: null,
+    right_leg: null
+}

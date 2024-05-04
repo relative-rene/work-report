@@ -5,7 +5,7 @@ import Login from '../components/Login';
 import Modal from '../components/UI/Modal';
 import Sidebar from './Sidebar';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import SignUp from '../components/SignUp';
 import { useAuth } from '../hooks/useAuth';
 import { getExerciseData } from '../services/exercise.service';
