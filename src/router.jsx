@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createHashRouter, Navigate } from "react-router-dom";
 import SplashPage from './pages/Splash';
 import ReportsPage from './pages/ReportsPage';
 import SetsPage from './pages/SetsPage';
@@ -18,7 +18,7 @@ const CatchAll = () => {
     }, 2000);
 }
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     { path: '/work-report', element: <SplashPage /> },
     {
         path: '/work-report/hub/', element: <Suspense><Layout /></Suspense>,
