@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       <DataProvider>
-        <RouterProvider router={router} />
+        <RouterProvider baseName="/work-report" router={router} />
       </DataProvider>
     </AuthProvider>
   </React.StrictMode>

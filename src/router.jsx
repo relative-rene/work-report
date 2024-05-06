@@ -14,7 +14,7 @@ import EditStats from "./components/EditStats";
 
 const CatchAll = () => {
     setTimeout(() => {
-        return <Navigate to={'/work-report/hub'} />
+        return <Navigate to={'work-report/hub'} />
     }, 2000);
 }
 
