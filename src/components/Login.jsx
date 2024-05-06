@@ -64,9 +64,7 @@ const Login = ({ onCloseModal}) => {
                 <Button isDisabled={!isReady} styleName="action-container__btn--primary" inputType="save">Login</Button>
             </div>
         </form>
-    );
+        );
 }
-
-
 
 export default Login;

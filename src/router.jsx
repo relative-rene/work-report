@@ -21,11 +21,7 @@ const CatchAll = () => {
 const router = createBrowserRouter([
     { path: '/work-report', element: <SplashPage /> },
     {
-        path: '/work-report/hub/', element: 
-        <Suspense>
-            <Layout />
-        </Suspense>
-        ,
+        path: '/work-report/hub/', element: <Suspense><Layout /></Suspense>,
         children: [
             { path: 'login', element: <Login /> },
             { path: 'getting-started', element: <GettingStartedPage /> },
