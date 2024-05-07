@@ -39,7 +39,7 @@ export default function AddStats() {
     }
 
     return (
-        <form>
+        <form className="FormWR">
             <ModalNavbar />
             <h2 className="form-title">Add Stats</h2>
             <Input inputType="date" inputVal={formValues.date || ''} label="Date" targetVal="date" updateForm={handleFormUpdate} />

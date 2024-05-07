@@ -1,9 +1,9 @@
 import React, { useState, } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import Button from './UI/Button';
 import Input from './UI/Input';
-import { useAuth } from '../hooks/useAuth';
-import { useNavigate, Link } from 'react-router-dom';
 import ModalNavbar from './ModalNavbar';
+import { useAuth } from '../hooks/useAuth';
 
 const Login = ({ onCloseModal}) => {
     const [isPasswordVisible, setPasswordVisability] = useState(false);
@@ -22,10 +22,9 @@ const Login = ({ onCloseModal}) => {
             return;
         } else {
             setAvailability(true);
-            navigate('/work-report/hub/reports');
+            navigate('/hub/reports');
             return onCloseModal();
         }
-
     }
 
     const toggleView = () => {
@@ -37,7 +36,7 @@ const Login = ({ onCloseModal}) => {
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form className="FormWR" onSubmit={onSubmit}>
             <ModalNavbar closeModal={onCloseModal}/>
             <h1 className="form-title">Login</h1>
             <Input

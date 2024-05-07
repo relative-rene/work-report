@@ -35,7 +35,8 @@ const SignUp = () => {
 
 
     return (
-        <form>
+        <form className="FormWR">
+
             <h2 className="form-title">Sign Up</h2>
             <Input inputVal={formValues.first_name} updateForm={handleFormUpdate} targetVal="first_name" label="First Name" />
             <Input inputVal={formValues.last_name} updateForm={handleFormUpdate} targetVal="last_name" label="Last Name" />

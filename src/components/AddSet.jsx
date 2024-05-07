@@ -24,10 +24,10 @@ const AddSet = ({ exercises }) => {
         setSelected(exercise);
     }
 
-    // const optionsList = exercises.map((entry, i) => <option value={entry.name + ":" + entry._id} key={`exercise-${i}`}>{entry.name}</option>);
+    const optionsList = exercises.map((entry, i) => <option value={entry.name + ":" + entry._id} key={`exercise-${i}`}>{entry.name}</option>) || [];
 
     return (
-        <form method="post" onSubmit={handleSubmit}>
+        <form className="FormWR" method="post" onSubmit={handleSubmit}>
             <ModalNavbar />
             <h2 className="form-title">Log Set</h2>
             <div className="form-group">
@@ -38,7 +38,7 @@ const AddSet = ({ exercises }) => {
                 <label>Select an exercise: </label>
                 <select value={`${selectedExercise.name}:${selectedExercise._id}`} onChange={(e) => handleSelectedExercise(e)} name="selectedExercise">
                     <option>Choose an option</option>
-                    {exercises.map((entry, i) => <option value={entry.name + ":" + entry._id} key={`exercise-${i}`}>{entry.name}</option>)}
+                    {optionsList}
                 </select>
             </div>
             <div className="form-group">

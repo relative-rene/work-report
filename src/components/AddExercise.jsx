@@ -29,7 +29,7 @@ export const AddExercise = () => {
         setAvailability(true);
     }
     return (
-        <form>
+        <form className="FormWR">
             <h2>Add Exercise</h2>
             <Input inputVal={formValues.name || ''} label="Name" targetVal="name" updateForm={handleFormUpdate} />
             <Select

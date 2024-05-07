@@ -20,7 +20,7 @@ function StatsForm({ data, title }){
     const handleSave = () => { console.log('handleSave') }
 
     return (
-        <form>
+        <form className="FormWR">
             <h2 className="form-title">{title}</h2>
             <Input inputType="date" inputVal={formValues.date || ''} label="Date" targetVal="date" updateForm={handleFormUpdate} />
             <Input inputType="number" inputVal={formValues.age || ''} label="Age" targetVal="age" updateForm={handleFormUpdate} />

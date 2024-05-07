@@ -1,4 +1,4 @@
-import React, { useParams } from 'react';
+import { useParams } from 'react-router-dom';
 import StatsForm from '../components/forms/StatsForm';
 
 function EditStats({ data }) {

@@ -53,7 +53,7 @@ const AddBodyFat = () => {
         console.log('cancel clicked');
     }
     return (
-        <form className="body-fat-form">
+        <form className="FormWR">
             <h3>Body Fat Percentage</h3>
             <sub>Jackson and Pollock 3 Site skinfold</sub><br />
             <Input inputType="date" inputVal={formValues.date || ''} label="Day" targetVal="date" updateForm={handleFormUpdate} />

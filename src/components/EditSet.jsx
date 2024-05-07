@@ -31,7 +31,7 @@ const EditSet = () => {
     const set = sets && sets.find(set => set._id === set_id);
     return (
         <>
-            <form method="post" onSubmit={handleUpdateSet}>
+            <form className="FormWR" method="post" onSubmit={handleUpdateSet}>
                 <ModalNavbar />
                 <h2 className="form-title">Edit Set</h2>
                 <div className="form-group">
