@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/work-report/static/css/main.24634937.css",
-    "main.js": "/work-report/static/js/main.7ee719ce.js",
-    "static/js/453.d0743133.chunk.js": "/work-report/static/js/453.d0743133.chunk.js",
-    "static/media/vutruvianLogo.jpeg": "/work-report/static/media/vutruvianLogo.b7e032c205f25c88eb67.jpeg",
-    "index.html": "/work-report/index.html",
-    "main.24634937.css.map": "/work-report/static/css/main.24634937.css.map",
-    "main.7ee719ce.js.map": "/work-report/static/js/main.7ee719ce.js.map",
-    "453.d0743133.chunk.js.map": "/work-report/static/js/453.d0743133.chunk.js.map"
+    "main.css": "./static/css/main.766ca849.css",
+    "main.js": "./static/js/main.188f9346.js",
+    "static/js/453.d0743133.chunk.js": "./static/js/453.d0743133.chunk.js",
+    "static/media/vutruvianLogo.jpeg": "./static/media/vutruvianLogo.b7e032c205f25c88eb67.jpeg",
+    "index.html": "./index.html",
+    "main.766ca849.css.map": "./static/css/main.766ca849.css.map",
+    "main.188f9346.js.map": "./static/js/main.188f9346.js.map",
+    "453.d0743133.chunk.js.map": "./static/js/453.d0743133.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.24634937.css",
-    "static/js/main.7ee719ce.js"
+    "static/css/main.766ca849.css",
+    "static/js/main.188f9346.js"
   ]
 }
