@@ -2,7 +2,7 @@
 @import './styles/forms.scss';
 @import './styles/media_queries.scss';
 @import './styles/splash.scss';
-
+@import './styles/table.scss';
 
 // debug overflow css
 // *{
@@ -25,6 +25,11 @@ html {
   h5,
   h6 {
     font-family: Verdana;
+    display:grid;
+    place-items: center;
+  }
+  ul{
+    list-style: inside lower-latin;
   }
 
   #root {
@@ -329,8 +334,6 @@ input[type="range"] {
 .getting-started_peel{
   padding:1em 1em 3em;
   position:relative;
-  display:grid;
-  place-items: center;
 }
 .getting-started_peel:nth-child(odd) {
   background-color: $secondary-color;

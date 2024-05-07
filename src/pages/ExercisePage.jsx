@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import AddExercise from '../components/AddExercise';
 
 
@@ -8,6 +8,7 @@ const ExercisePage = () => {
 
     return (
         <>
+        <h3>Exercise Hub</h3>
             <AddExercise />
             <ul>{displayExercises}</ul>
         </>

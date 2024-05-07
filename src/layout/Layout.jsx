@@ -4,7 +4,7 @@ import Footer from './Footer';
 import Login from '../components/Login';
 import Modal from '../components/UI/Modal';
 import Sidebar from './Sidebar';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SignUp from '../components/SignUp';
 import { useAuth } from '../hooks/useAuth';
@@ -16,11 +16,11 @@ function Layout() {
     const [isSignupVisible, setSignupVisibility] = useState(false);
     const [isLoginVisible, setLoginVisibility] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         reloadUser()
             .then(user => loadData(user._id))
             .catch(err => console.error(err));
-    },[])
+    }, [])
 
     const onLoginFlow = (hasAnAccount) => {
         hasAnAccount ? setLoginVisibility(true) : setSignupVisibility(true);

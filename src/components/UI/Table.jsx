@@ -6,9 +6,9 @@ const Table = ({ tableData, sortBy }) => {
     const sortedData = tableData.sort((a, b) => a[sortBy] - b[sortBy]);
 
     return (
-        <table>
-            <TableHead data={sortedData} />
-            <TableBody data={sortedData} />
+        <table className="Table">
+            <TableHead data={sortedData[0] || []} />
+            <TableBody data={sortedData || []} />
         </table>
     )
 }

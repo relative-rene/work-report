@@ -1,18 +1,31 @@
-import React from 'react';
-import Button from '../components/UI/Button';
-import { useAuth } from '../hooks/useAuth';
-import { Link } from 'react-router-dom';
-import vutruvianLogo from '../assets/vutruvianLogo.jpeg';
+import React from "react";
+import Button from "../components/UI/Button";
+import { useAuth } from "../hooks/useAuth";
+import vutruvianLogo from "../assets/vutruvianLogo.jpeg";
+import { useNavigate } from "react-router-dom";
+
+
 const quickLinksMenu = [
-    { pageTitle: 'Sets', path: "/work-report/hub/sets" },
-    { pageTitle: 'Stats', path: "/work-report/hub/stats" },
-    { pageTitle: 'Exercises', path: "/work-report/hub/exercises" },
-    { pageTitle: 'Reports', path: "/work-report/hub/reports" },
+    { pageTitle: "Sets", path: "/hub/sets" },
+    { pageTitle: "Stats", path: "/hub/stats" },
+    { pageTitle: "Exercises", path: "/hub/exercises" },
+    { pageTitle: "Reports", path: "/hub/reports" },
 ];
 
-const Navbar = ({handleLogin}) => {
+const Navbar = ({ handleLogin }) => {
+
     const { user, logout } = useAuth();
-    const options = quickLinksMenu.map((vm, idx) => <li key={"menu-" + idx}><Link to={vm.path + "/"}>{vm.pageTitle}</Link></li>);
+    const navigate = useNavigate();
+
+    const readyToGo = (path) => {
+        if (user) {
+            navigate(path)
+        } else {
+            handleLogin(true)
+        }
+    }
+
+    const options = quickLinksMenu.map((vm, idx) => <li key={"menu-" + idx} onClick={() => readyToGo(vm.path)}>{vm.pageTitle}</li>);
     return (
         <>
             <header className="Navbar">
@@ -25,7 +38,7 @@ const Navbar = ({handleLogin}) => {
                     </div> :
                     <div>
                         <Button handleClick={() => handleLogin(false)} styleName="signUp-btn">Sign Up</Button>
-                        <Button handleClick={()=>handleLogin(true)} styleName="login-btn">Login</Button>
+                        <Button handleClick={() => handleLogin(true)} styleName="login-btn">Login</Button>
                     </div>
                 }
 

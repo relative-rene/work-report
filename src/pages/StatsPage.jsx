@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import AddStats from '../components/AddStats';
 import { useData } from '../hooks/useData';
 
@@ -10,6 +10,7 @@ const StatsPage = () => {
     },[stats])
     return (
         <>
+        <h3>Stats Hub</h3>
             <AddStats />
         </>
     );

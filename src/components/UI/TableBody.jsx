@@ -3,15 +3,11 @@ import React from 'react';
 
 
 const TableBody = ({ data }) => {
-const display = data.map((item) => {
-    const { body_fat_percent, weight,_id } = item;
-    return <tr key={_id}>
-        <td>{weight}</td>
-        <td>{body_fat_percent}</td>
-    </tr>
-})
+    const display = data && data.map((entry) => {
+        return( <tr> {Object.values(entry).map(val => <td key={`${val}${entry._id.substring(0, 12)}`}>{val}</td>) } </tr>);
+        });
     return (
-        <tbody>
+        <tbody className="TableBody">
             {display}
         </tbody>
     )

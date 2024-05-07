@@ -15,7 +15,7 @@ const SplashPage = () => {
                 <span>by</span>
                 <p className="credit">Rene Arellano</p> 
                 <button onClick={()=>setVisibility(true)}>Welcome Back</button>
-                <button onClick={()=>navigate('/work-report/hub/getting-started')}>Getting Started</button>
+                <button onClick={()=>navigate('/hub/getting-started')}>Getting Started</button>
             </div>
             <div className="splash">
                 <div className="splash_logo">
