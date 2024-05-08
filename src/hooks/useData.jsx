@@ -24,22 +24,28 @@ export const DataProvider = ({ children }) => {
         console.log('getExerciseData')
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises`).catch(err => console.error(err))
         const data = await res.json();
-        setExercises(data);
+        const formattedExercises = data.map(({ name, balance, muscle_group, primary_muscle }) => ({ name, balance, muscle_group, primary_muscle }));
+
+        setExercises(formattedExercises);
     }
 
     const getSetsData = async (user_id) => {
         console.log('getSetsData')
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/read_sets`).catch(err => console.error(err));
         const data = await res.json();
-        setSets(data);
+        const formattedSets = data.map(({ date_and_time, exercise_name, set_weight, total_reps, left_reps, right_reps }) => ({ date_and_time: date_and_time.substring(0, 10), exercise_name, set_weight, total_reps, left_reps, right_reps }));
+
+        setSets(formattedSets);
     }
 
     const getStatsData = async (user_id) => {
         console.log('getStatsData')
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/read_stats`).catch(err => console.error(err))
         const data = await res.json()
-        setStats(data);
-
+        const formattedStats = data.map(({ date, age, weight, body_fat, height, neck, chest, belly, butt, left_arm, right_arm, left_forearm, right_forearm, left_leg, right_leg }) => ({
+            date, age, weight, body_fat, height, neck, chest, belly, butt, left_arm, right_arm, left_forearm, right_forearm, left_leg, right_leg
+        }));
+        setStats(formattedStats);
     }
 
     const loadData = async (user_id) => {
@@ -57,9 +63,9 @@ export const DataProvider = ({ children }) => {
             stats,
             loadData
         }), [
-            exercises,
-            sets,
-            stats]
+        exercises,
+        sets,
+        stats]
     );
 
     return <DataContext.Provider value={value}> {children} </DataContext.Provider>
