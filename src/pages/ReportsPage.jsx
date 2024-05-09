@@ -24,24 +24,24 @@ const ReportsPage = () => {
 
     Object.keys(formattedSets).forEach(exercise_name=> musclesWorkedData[dictionary[exercise_name]] += +formattedSets[exercise_name].length );
     
-    const pieData = pieChartConfig(MUSCLE_GROUP_LABELS, BGCOLOR_CONFIG, BORDERCOLOR_CONFIG, PIE_DATA_LABEL, Object.values(musclesWorkedData));
+    const chartData = pieChartConfig(MUSCLE_GROUP_LABELS, BGCOLOR_CONFIG, BORDERCOLOR_CONFIG, PIE_DATA_LABEL, Object.values(musclesWorkedData));
     return (
         <>
             <h3>Reports Hub</h3>
             <Suspense fallback={<h2>...Loading</h2>}>
-                <LineChart data={pieData} />
+                <LineChart data={chartData} />
             </Suspense>
             <div className="table-container">
                 <Table tableData={exercises} />
             </div>
             <Suspense fallback={<h2>...Loading</h2>}>
-                <PieChart data={pieData} />
+                <PieChart data={chartData} />
             </Suspense>
             <div className="table-container">
                 <Table tableData={sets} />
             </div>
             <Suspense fallback={<h2>...Loading</h2>}>
-                <BarChart data={pieData} />
+                <BarChart data={chartData} />
             </Suspense>
             <div className="table-container">
                 <Table tableData={stats} />

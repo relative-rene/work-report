@@ -24,7 +24,7 @@ export const DataProvider = ({ children }) => {
         console.log('getExerciseData')
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises`).catch(err => console.error(err))
         const data = await res.json();
-        const formattedExercises = data.map(({ name, balance, muscle_group, primary_muscle }) => ({ name, balance, muscle_group, primary_muscle }));
+        const formattedExercises = data.map(({ _id, name, balance, muscle_group, primary_muscle }) => ({ _id, name, balance, muscle_group, primary_muscle }));
 
         setExercises(formattedExercises);
     }
@@ -33,7 +33,7 @@ export const DataProvider = ({ children }) => {
         console.log('getSetsData')
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/read_sets`).catch(err => console.error(err));
         const data = await res.json();
-        const formattedSets = data.map(({ date_and_time, exercise_name, set_weight, total_reps, left_reps, right_reps }) => ({ date_and_time: date_and_time.substring(0, 10), exercise_name, set_weight, total_reps, left_reps, right_reps }));
+        const formattedSets = data.map(({ _id, date_and_time, exercise_name, set_weight, total_reps, left_reps, right_reps }) => ({ _id, date_and_time: date_and_time.substring(0, 10), exercise_name, set_weight, total_reps, left_reps, right_reps }));
 
         setSets(formattedSets);
     }
@@ -42,8 +42,8 @@ export const DataProvider = ({ children }) => {
         console.log('getStatsData')
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/read_stats`).catch(err => console.error(err))
         const data = await res.json()
-        const formattedStats = data.map(({ date, age, weight, body_fat, height, neck, chest, belly, butt, left_arm, right_arm, left_forearm, right_forearm, left_leg, right_leg }) => ({
-            date, age, weight, body_fat, height, neck, chest, belly, butt, left_arm, right_arm, left_forearm, right_forearm, left_leg, right_leg
+        const formattedStats = data.map(({ _id, date, age, weight, body_fat, height, neck, chest, belly, butt, left_arm, right_arm, left_forearm, right_forearm, left_leg, right_leg }) => ({
+            _id, date, age, weight, body_fat, height, neck, chest, belly, butt, left_arm, right_arm, left_forearm, right_forearm, left_leg, right_leg
         }));
         setStats(formattedStats);
     }
