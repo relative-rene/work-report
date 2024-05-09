@@ -36,7 +36,7 @@ const EditSet = () => {
                 <h2 className="form-title">Edit Set</h2>
                 <div className="form-group">
                     <label>Date</label>
-                    <input defaultValue={set ? set.date_and_time.substring(0, 10) : ""} name="date_and_time" type="date" />
+                    <input defaultValue={set ? set.date_and_time : ""} name="date_and_time" type="date" />
                 </div>
                 <div className="form-group">
                     <label>Select an exercise:</label>
