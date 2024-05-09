@@ -33,7 +33,7 @@ export const DataProvider = ({ children }) => {
         console.log('getSetsData')
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/read_sets`).catch(err => console.error(err));
         const data = await res.json();
-        const formattedSets = data.map(({ _id, date_and_time, exercise_name, set_weight, total_reps, left_reps, right_reps }) => ({ _id, date_and_time: date_and_time.substring(0, 10), exercise_name, set_weight, total_reps, left_reps, right_reps }));
+        const formattedSets = data.map(({ _id, date_and_time, exercise_name, set_weight, total_reps, left_reps, right_reps }) => ({ _id, date_and_time:  date_and_time.substring(0, 10)|| date_and_time, exercise_name, set_weight, total_reps, left_reps, right_reps }));
 
         setSets(formattedSets);
     }
