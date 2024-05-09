@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "./static/css/main.95f4f857.css",
-    "main.js": "./static/js/main.d32e4459.js",
+    "main.js": "./static/js/main.eaefdb9b.js",
     "static/js/453.d0743133.chunk.js": "./static/js/453.d0743133.chunk.js",
     "static/media/vutruvianLogo.jpeg": "./static/media/vutruvianLogo.b7e032c205f25c88eb67.jpeg",
     "index.html": "./index.html",
     "main.95f4f857.css.map": "./static/css/main.95f4f857.css.map",
-    "main.d32e4459.js.map": "./static/js/main.d32e4459.js.map",
+    "main.eaefdb9b.js.map": "./static/js/main.eaefdb9b.js.map",
     "453.d0743133.chunk.js.map": "./static/js/453.d0743133.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.95f4f857.css",
-    "static/js/main.d32e4459.js"
+    "static/js/main.eaefdb9b.js"
   ]
 }
