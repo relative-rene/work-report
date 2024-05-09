@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Todo from './Todo';
 import Button from './UI/Button';
 import { useAuth } from '../hooks/useAuth'
 
 const TodoApp = ({ list }) => {
     const { user } = useAuth();
-    const [todoList, setList] = useState(list);
     const [description, setDescription] = useState('');
     const [dueDateAndTime, setDueDate] = useState('');
     const [onEditing, setEditingMode] = useState(false);
+    const { todos, updateTodos } = useData();
     const minDateValue = new Date().toISOString().slice(0, 16);
     const isReady = description && dueDateAndTime.length;
 
-    const todos = todoList.map((entry) => {
+    const displayTodos = todos.map((entry) => {
         return <Todo
             isEditing={onEditing}
             onUpdate={onUpdateHandler}
@@ -21,19 +21,7 @@ const TodoApp = ({ list }) => {
             key={"todo-" + entry._id} {...entry} />
     });
 
-    useEffect(() => {
-        getTodoList()
-    }, []);
 
-    async function getTodoList() {
-        return fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/read`)
-            .then(res => res.json())
-            .then(data => {
-                let sortByDueDate = data.sort((a, b) => new Date(a.due_date_and_time) - new Date(b.due_date_and_time));
-                let sortedByDone = sortByDueDate.sort((a, b) => a.is_done - b.is_done);
-                setList(sortedByDone)
-            });
-    }
 
     async function onAddHandler() {
         const saveTodo = { description, isDone: false, dueDateAndTime: new Date(dueDateAndTime).toUTCString() }
@@ -42,14 +30,14 @@ const TodoApp = ({ list }) => {
                 { method: 'post', body: JSON.stringify(saveTodo), headers: { "Content-Type": "application/json" } })
             const data = await response.json();
             setDescription('') && setDueDate('');
-            data && getTodoList();
+            data && updateTodos();
         }
     };
 
     async function onDeleteHandler(todo_id) {
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/delete`, { method: 'DELETE' });
         const data = await response.json();
-        data && getTodoList();
+        data && updateTodos();
     };
 
     async function onUpdateHandler(todo_id, hasNewDescription, newDescription) {
@@ -58,7 +46,7 @@ const TodoApp = ({ list }) => {
             todoList.filter(todo => todo._id === todo_id).map(todo => Object.assign({}, { ...todo, is_done: !todo.is_done }));
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/updateOne`, { method: 'PUT', body: JSON.stringify(newTodo), headers: { "Content-Type": "application/json" } });
         const data = await response.json();
-        data && getTodoList();
+        data && updateTodos();
     }
 
     return (
@@ -82,7 +70,7 @@ const TodoApp = ({ list }) => {
                 }
             </div>
             <ul className="TodoList">
-                {todos}
+                {displayTodos}
             </ul>
             <i disabled className="fa-solid fa-square-pen fa-2xl" onClick={() => setEditingMode(!onEditing)} title="Edit mode: remove task or edit description" />
         </div>
