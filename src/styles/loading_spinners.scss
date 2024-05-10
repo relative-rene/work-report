@@ -22,12 +22,6 @@
     50%   {transform:scaleY(-1) rotate(0deg)}
     100%  {transform:scaleY(-1) rotate(-135deg)}
   }
-  body {
-    width: 100%;
-    height: 100%;
-    background: #000;
-    overflow: hidden;
-  }
   
   .fade {
     position: relative;

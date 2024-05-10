@@ -13,11 +13,7 @@ function StatsForm({ initData, title, isEditing }) {
     const { user } = useAuth();
     const { updateStats } = useData();
 
-    console.log('initData', initData);
-    console.log('formValues', formValues);
-
     const handleFormUpdate = (target, val) => {
-        console.log('target', target, 'val', val, 'target[val]', target[val]);
         setFormValues({ ...formValues, [target]: val });
     }
 
@@ -25,8 +21,10 @@ function StatsForm({ initData, title, isEditing }) {
 
     const handleSave = async (e) => {
         e.preventDefault()
+        setAvailability(false)
         isEditing ? await patchStats() : await postStats();
         updateStats();
+        setAvailability(true);
     }
 
     const postStats = async () => {

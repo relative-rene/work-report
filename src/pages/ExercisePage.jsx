@@ -10,7 +10,7 @@ const ExercisePage = () => {
             <h3>Exercise Hub</h3>
             <div className="table-container">
                 <Table editPath="/hub/exercises/edit/" tableData={exercises} />
-            </div>
+            </div><br/>
             <AddExercise />
         </>
     )

@@ -78,10 +78,15 @@ export const DataProvider = ({ children }) => {
             updateTodos,
             loadData
         }), [
-        exercises,
-        sets,
-        stats,
-        todos]
+            exercises,
+            sets,
+            stats,
+            todos,
+            updateExercises,
+            updateStats,
+            updateSets,
+            updateTodos,
+            loadData]
     );
 
     return <DataContext.Provider value={value}> {children} </DataContext.Provider>

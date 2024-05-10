@@ -22,3 +22,12 @@ export const pieChartConfig = (muscle_group_label, backgroundColor, borderColor,
         ],
     };
 }
+
+
+export const capitalizeStr = (str)=>{
+    return str[0].toUpperCase() + str.substring(1)
+}
+
+export const lowerCaseSnakeCaseStr = (str) => {
+    return str.toLowerCase().replaceAll(' ', '_');
+}

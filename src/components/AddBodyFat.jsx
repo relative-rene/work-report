@@ -24,7 +24,7 @@ const AddBodyFat = () => {
         const SKINFOLD_SUM = Number(abs) + Number(thigh) + Number(chest);
         const BODY_DENSITY = (1.10938 - (0.0008267 * SKINFOLD_SUM)) + (0.0000016 * (SKINFOLD_SUM * SKINFOLD_SUM)) - 0.0002574 * age;
         const BODY_FAT_PERCENT = (495 / BODY_DENSITY) - 450;
-        const BODY_FAT_WEIGHT = (Number(BODY_FAT_PERCENT)/100) * Number(formValues.weight);
+        const BODY_FAT_WEIGHT = (Number(BODY_FAT_PERCENT) / 100) * Number(formValues.weight);
         const LEAN_BODY_MASS = Number(formValues.weight) - BODY_FAT_WEIGHT;
         setFormValues({ ...formValues, body_fat_percent: BODY_FAT_PERCENT.toFixed(2), lean_body_mass: LEAN_BODY_MASS.toFixed(2), fat_mass: BODY_FAT_WEIGHT.toFixed(2) })
         return BODY_FAT_PERCENT;
@@ -34,7 +34,7 @@ const AddBodyFat = () => {
         const SKINFOLD_SUM = Number(tricep) + Number(suprailiac) + Number(thigh);
         const BODY_DENSITY = (1.0994921 - (0.0009929 * SKINFOLD_SUM)) + (0.0000023 * (SKINFOLD_SUM * SKINFOLD_SUM)) - 0.0001392 * age;
         const BODY_FAT_PERCENT = (495 / BODY_DENSITY) - 450;
-        const BODY_FAT_WEIGHT = (Number(BODY_FAT_PERCENT)/100) * Number(formValues.weight);
+        const BODY_FAT_WEIGHT = (Number(BODY_FAT_PERCENT) / 100) * Number(formValues.weight);
         const LEAN_BODY_MASS = Number(formValues.weight) - BODY_FAT_WEIGHT;
         setFormValues({ ...formValues, body_fat_percent: BODY_FAT_PERCENT.toFixed(2), lean_body_mass: LEAN_BODY_MASS.toFixed(2), fat_mass: BODY_FAT_WEIGHT.toFixed(2) });
         return BODY_FAT_PERCENT;

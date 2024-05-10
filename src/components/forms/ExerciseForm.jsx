@@ -40,6 +40,12 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises/${formValues._id}/update_exercise`, { method: 'PUT', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
         response.message ? alert('Failure: ', response.statusText) : alert('Success');
     }
+    const muscleGroupOptions = MUSCLE_GROUPS.map((o, idx) => {
+        return <option key={`option-${o}${idx}`} value={o.displayName.toLowerCase()}>{o.displayName}</option>
+    })
+    const balanceOptions = [{ displayName: "Symmetrical" }, { displayName: "Asymmetrical" }].map((o, idx) => {
+        return <option key={`option-${o}${idx}`} value={o.displayName.toLowerCase()}>{o.displayName}</option>
+    })
 
     return (<form className="FormWR">
         <h2 className="form-title">{title}</h2>
@@ -49,13 +55,13 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
             selectedVal={formValues['balance'] || 'Select form'}
             nameForId="balance"
             label="Balance"
-            options={[{ displayName: "Symmetrical" }, { displayName: "Asymmetrical" },]} />
+            options={balanceOptions} />
         <Select
             updateForm={handleFormUpdate}
             selectedVal={formValues['muscle_group'] || 'Choose a muscle group'}
             nameForId="muscle_group"
             label="Muscle Group"
-            options={MUSCLE_GROUPS} />
+            options={muscleGroupOptions} />
         {formValues["muscle_group"] &&
             <Select
                 updateForm={handleFormUpdate}
