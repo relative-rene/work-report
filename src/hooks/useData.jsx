@@ -28,13 +28,12 @@ export const DataProvider = ({ children }) => {
     const getSetsData = async (user_id) => {
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/read_sets`).catch(err => console.error(err));
         const data = await res.json();
-        const formattedSets = data.map(({ _id, date_and_time, exercise_name, set_weight, total_reps, left_reps, right_reps }) => ({ _id, date_and_time: date_and_time? date_and_time.substring(0, 10): date_and_time, exercise_name, set_weight, total_reps, left_reps, right_reps }));
+        const formattedSets = data.map(({ _id, date_and_time,date, exercise_name, set_weight, total_reps, left_reps, right_reps }) => ({ _id, date_and_time: date_and_time? date_and_time.substring(0, 10): null, exercise_name, set_weight, total_reps, left_reps, right_reps }));
 
         setSets(formattedSets);
     }
 
     const getStatsData = async (user_id) => {
-        console.log('getStatsData')
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/read_stats`).catch(err => console.error(err))
         const data = await res.json()
         const formattedStats = data.map(({ _id, date, age, weight, body_fat, height, neck, chest, belly, butt, left_arm, right_arm, left_forearm, right_forearm, left_leg, right_leg }) => ({
@@ -82,10 +81,6 @@ export const DataProvider = ({ children }) => {
             sets,
             stats,
             todos,
-            updateExercises,
-            updateStats,
-            updateSets,
-            updateTodos,
             loadData]
     );
 

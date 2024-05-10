@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useData } from '../../hooks/useData';
 import ModalNavbar from '../../components/ModalNavbar';
@@ -9,11 +9,11 @@ import { capitalizeStr } from '../../utility/transformers';
 
 const SetForm = ({ initData, title, isEditing }) => {
     const { exercises, updateSets } = useData();
-    const [selectedExercise, setSelected] = useState(null);
     const [isBtnReady, setBtnAvailability] = useState(true);
-    const [formValues, setFormValues] = useState({ ...initData, date: initData.date || initData.date_and_time || '' });
+    const [formValues, setFormValues] = useState({...initData});
+    const [selectedExercise, setSelected] = useState(initData.selectedExercise);;
     const { user } = useAuth();
-
+    
     const handleFormUpdate = (target, val) => {
         if (target === 'selectedExercise') {
             handleSelectedExercise(val);
@@ -30,10 +30,11 @@ const SetForm = ({ initData, title, isEditing }) => {
     }
 
     const patchSet = async () => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/patch_set`,
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/${formValues._id}/patch_set`,
             { method: 'PUT', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
         const { message } = response.json();
-        message ? alert("Add Set Failed", message) : alert('PATCH Set Success')
+        console.log('message', message)
+        message ? alert("Add Set Failed", message) : alert('PATCH Set Success');
 
     }
 
@@ -41,6 +42,7 @@ const SetForm = ({ initData, title, isEditing }) => {
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/create_set`,
             { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
         const { message } = response.json();
+        console.log('message', message);
         message ? alert("Add Set Failed", message) : alert('POST Set Success')
     }
 
@@ -53,15 +55,11 @@ const SetForm = ({ initData, title, isEditing }) => {
         return <option key={`option-${o}${idx}`} value={o.name + ":" + o._id}>{capitalizeStr(o.name)}</option>
     })
 
-    useEffect(() => {
-       isEditing &&  handleSelectedExercise(initData.exercise_name + ":" + initData._id);
-    },[]);
-
     return (
         <form className="FormWR" method="post" onSubmit={handleSubmit}>
             <ModalNavbar />
             <h2 className="form-title">{title}</h2>
-            <Input inputType="date" inputVal={formValues.date || ''} label="Date" targetVal="date" updateForm={handleFormUpdate} />
+            <Input inputType="date" inputVal={formValues.date_and_time || ''} label="Date" targetVal="date_and_time" updateForm={handleFormUpdate} />
             <Select
                 updateForm={handleFormUpdate}
                 selectedVal={formValues['selectedExercise'] || 'Select Exercise'}

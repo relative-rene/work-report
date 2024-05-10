@@ -42,7 +42,6 @@ const options = {
     responsive: true
 }
 const LineChart = ({ data }) => {
-    console.log('LineChart data', data)
     return (<div>
         <Line data={data} options={options} />
     </div>);

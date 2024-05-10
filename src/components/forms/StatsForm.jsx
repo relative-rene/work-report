@@ -17,7 +17,7 @@ function StatsForm({ initData, title, isEditing }) {
         setFormValues({ ...formValues, [target]: val });
     }
 
-    const handleCancel = () => (console.log('handleCancel'))
+    const handleCancel = () => (console.log('handleCancel'));// TODO make functional
 
     const handleSave = async (e) => {
         e.preventDefault()

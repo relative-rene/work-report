@@ -45,12 +45,10 @@ const AddBodyFat = () => {
     }
 
     const handleSubmit = () => {
-        console.log(formValues.gender)
         const BF = formValues.gender === 'male' ? maleCalculation(formValues) : femaleCalculation(formValues);
-        console.log('BF', BF)
     }
     const handleCancel = () => {
-        console.log('cancel clicked');
+        console.log('cancel clicked'); // TODO make functional
     }
     return (
         <form className="FormWR">
