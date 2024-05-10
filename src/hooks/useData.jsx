@@ -15,7 +15,7 @@ export const DataProvider = ({ children }) => {
     const [exercises, setExercises] = useState([]);
     const [sets, setSets] = useState([]);
     const [stats, setStats] = useState([]);
-    const [todos, setTodos] = useState(list);
+    const [todos, setTodos] = useState([]);
 
     const getExerciseData = async () => {
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises`).catch(err => console.error(err))

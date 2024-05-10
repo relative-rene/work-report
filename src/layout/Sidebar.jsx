@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TodoApp from '../components/TodoApp';
 
-const Sidebar = ({ navigation }) => {
+const Sidebar = () => {
     const [isOpen, setVisibility] = useState(false);
     return (
         <section className={isOpen ? "Sidebar" : "Sidebar--closed"}>
@@ -9,7 +9,7 @@ const Sidebar = ({ navigation }) => {
                 <>
                     <i onClick={() => setVisibility(false)} className="fa-solid fa-bug" />
                     <h2 className="Title">Kaizen</h2>
-                    <TodoApp list={[]} />
+                    <TodoApp />
                 </> :
                 <i onClick={() => setVisibility(true)} className="fa-solid fa-feather" />
             }

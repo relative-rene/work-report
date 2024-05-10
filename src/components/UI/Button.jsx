@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Button = ({ handleClick,styleName, inputType, isDisabled, children }) => {
     return (

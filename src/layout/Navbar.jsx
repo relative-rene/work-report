@@ -29,7 +29,7 @@ const Navbar = ({ handleLogin }) => {
     return (
         <>
             <header className="Navbar">
-                <div className="Logo">
+                <div className="Logo" onClick={()=>navigate('/hub/getting-started')}>
                     <img src={vutruvianLogo} alt="vutruvian logo" />
                 </div>
                 {user?._id ?

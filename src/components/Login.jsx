@@ -5,7 +5,7 @@ import Input from './UI/Input';
 import ModalNavbar from './ModalNavbar';
 import { useAuth } from '../hooks/useAuth';
 
-const Login = ({ onCloseModal}) => {
+const Login = ({ onOpenSignupModal, onCloseLoginModal}) => {
     const [isPasswordVisible, setPasswordVisability] = useState(false);
     const [formValues, setFormValues] = useState({ email: null, password: null });
     const [isReady, setAvailability] = useState(true);
@@ -23,7 +23,7 @@ const Login = ({ onCloseModal}) => {
         } else {
             setAvailability(true);
             navigate('/hub/reports');
-            return onCloseModal();
+            return onCloseLoginModal();
         }
     }
 
@@ -34,10 +34,15 @@ const Login = ({ onCloseModal}) => {
     const onUpdateFormValue = (target, value) => {
         setFormValues({ ...formValues, [target]: value });
     }
+    const onCreateAccount = ()=>{
+        onCloseLoginModal();
+        onOpenSignupModal();
+
+    }
 
     return (
         <form className="FormWR" onSubmit={onSubmit}>
-            <ModalNavbar closeModal={onCloseModal}/>
+            <ModalNavbar closeModal={onCloseLoginModal}/>
             <h1 className="form-title">Login</h1>
             <Input
                 updateForm={onUpdateFormValue}
@@ -55,11 +60,11 @@ const Login = ({ onCloseModal}) => {
                 <i onClick={toggleView} className={isPasswordVisible ? "fa solid fa-eye" : "fa solid fa-eye-slash"}></i>
             </Input>
             <div>
-                <Link className="create-account" to="/sign-up">Create Account</Link>
+                <Link className="create-account" onClick={onCreateAccount}>Create Account</Link>
             </div>
 
             <div className="action-container">
-                <Button styleName="action-container__btn--secondary" handleClick={onCloseModal}>Cancel</Button>
+                <Button styleName="action-container__btn--secondary" handleClick={onCloseLoginModal}>Cancel</Button>
                 <Button isDisabled={!isReady} styleName="action-container__btn--primary" inputType="save">Login</Button>
             </div>
         </form>

@@ -1,16 +1,17 @@
-import React, { useState} from 'react';
 import AddExercise from '../components/AddExercise';
-
+import { useData } from '../hooks/useData';
+import  Table  from '../components/UI/Table';
 
 const ExercisePage = () => {
-    let [exercises, setExercises] = useState([]);
-    const displayExercises = exercises && exercises.map(e => <li>{e.name + '\n' + e.muscle_group + '\n' + e.balance + '\n' + e.primary_muscle}</li>);
+    let { exercises } = useData();
 
     return (
         <>
-        <h3>Exercise Hub</h3>
+            <h3>Exercise Hub</h3>
+            <div className="table-container">
+                <Table editPath="/hub/exercises/edit/" tableData={exercises} />
+            </div>
             <AddExercise />
-            <ul>{displayExercises}</ul>
         </>
     )
 }

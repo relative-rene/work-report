@@ -33,7 +33,7 @@ const SplashPage = () => {
                 </div>
             </div>
             <Modal show={isModalOpen} closeModal={()=>setVisibility(false)}>
-                <Login />
+                <Login onCloseLoginModal={()=> setVisibility(false)}/>
             </Modal>
         </>)
 }

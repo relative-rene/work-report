@@ -1,9 +1,6 @@
-import React from 'react';
-
-
 
 const TableHead = ({ data }) => {
-    const categories = data && <tr>{Object.keys(data).map((val,i) => <th key={`${val}${-i}`}>{val}</th>)} </tr>;
+    const categories = data && <tr>{Object.keys(data).map((val,i) => <th key={`${val}${-i}`}>{val || ''}</th>)} </tr>;
     return (
         <thead className="TableHead">
             {categories || ''}

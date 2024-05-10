@@ -3,6 +3,7 @@
 @import './styles/media_queries.scss';
 @import './styles/splash.scss';
 @import './styles/table.scss';
+@import './styles/loading_spinners.scss';
 
 // debug overflow css
 // *{
@@ -360,3 +361,5 @@ input[type="range"] {
   right:50%;
   transform:skew(0,20deg)
 }
+
+

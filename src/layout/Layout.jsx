@@ -23,11 +23,7 @@ function Layout() {
     }, [])
 
     const onLoginFlow = (hasAnAccount) => {
-        hasAnAccount ? setLoginVisibility(true) : setSignupVisibility(true);
-    }
-
-    const onLoginComplete = () => {
-        setLoginVisibility(false);
+        return hasAnAccount ? setLoginVisibility(true) : setSignupVisibility(true);
     }
 
     return (
@@ -41,12 +37,15 @@ function Layout() {
             </main>
             <Footer />
             <Modal show={isLoginVisible} closeModal={() => setLoginVisibility(false)}>
-                <Login
-                    onCloseModal={onLoginComplete}
-                />
+                <Login 
+                    onOpenSignupModal={()=>setSignupVisibility(true)} 
+                    onCloseLoginModal={()=>setLoginVisibility(false)}   />
             </Modal>
             <Modal show={isSignupVisible} closeModal={() => setSignupVisibility(false)}>
-                <SignUp />
+                <SignUp 
+                    onCloseLoginModal={()=>setLoginVisibility(false)}
+                    onOpenSignupModal={()=>setSignupVisibility(true)} 
+                    onCloseSignupModal={()=>setSignupVisibility(false)}/>
             </Modal>
         </div>
     )

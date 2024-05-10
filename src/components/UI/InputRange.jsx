@@ -1,5 +1,3 @@
-import React from 'react';
-
 
 
 const InputRange = ({updateForm, label, targetVal, inputVal, inputType, rangeValAndLabels, children})=>{

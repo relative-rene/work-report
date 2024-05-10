@@ -1,26 +1,48 @@
-import React, {  useState, useEffect } from 'react';
-import { INIT_STATS } from '../../data/constants';
+import React, { useState } from 'react';
 import ToggleCheckbox from '../UI/ToggleCheckbox';
 import InputHeight from '../UI/InputHeight';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
+import { useAuth } from '../../hooks/useAuth';
+import { useData } from '../../hooks/useData';
 
-function StatsForm({ data, title }){
+function StatsForm({ initData, title, isEditing }) {
     const [standard, setStandard] = useState('Metric');
     const [isReady, setAvailability] = useState(true);
-    const [formValues, setFormValues] = useState(INIT_STATS);
-    useEffect(() => {console.log('data', data) }, []);
+    const [formValues, setFormValues] = useState({ ...initData, date: initData.date ? initData.date.substring(0, 10) : '' });
+    const { user } = useAuth();
+    const { updateStats } = useData();
+
+    console.log('initData', initData);
+    console.log('formValues', formValues);
 
     const handleFormUpdate = (target, val) => {
-        console.log(formValues, target, val);
+        console.log('target', target, 'val', val, 'target[val]', target[val]);
         setFormValues({ ...formValues, [target]: val });
     }
 
-    const handleCancel = () => { console.log('handleCancel') }
-    const handleSave = () => { console.log('handleSave') }
+    const handleCancel = () => (console.log('handleCancel'))
+
+    const handleSave = async (e) => {
+        e.preventDefault()
+        isEditing ? await patchStats() : await postStats();
+        updateStats();
+    }
+
+    const postStats = async () => {
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/create_stats`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+        const data = response.json();
+        data.message ? alert("Add Stats FAILED", data.message) : alert("Add Stats SUCCEED");
+    }
+
+    const patchStats = async () => {
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/${formValues._id}/patch_stats`, { method: 'PUT', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+        const data = response.json();
+        data.message ? alert("Add Stats FAILED", data.message) : alert("Add Stats SUCCEED");
+    }
 
     return (
-        <form className="FormWR">
+        <form className="FormWR" onSubmit={handleSave}>
             <h2 className="form-title">{title}</h2>
             <Input inputType="date" inputVal={formValues.date || ''} label="Date" targetVal="date" updateForm={handleFormUpdate} />
             <Input inputType="number" inputVal={formValues.age || ''} label="Age" targetVal="age" updateForm={handleFormUpdate} />
@@ -40,7 +62,7 @@ function StatsForm({ data, title }){
             <Input inputType="number" inputVal={formValues.left_leg || ''} label="Left leg cm" targetVal="left_leg" updateForm={handleFormUpdate} />
             <div className="action-container">
                 <Button handleClick={handleCancel} styleName="action-container__btn--secondary">Cancel</Button>
-                <Button handleClick={handleSave} isDisabled={!isReady} styleName="action-container__btn--primary">Save</Button>
+                <Button isDisabled={!isReady} styleName="action-container__btn--primary" inputType="save">Save</Button>
             </div>
         </form>);
 }

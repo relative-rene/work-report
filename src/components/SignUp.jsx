@@ -4,7 +4,7 @@ import Button from './UI/Button';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-const SignUp = () => {
+const SignUp = ({onCloseSignupModal}) => {
     const initialState = { first_name: '', last_name: '', date_of_birth: '', email: '', password: '' }
     const [formValues, setFormValues] = useState(initialState);
     const [isVisible, setVisibility] = useState(false);
@@ -26,6 +26,7 @@ const SignUp = () => {
 
     const handleCancel = () => {
         setFormValues({ ...initialState });
+        onCloseSignupModal();
     }
 
     const handleFormUpdate = (target, val) => {
@@ -35,8 +36,7 @@ const SignUp = () => {
 
 
     return (
-        <form className="FormWR">
-
+        <form className="FormWR" onSubmit={handleSave}>
             <h2 className="form-title">Sign Up</h2>
             <Input inputVal={formValues.first_name} updateForm={handleFormUpdate} targetVal="first_name" label="First Name" />
             <Input inputVal={formValues.last_name} updateForm={handleFormUpdate} targetVal="last_name" label="Last Name" />
@@ -47,7 +47,7 @@ const SignUp = () => {
             </Input>
             <div className="action-container">
                 <Button handleClick={handleCancel} isDisabled={status === 'isSending'} styleName="action-container__btn--secondary">Cancel</Button>
-                <Button handleClick={handleSave} isDisabled={status === 'isSending'} styleName="action-container__btn--primary">Save</Button>
+                <Button handleClick={handleSave} isDisabled={status === 'isSending'} styleName="action-container__btn--primary" typeInput="save">Save</Button>
             </div>
         </form>
     )

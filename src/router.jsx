@@ -10,6 +10,7 @@ import ReportsPage from './pages/ReportsPage';
 import ExercisesPage from './pages/ExercisePage';
 import GettingStartedPage from './pages/GettingStartedPage';
 import Layout from './layout/Layout';
+import EditExercise  from './components/EditExercise';
 
 const CatchAll = () => {
   const navigate = useNavigate();
@@ -28,7 +29,9 @@ const router = createHashRouter(
                 { path: "stats", element: <AuthenticatedRoute><StatsPage /></AuthenticatedRoute> },
                 { path: 'stats/edit/:stat_id', element: <EditStats /> },
                 { path: 'reports', element: <ReportsPage /> },
-                { path: 'exercises', element: <ExercisesPage /> }
+                { path: 'exercises', element: <ExercisesPage /> },
+                { path: 'exercises/edit/:exercise_id', element: <EditExercise /> }
+
             ]
         }, { path: "*", element: <CatchAll /> }
     ])

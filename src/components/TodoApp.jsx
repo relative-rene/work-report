@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Todo from './Todo';
 import Button from './UI/Button';
 import { useAuth } from '../hooks/useAuth'
+import { useData } from '../hooks/useData';
 
-const TodoApp = ({ list }) => {
+
+const TodoApp = () => {
     const { user } = useAuth();
     const [description, setDescription] = useState('');
     const [dueDateAndTime, setDueDate] = useState('');
@@ -42,8 +44,8 @@ const TodoApp = ({ list }) => {
 
     async function onUpdateHandler(todo_id, hasNewDescription, newDescription) {
         const newTodo = hasNewDescription ?
-            todoList.filter(todo => todo._id === todo_id).map(todo => Object.assign({}, { ...todo, description: newDescription })) :
-            todoList.filter(todo => todo._id === todo_id).map(todo => Object.assign({}, { ...todo, is_done: !todo.is_done }));
+            todos.filter(todo => todo._id === todo_id).map(todo => Object.assign({}, { ...todo, description: newDescription })) :
+            todos.filter(todo => todo._id === todo_id).map(todo => Object.assign({}, { ...todo, is_done: !todo.is_done }));
         const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/updateOne`, { method: 'PUT', body: JSON.stringify(newTodo), headers: { "Content-Type": "application/json" } });
         const data = await response.json();
         data && updateTodos();

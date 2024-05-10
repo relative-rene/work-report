@@ -1,13 +1,17 @@
 import { useParams } from 'react-router-dom';
 import StatsForm from '../components/forms/StatsForm';
+import { useData } from '../hooks/useData';
 
-function EditStats({ data }) {
-    const { stats_id } = useParams();
-    const stat = data.find((s) => s._id === stats_id);
-    console.log('stat', stat);
+function EditStats() {
+    const { stat_id } = useParams();
+    const { stats } = useData();
+    const stat = stats.find((s) => s._id === stat_id);
 
     return (<div>
-        <StatsForm title={"Edit Stat"} data={stat} />
+        <StatsForm 
+            title={"Edit Stat"} 
+            initData={stat}
+            isEditing={true} />
     </div>)
 }
 
