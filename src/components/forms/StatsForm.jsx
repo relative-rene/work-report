@@ -52,12 +52,12 @@ function StatsForm({ initData, title, isEditing }) {
             <Input inputType="number" inputVal={formValues.chest || ''} label="Chest cm" targetVal="chest" updateForm={handleFormUpdate} />
             <Input inputType="number" inputVal={formValues.belly || ''} label="Belly cm" targetVal="belly" updateForm={handleFormUpdate} />
             <Input inputType="number" inputVal={formValues.butt || ''} label="Butt cm" targetVal="butt" updateForm={handleFormUpdate} />
-            <Input inputType="number" inputVal={formValues.left_arm || ''} label="Right arm cm" targetVal="right_arm" updateForm={handleFormUpdate} />
-            <Input inputType="number" inputVal={formValues.right_arm || ''} label="Left arm cm" targetVal="left_arm" updateForm={handleFormUpdate} />
-            <Input inputType="number" inputVal={formValues.right_forearm || ''} label="Right forearm cm" targetVal="right_forearm" updateForm={handleFormUpdate} />
+            <Input inputType="number" inputVal={formValues.left_arm || ''} label="Left arm cm" targetVal="left_arm" updateForm={handleFormUpdate} />
+            <Input inputType="number" inputVal={formValues.right_arm || ''} label="Right arm cm" targetVal="right_arm" updateForm={handleFormUpdate} />
             <Input inputType="number" inputVal={formValues.left_forearm || ''} label="Left forearm cm" targetVal="left_forearm" updateForm={handleFormUpdate} />
-            <Input inputType="number" inputVal={formValues.right_leg || ''} label="Right leg cm" targetVal="right_leg" updateForm={handleFormUpdate} />
+            <Input inputType="number" inputVal={formValues.right_forearm || ''} label="Right forearm cm" targetVal="right_forearm" updateForm={handleFormUpdate} />
             <Input inputType="number" inputVal={formValues.left_leg || ''} label="Left leg cm" targetVal="left_leg" updateForm={handleFormUpdate} />
+            <Input inputType="number" inputVal={formValues.right_leg || ''} label="Right leg cm" targetVal="right_leg" updateForm={handleFormUpdate} />
             <div className="action-container">
                 <Button handleClick={handleCancel} styleName="action-container__btn--secondary">Cancel</Button>
                 <Button isDisabled={!isReady} styleName="action-container__btn--primary" inputType="save">Save</Button>
