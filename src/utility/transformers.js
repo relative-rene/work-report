@@ -37,5 +37,6 @@ export function formatTimeStampToUS(timestamp) {
 }
 
 export function formatUSDateToIsoString(localDate) {
-    return new Date(localDate).toISOString().substring(0, 10);
+    return localDate !== 'Invalid Date' ? new Date(localDate).toISOString().substring(0, 10) : 'Invalid Date';
+
 }

@@ -81,7 +81,7 @@ export const STATS_KEY_LABELS = {
     butt: "Butt",
     belly: "Belly",
     neck: "Neck",
-    body_fat: "Body Fat",
+    body_fat: "Body Fat%",
     date: "Date"
 }
 
