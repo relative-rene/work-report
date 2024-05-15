@@ -6,8 +6,6 @@ export const groupByKey = (arr, key) =>
         return acc;
     }, {});
 
-
-
 export const pieChartConfig = (muscle_group_label, backgroundColor, borderColor, pieDataLabel, pieData) => {
     return {
         labels: muscle_group_label,
@@ -23,11 +21,21 @@ export const pieChartConfig = (muscle_group_label, backgroundColor, borderColor,
     };
 }
 
-
-export const capitalizeStr = (str)=>{
+export const capitalizeStr = (str) => {
     return str[0].toUpperCase() + str.substring(1)
 }
 
 export const lowerCaseSnakeCaseStr = (str) => {
     return str.toLowerCase().replaceAll(' ', '_');
+}
+
+export function formatTimeStampToUS(timestamp) {
+    const date = new Date(timestamp);
+    date.setDate(date.getDate() + 1);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString("en-US", options);
+}
+
+export function formatUSDateToIsoString(localDate) {
+    return new Date(localDate).toISOString().substring(0, 10);
 }

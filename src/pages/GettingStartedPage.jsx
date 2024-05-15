@@ -13,9 +13,7 @@ const GettingStartedPage = () => {
                     This application was created to track your work effort in <b>Sets</b> and outcomes in <b>Stats</b>.
                     When you commit to logging your program, you will be rewarded with reports.
                     These reports will help you define your gains in physique and strength.
-                </p>
-                <h3>The Program</h3>
-                <p>This will not be an innovative program. Work report Will take tried and true methods and use them.</p>
+                    This will not be an innovative program. Work report will take tried and true methods and use them.</p>
             </section>
 
             <section className="getting-started_peel">
@@ -34,17 +32,17 @@ const GettingStartedPage = () => {
             </section>
             <section className="getting-started_peel">
                 <h3>2. Specificity</h3>
-                <p>The specificity principle states to become better at a particular exercise or skill, one should perform that exercise or skill.
-                We will focus on specificity at three levels.
-                Specifiity for strength, muscle gain and power.
+                <p>The specificity principle states to become better at a particular exercise or skill, one should perform that exercise or skill. Neaural drive can be specific to Range of Motion, the speed at which the weight is moved, duration and
+                    planes of motion. Adjusting these variables will result in progress in muscle gain, strength or power.
                 </p>
-
                 <ul>
-                    Mission Statements when we workout:
-                    <li>We do full range of motion.</li>
-                    <li>Slow controlled eccentric..</li>
+                    Mission Statements when we exercise:
+                    <li>We focus on form.</li>
+                    <li>Full range of motion.</li>
+                    <li>Slow controlled eccentric.</li>
                     <li>Pausing for a second or two at the end range</li>
                     <li>Explosive muscle focused concentric phase.</li>
+                    <li>Exhale on effort</li>
                 </ul>
 
                 <ul>
@@ -67,7 +65,7 @@ const GettingStartedPage = () => {
                     To understand recovery we must have a working knowledge of fatigue.
                     During an exercise the muscles being worked will tire or be unable to produce the same output.
                     This regional exhaustion is peripheral fatigue. When your body notices this it will recruit higher threshold fibers.
-                    If we continue to exercise we eventually exhaust our central nervous system energy. At this point, our entire body is tired, not just the
+                    If we continue to exercise we eventually exhaust our central nervous system energy. At this point, our entire body is tired, not just the region of
                     muscles being stimulated. The goal of hypertrophy training is to exercise until our higher threshold fibers are worked and our body
                     triggers the growth process. Pushing too far beyound this point will prolong recovery time, and working out while exhausted will lead to injury.
                     </p>
@@ -85,31 +83,28 @@ const GettingStartedPage = () => {
                 </p>
                 <h5> Are you lazy or exhausted?</h5>
                 If your good at ignoring your needs or just lack that mind body connection, you may want something other than feelings to tell you if when to rest.
-                    <ul>
-                    Your morning resting heart rate can help you determine if your body hasn't recovered.
+                    <ul>Your morning resting heart rate can help you determine if your body hasn't recovered.
                     <li>First establish a baseline heart rate first thing in morning.</li>
                     <li>If your heart rate is higher than normal take the day off.
-                    This can be a hard line of higher than 15% increase or
-                    just higher than average and not feeling it.</li>
+                    This can be a hard line, like a 15% increase in beats per minute or
+                    just higher than normal and not feeling it.</li>
                 </ul>
 
                 <h5> Active Recovery</h5>
-                <li>Going for a walk 30 minute or job can help recover.</li>
+                <li>Going for a 30 minute walk or jog can help recover.</li>
                 <p> 5x 6 minute run or 3x10 minute run with 1 min rest should suffice.</p>
-                <ul>Progressive Relaxation:  is also another recommended way to relax.
-                        <li>You basically flex a muslce for six seconds and relax it for 3 breaths.</li>
-                    <li>For instance you start with your calves.</li>
-                    <li>Start in a laying or upright sitting position.</li>
+                <ul>Progressive Relaxation: is also another recommended way to relax.
+                    <li>To perform you flex a muscle for six seconds and then relax it for 3 breaths.</li>
+                    <li>e.g Start with your calves.</li>
+                    <li>Start in an upright sitting position or lay down.</li>
                     <li>Tense shins by pointing toes toward your head for six seconds.</li>
-                    <li>Relax breathe for 3 breaths, while imagining your shin muscles relaxing.</li>
-                    <li>Their warm and heavy just weiging into the gound fully supported.</li>
-                    <li>Than you tense your calves, point toes down away from head for six seconds.</li>
+                    <li>Afer flexing allow your muscle to ease back to neutral position for 3 relaxing breathes.</li>
+                    <li>Imagine your muscle is warm and heavy just melting into the gound fully supported.</li>
+                    <li>That's a full cycle, next you'll do the same but in the opposite direction.</li>
+                    <li>Tense your calves, pointing your toes down away from head for six seconds....</li>
                 </ul>
-                <p> With the process in mind, you make your way up your body.
-                Tensing and relaxing every muscle.
-                This is a great before bed routine.
-                Shaking the muscle out or mimicing the lift sans weight also has a
-                relaxing affect.
+                <p> With the process in mind, you make your way up your body. Tensing and relaxing every muscle.
+                This is a great before bed routine. If this is too much work, you can just shake your muscles out or a better than nothing approach.
                     </p>
             </section>
             <section className="getting-started_peel">

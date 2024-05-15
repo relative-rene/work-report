@@ -36,7 +36,7 @@ const ReportsPage = () => {
             </Suspense>
 
             <Suspense fallback={<h2>...Loading</h2>}>
-                <BarChart data={chartData} />
+                <BarChart data={chartData} chartTitle="Muscle Group Bar Chart"/>
             </Suspense>
         </>
     )
