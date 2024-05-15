@@ -8,7 +8,7 @@ const options = {
 }
 function PieChart({ data }) {
     return (<div>
-                <Pie data={data} options={options} />;
+                <Pie data={data} options={options} />
             </div>);
 }
 

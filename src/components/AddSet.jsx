@@ -6,7 +6,7 @@ const AddSet = () => {
         <SetForm
             title="Add Set"
             isEditing={false}
-            initData={[{ selectedExercise: null, total_reps: null, right_reps: null, left_reps: null, set_weight: null }]} />
+            initData={{ selectedExercise: "", total_reps: "", right_reps: "", left_reps: "", set_weight: "" }} />
     </div>)
 }
 

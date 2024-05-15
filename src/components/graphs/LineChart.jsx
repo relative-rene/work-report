@@ -20,24 +20,6 @@ ChartJS.register(
     Legend
 );
 
-const lineChartData = {
-    labels: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-    ],
-    datasets: [
-        {
-            label: "Steps",
-            data: [1223, 23, 43123, 4456, 4233, 75],
-            borderColor: 'rgba(53, 162, 235, 0.5)',
-        }
-    ]
-}
 const options = {
     responsive: true
 }

@@ -19,21 +19,23 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Bar Chart',
-    },
-  },
-};
 
-export function BarChart({data}) {
-  return <Bar options={options} data={data} />;
+export function BarChart({ data, chartTitle }) {
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: chartTitle,
+      },
+    },
+  };
+  return (<div>
+    <Bar options={options} data={data} />
+  </div>)
 }
 
 

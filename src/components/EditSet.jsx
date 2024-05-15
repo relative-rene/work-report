@@ -12,10 +12,11 @@ const EditSet = () => {
             title="Edit Set"
             isEditing={true}
             initData={
-                { 
-                ...selectedSet,
-                exerciseDetails, 
-                selectedExercise:exerciseDetails.name+':'+exerciseDetails._id}} />
+                {
+                    ...selectedSet,
+                    exerciseDetails,
+                    selectedExercise: exerciseDetails.name + ':' + exerciseDetails._id
+                }} />
     </div>)
 }
 

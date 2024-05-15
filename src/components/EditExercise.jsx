@@ -7,10 +7,10 @@ const EditExercise = () => {
     const { exercises } = useData();
     const selectedExercise = exercises.find(exercise => exercise._id === exercise_id);
 
-    return (<div>
-        <ExerciseForm 
-            title="Edit Exercise" 
-            isEditing={true} 
+return (<div>
+        <ExerciseForm
+            title="Edit Exercise"
+            isEditing={true}
             initData={selectedExercise} />
     </div>)
 }

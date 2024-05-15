@@ -6,7 +6,7 @@ export const AddExercise = () => {
         <ExerciseForm 
             title="Add Exercise" 
             isEditing={false} 
-            initData={ {name: null, muscle_group: null, primary_muscle: null, balance: null }} />
+            initData={ {name: "", muscle_group: "", primary_muscle: "", balance: "" }} />
     </div>)
 }
 

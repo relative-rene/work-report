@@ -5,17 +5,17 @@ import Button from './UI/Button';
 
 const AddBodyFat = () => {
     const initiationValues = {
-        date: null,
-        age: null,
-        weight: null,
-        abs: null,
-        chest: null,
-        thigh: null,
-        tricep: null,
-        suprailiac: null,
-        lean_body_mass: null,
-        fat_mass: null,
-        body_fat_percent: null
+        date: "",
+        age: "",
+        weight: "",
+        abs: "",
+        chest: "",
+        thigh: "",
+        tricep: "",
+        suprailiac: "",
+        lean_body_mass: "",
+        fat_mass: "",
+        body_fat_percent: ""
     }
     const [isReady, setAvailability] = useState(true);
     const [formValues, setFormValues] = useState(initiationValues);
