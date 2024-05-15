@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react'
 
-const Input = ({ updateForm, label, targetVal, inputVal, inputType, validations, children }) => {
+const Input = ({ updateForm, label, targetVal, inputVal, inputType, validations, children, autoComplete }) => {
     const inputRef = useRef();
     const [hasErrors, setErrors] = useState(false);
 
     const isValid = () => {
-        inputRef.current.value.length === 0 ||
-            inputRef.current &&
+        (inputRef.current.value.length === 0 )||
+            (inputRef.current &&
             inputRef.current.validity &&
-            inputRef.current.validity.valid ?
+            inputRef.current.validity.valid) ?
             setErrors(false) :
             setErrors(true);
     }
@@ -17,13 +17,14 @@ const Input = ({ updateForm, label, targetVal, inputVal, inputType, validations,
         <div className="InputComponent">
             <label>{label}  {children}
                 <input
+                    autoComplete={autoComplete ? autoComplete : 'off'}
                     minLength={validations ? validations.minLength : 0}
                     maxLength={validations ? validations.maxLength : -1}
                     required={validations ? validations.required : false}
                     className={hasErrors ? "--invalid" : undefined}
                     ref={inputRef}
                     value={inputVal}
-                    onBlur={()=>isValid}
+                    onBlur={() => isValid}
                     onChange={(e => updateForm(targetVal, e.target.value))}
                     type={inputType || "text"} />
             </label>

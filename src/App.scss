@@ -10,8 +10,8 @@ html {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   font-size: 16px;
-  display:flex;
-  flex-flow:column nowrap;
+  display: flex;
+  flex-flow: column nowrap;
 
   h1,
   h2,
@@ -20,10 +20,11 @@ html {
   h5,
   h6 {
     font-family: Verdana;
-    display:grid;
+    display: grid;
     place-items: center;
   }
-  ul{
+
+  ul {
     list-style: inside lower-latin;
   }
 
@@ -287,8 +288,24 @@ input[type="range"] {
 }
 
 
-.InputHeight input {
-  width: 4rem;
+.InputHeight {
+  margin-bottom: 1em;
+  transition: all 1s ease-in-out;
+
+  input {
+    width: 4.6rem;
+    font-size: 1.2rem;
+    margin-top:.5rem;
+
+    &:focus {
+      outline: 3px solid $primaryLight-color;
+      border: 1px solid $primary-color;
+    }
+  }
+
+  label {
+    font-size: 1rem;
+  }
 }
 
 
@@ -300,6 +317,17 @@ input[type="range"] {
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.BlurBackdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 11;
+  left: 0;
+  top: 0;
+  backdrop-filter: blur(2px);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .Modal {
@@ -326,34 +354,37 @@ input[type="range"] {
 }
 
 
-.getting-started_peel{
-  padding:1em 1em 3em;
-  position:relative;
+.getting-started_peel {
+  padding: 1em 1em 3em;
+  position: relative;
 }
+
 .getting-started_peel:nth-child(odd) {
   background-color: $secondary-color;
 }
+
 .getting-started_peel:not(:last-child):after,
-.getting-started_peel:not(:last-child)::before{
-  position:absolute;
+.getting-started_peel:not(:last-child)::before {
+  position: absolute;
   content: '';
-  width:50px;
-  height:50px;
-  background:#fff;
-  bottom:-.4em;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  bottom: -.4em;
   z-index: 100;
 }
+
 .getting-started_peel:nth-child(odd)::after,
-.getting-started_peel:nth-child(odd)::before{
+.getting-started_peel:nth-child(odd)::before {
   background-color: $secondary-color;
 }
-.getting-started_peel::after{
-  left:50%;
-  transform:skew(0,-20deg)
-}
-.getting-started_peel::before{
-  right:50%;
-  transform:skew(0,20deg)
+
+.getting-started_peel::after {
+  left: 50%;
+  transform: skew(0, -20deg)
 }
 
-
+.getting-started_peel::before {
+  right: 50%;
+  transform: skew(0, 20deg)
+}

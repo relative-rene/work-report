@@ -35,21 +35,21 @@ export const INIT_STATS = {
 }
 
 export const PRIMARY_MUSCLES = {
-    "chest": [{ displayName: "Upper (clavicular head)" }, { displayName: "Mid (Sternocostal head)" }, { displayName: "Lower (Abdominal head)" }],
-    "back": [{ displayName: "Trapeszius" }, { displayName: "Rhomboids" }, { displayName: "Latissimus dorsi" }, { displayName: "Eretor spinae" }],
-    "legs": [{ displayName: "Glutes medius" }, { displayName: "Gluteus maximus" }, { displayName: "Quads" }, { displayName: "Hamstrings" }, { displayName: 'Calves' }],
-    "arms": [{ displayName: "Tricep Lateral head" }, { displayName: "Tricep Long head" }, { displayName: "Tricep Medial" }, { displayName: "Bicep Long" }, { displayName: "Bicep Short" }, { displayName: "Brachialis" }, { displayName: "Prone Forearm" }, { displayName: "Supinated Forearm" }],
-    "core": [{ displayName: "Upper" }, { displayName: "Lower" }, { displayName: "Obliques" }],
-    "delts": [{ displayName: "Anterior" }, { displayName: "Posterior" }, { displayName: "Medial" }]
+    "chest": ["Upper (clavicular head)", "Mid (Sternocostal head)", "Lower (Abdominal head)"],
+    "back": ["Trapeszius", "Rhomboids", "Latissimus dorsi", "Eretor spinae"],
+    "legs": ["Glutes medius", "Gluteus maximus", "Quads", "Hamstrings", 'Calves'],
+    "arms": ["Tricep Lateral head", "Tricep Long head", "Tricep Medial", "Bicep Long", "Bicep Short", "Brachialis", "Prone Forearm", "Supinated Forearm"],
+    "core": ["Upper", "Lower", "Obliques"],
+    "delts": ["Anterior", "Posterior", "Medial"]
 }
 
 export const MUSCLE_GROUPS = [
-    { displayName: "Chest" },
-    { displayName: "Back" },
-    { displayName: "Legs" },
-    { displayName: "Arms" },
-    { displayName: "Core" },
-    { displayName: "Delts" }
+     "Chest",
+     "Back" ,
+     "Legs" ,
+     "Arms" ,
+     "Core" ,
+     "Delts" 
 ]
 
 
@@ -57,3 +57,37 @@ export const MUSCLE_GROUP_LABELS = ["Delts", "Chest", "Back", "Arms", "Core", "L
 
 export const PIE_DATA_LABEL = 'Muscle Group Distribution';
 
+export const SETS_KEY_LABELS = {
+    date_and_time: "Date",
+    exercise_name: "Exercise",
+    set_weight: "Set Weight",
+    total_reps: "Total Reps",
+    left_reps: "Left Reps",
+    right_reps: "Right Reps"
+}
+
+
+export const STATS_KEY_LABELS = {
+    age: "Age",
+    weight: "Weight",
+    height: "Height",
+    chest: "Chest",
+    left_leg: "Left Leg",
+    right_leg: "Right Leg",
+    left_forearm: "Left Forearm",
+    right_forearm: "Right Forearm",
+    left_arm: "Left Arm",
+    right_arm: "Right Arm",
+    butt: "Butt",
+    belly: "Belly",
+    neck: "Neck",
+    body_fat: "Body Fat",
+    date: "Date"
+}
+
+export const EXERCISE_KEY_LABELS = {
+    name: "Exercise",
+    balance: "Balance",
+    muscle_group: "Muscle Group",
+    primary_muscle: "Primary Muscle"
+}

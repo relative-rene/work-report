@@ -37,17 +37,18 @@ function Layout() {
             </main>
             <Footer />
             <Modal show={isLoginVisible} closeModal={() => setLoginVisibility(false)}>
-                <Login 
-                    onOpenSignupModal={()=>setSignupVisibility(true)} 
-                    onCloseLoginModal={()=>setLoginVisibility(false)}   />
+                <Login
+                    onOpenSignupModal={() => setSignupVisibility(true)}
+                    onCloseLoginModal={() => setLoginVisibility(false)} />
             </Modal>
             <Modal show={isSignupVisible} closeModal={() => setSignupVisibility(false)}>
-                <SignUp 
-                    onCloseLoginModal={()=>setLoginVisibility(false)}
-                    onOpenSignupModal={()=>setSignupVisibility(true)} 
-                    onCloseSignupModal={()=>setSignupVisibility(false)}/>
+                <SignUp
+                    onCloseLoginModal={() => setLoginVisibility(false)}
+                    onOpenSignupModal={() => setSignupVisibility(true)}
+                    onCloseSignupModal={() => setSignupVisibility(false)} />
             </Modal>
         </div>
     )
 }
+
 export default Layout

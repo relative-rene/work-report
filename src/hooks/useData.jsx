@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useMemo } from 'react';
 import { useAuth } from './useAuth';
+import { formatTimeStampToUS } from '../utility/transformers';
 
 // Create context for data
 const DataContext = createContext();
@@ -28,7 +29,7 @@ export const DataProvider = ({ children }) => {
     const getSetsData = async (user_id) => {
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/read_sets`).catch(err => console.error(err));
         const data = await res.json();
-        const formattedSets = data.map(({ _id, date_and_time,date, exercise_name, set_weight, total_reps, left_reps, right_reps }) => ({ _id, date_and_time: date_and_time? date_and_time.substring(0, 10): null, exercise_name, set_weight, total_reps, left_reps, right_reps }));
+        const formattedSets = data.map(({ _id, date_and_time, exercise_name, set_weight, total_reps, left_reps, right_reps }) => ({ _id, date_and_time: date_and_time ? formatTimeStampToUS(date_and_time) : "", exercise_name, set_weight, total_reps, left_reps, right_reps }));
 
         setSets(formattedSets);
     }
@@ -37,7 +38,7 @@ export const DataProvider = ({ children }) => {
         const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/read_stats`).catch(err => console.error(err))
         const data = await res.json()
         const formattedStats = data.map(({ _id, date, age, weight, body_fat, height, neck, chest, belly, butt, left_arm, right_arm, left_forearm, right_forearm, left_leg, right_leg }) => ({
-            _id, date, age, weight, body_fat, height, neck, chest, belly, butt, left_arm, right_arm, left_forearm, right_forearm, left_leg, right_leg
+            _id, date: formatTimeStampToUS(date), age, weight, body_fat, height, neck, chest, belly, butt, left_arm, right_arm, left_forearm, right_forearm, left_leg, right_leg
         }));
 
         setStats(formattedStats);
@@ -77,11 +78,11 @@ export const DataProvider = ({ children }) => {
             updateTodos,
             loadData
         }), [
-            exercises,
-            sets,
-            stats,
-            todos,
-            loadData]
+        exercises,
+        sets,
+        stats,
+        todos,
+        loadData]
     );
 
     return <DataContext.Provider value={value}> {children} </DataContext.Provider>
