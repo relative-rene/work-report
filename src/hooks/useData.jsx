@@ -45,7 +45,7 @@ export const DataProvider = ({ children }) => {
     }
 
     const getTodoData = async (user_id) => {
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/todos/read`)
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/todos/read_todos`)
         const data = await res.json();
         let sortByDueDate = data.sort((a, b) => new Date(a.due_date_and_time) - new Date(b.due_date_and_time));
         let sortedByDone = sortByDueDate.sort((a, b) => a.is_done - b.is_done);

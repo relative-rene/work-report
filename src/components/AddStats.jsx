@@ -7,7 +7,7 @@ function AddStats() {
         <StatsForm 
             title={"Add Stat"} 
             initData={INIT_STATS}
-            isEditing={true} />
+            isEditing={false} />
     </div>)
 }
 

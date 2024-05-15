@@ -28,7 +28,7 @@ const TodoApp = () => {
     async function onAddHandler() {
         const saveTodo = { description, isDone: false, dueDateAndTime: new Date(dueDateAndTime).toUTCString() }
         if (description.length !== 0) {
-            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todo/create`,
+            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/create_todo`,
                 { method: 'post', body: JSON.stringify(saveTodo), headers: { "Content-Type": "application/json" } })
             const data = await response.json();
             setDescription('') && setDueDate('');
@@ -37,7 +37,7 @@ const TodoApp = () => {
     };
 
     async function onDeleteHandler(todo_id) {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/delete`, { method: 'DELETE' });
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/delete_todo`, { method: 'DELETE' });
         const data = await response.json();
         data && updateTodos();
     };
@@ -46,7 +46,7 @@ const TodoApp = () => {
         const newTodo = hasNewDescription ?
             todos.filter(todo => todo._id === todo_id).map(todo => Object.assign({}, { ...todo, description: newDescription })) :
             todos.filter(todo => todo._id === todo_id).map(todo => Object.assign({}, { ...todo, is_done: !todo.is_done }));
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/updateOne`, { method: 'PUT', body: JSON.stringify(newTodo), headers: { "Content-Type": "application/json" } });
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/updateOne_todo`, { method: 'PUT', body: JSON.stringify(newTodo), headers: { "Content-Type": "application/json" } });
         const data = await response.json();
         data && updateTodos();
     }
