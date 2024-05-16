@@ -18,11 +18,11 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
         e.preventDefault();
         setAvailability(false);
         setLoading(true)
-        const response = await login(formValues);
-        if (response.message) {
+        const data = await login(formValues);
+        if (!data) {
             setLoading(false);
             setAvailability(true);
-            alert(`Login Failed ${response.message}`);
+            alert(`Login Failed`);
             return;
         } else {
             alert('Free servers are slow, like 50 seconds delays. To alleviate the problem, I have added caching but that will only take effect after the first long wait. Sorry again, this is a result of frugality and not programming skill or experience. Thanks for your understanding')
@@ -87,7 +87,7 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
                         inputType="save">Login</Button>
                 </div>
             </form>
-            {isLoading ? <LoadingSpinner /> : null}
+            {isLoading ? <LoadingSpinner hasBlur={true} /> : null}
         </>
     );
 }

@@ -1,9 +1,9 @@
 import BlurBackdrop from "./BlurBackdrop"
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ hasBlur }) => {
     return (
         <>
-            <BlurBackdrop />
+            {hasBlur ? <BlurBackdrop /> : null}
             <div>
                 <span className="loading-spinner" />
             </div>

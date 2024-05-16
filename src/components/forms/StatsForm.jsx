@@ -22,10 +22,6 @@ function StatsForm({ initData, title, isEditing }) {
         setFormValues({ ...formValues, [target]: val });
     }
 
-    const toggleMore = ()=>{
-        setFormVisibility(!showCompleteForm);
-    }
-
     const handleCancel = () => (console.log('handleCancel'));// TODO make functional
 
     const handleSave = async (e) => {
@@ -57,9 +53,7 @@ function StatsForm({ initData, title, isEditing }) {
         } catch (err) {
             console.error(err);
             alert(`Update Stats request has failed. Servers are down, please try again later.`)
-
         }
-
     }
 
     return (
