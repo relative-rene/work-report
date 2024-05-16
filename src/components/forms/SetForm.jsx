@@ -4,7 +4,6 @@ import { useData } from '../../hooks/useData';
 import Input from '../../components/UI/Input';
 import Select from '../../components/UI/Select';
 import Button from '../../components/UI/Button';
-import ModalNavbar from '../../components/ModalNavbar';
 import { capitalizeStr, formatUSDateToIsoString } from '../../utility/transformers';
 
 const SetForm = ({ initData, title, isEditing }) => {
@@ -30,20 +29,40 @@ const SetForm = ({ initData, title, isEditing }) => {
     }
 
     const patchSet = async () => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/${formValues._id}/patch_set`,
-            { method: 'PUT', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
-        const { message } = response.json();
-        message ? alert(`Add Set Failed ${message}`) : alert('PATCH Set Success');
-        updateSets();
+        try {
+            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/${formValues._id}/patch_set`,
+                { method: 'PUT', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+            const { message, status } = await response.json();
+            if (status >= 300) {
+                alert(`Add Set Failed ${message}`);
+            } else {
+                alert('PATCH Set Success');
+                updateSets();
+            }
+        } catch (error) {
+            console.error(error)
+            alert(`Update Set request has failed. Servers are down, please try again later.`)
+
+        }
 
     }
 
     const postSet = async () => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/create_set`,
-            { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
-        const { message } = response.json();
-        message ? alert(`Add Set Failed ${message}`) : alert('POST Set Success');
-        updateSets();
+        try {
+            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/create_set`,
+                { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+            const { status, message } = await response.json();
+            if (status < 300) {
+                alert('POST Set Success');
+                updateSets();
+            } else {
+                alert(`Add Set Failed. ${message}`);
+            }
+        } catch (err) {
+            console.error(err);
+            alert(`Add Set request has failed. Servers are down, please try again later.`)
+
+        }
     }
 
     async function handleSelectedExercise(val) {
@@ -57,48 +76,53 @@ const SetForm = ({ initData, title, isEditing }) => {
 
     return (
         <form className="FormWR" method="post" onSubmit={handleSubmit}>
-            <ModalNavbar />
             <h2 className="form-title">{title}</h2>
             <Input
                 label="Date"
                 inputType="date"
                 inputVal={formValues.date_and_time ? formatUSDateToIsoString(formValues.date_and_time) : ''}
                 targetVal="date_and_time"
-                updateForm={handleFormUpdate} />
+                validations={{ required: true }}
+                updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
             <Select
-                label="Select an exercise:"
+                label="Select an exercise"
                 updateForm={handleFormUpdate}
                 selectedVal={formValues['selectedExercise'] || 'Select Exercise'}
                 nameForId="selectedExercise"
-                options={optionsList} />
+                validations={{ required: true }}
+                options={optionsList}><span className="requiredMark">*</span></Select>
 
             <Input
                 label="Weight in lbs"
                 inputType="number"
-                inputVal={formValues.set_weight || 0}
+                inputVal={formValues.set_weight}
                 targetVal="set_weight"
-                updateForm={handleFormUpdate} />
+                validations={{ required: true }}
+                updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
             { selectedExercise && selectedExercise.balance === 'asymmetrical' ?
                 <>
                     <Input
                         label="Left Reps"
                         inputType="number"
-                        inputVal={formValues.left_reps || 0}
+                        inputVal={formValues.left_reps}
                         targetVal="left_reps"
-                        updateForm={handleFormUpdate} />
+                        validations={{ required: true }}
+                        updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
                     <Input
                         label="Right Reps"
                         inputType="number"
-                        inputVal={formValues.right_reps || 0}
+                        inputVal={formValues.right_reps}
                         targetVal="right_reps"
-                        updateForm={handleFormUpdate} />
+                        validations={{ required: true }}
+                        updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
                 </> :
                 <Input
                     label="Total Reps"
                     inputType="number"
-                    inputVal={formValues.total_reps || 0}
+                    inputVal={formValues.total_reps}
                     targetVal="total_reps"
-                    updateForm={handleFormUpdate} />
+                    validations={{ required: true }}
+                    updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
             }
             <div className="action-container">
                 <Button

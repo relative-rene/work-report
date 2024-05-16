@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import vutruvianLogo from '../assets/vutruvianLogo.jpeg';
 import Modal from '../components/UI/Modal';
 import Login from '../components/Login';
-import LoadingSpinner from '../components/UI/LoadingSpinner';
 import { useData } from '../hooks/useData';
 
 

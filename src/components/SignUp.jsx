@@ -3,6 +3,7 @@ import Input from './UI/Input';
 import Button from './UI/Button';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import ModalNavbar from './ModalNavbar';
 
 const SignUp = ({ onCloseSignupModal }) => {
     const initialState = { first_name: '', last_name: '', date_of_birth: '', email: '', password: '' }
@@ -35,6 +36,7 @@ const SignUp = ({ onCloseSignupModal }) => {
 
     return (
         <form className="FormWR" onSubmit={handleSave}>
+            <ModalNavbar closeModal={onCloseSignupModal} />
             <h2 className="form-title">Sign Up</h2>
             <Input 
                 label="First Name" 
