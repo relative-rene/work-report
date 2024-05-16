@@ -22,7 +22,7 @@ function StatsForm({ initData, title, isEditing }) {
         setFormValues({ ...formValues, [target]: val });
     }
 
-    const handleCancel = () => (console.log('handleCancel'));// TODO make functional
+    const handleCancel = () => (setFormValues({ ...initData }));
 
     const handleSave = async (e) => {
         e.preventDefault()
@@ -66,20 +66,20 @@ function StatsForm({ initData, title, isEditing }) {
                 <ToggleCheckbox updateForm={(val) => setStandard(val)} label={standard} />
                 <InputHeight standard={standard} updateForm={handleFormUpdate} />
                 <Input inputType="number" inputVal={formValues.body_fat || ''} label="Body Fat %" targetVal="body_fat" updateForm={handleFormUpdate}><span onClick={() => setGuessVisibility(true)} className="moreOrLess">Guess BF%</span></Input>
-                <span className="moreOrLess" onClick={()=>setFormVisibility(!showCompleteForm)}>{showCompleteForm?'Less':'More'}</span>
-                {showCompleteForm?
-                <>
-                <Input inputType="number" inputVal={formValues.neck || ''} label="Neck cm" targetVal="neck" updateForm={handleFormUpdate} />
-                <Input inputType="number" inputVal={formValues.chest || ''} label="Chest cm" targetVal="chest" updateForm={handleFormUpdate} />
-                <Input inputType="number" inputVal={formValues.belly || ''} label="Belly cm" targetVal="belly" updateForm={handleFormUpdate} />
-                <Input inputType="number" inputVal={formValues.butt || ''} label="Butt cm" targetVal="butt" updateForm={handleFormUpdate} />
-                <Input inputType="number" inputVal={formValues.left_arm || ''} label="Left Arm cm" targetVal="left_arm" updateForm={handleFormUpdate} />
-                <Input inputType="number" inputVal={formValues.right_arm || ''} label="Right Arm cm" targetVal="right_arm" updateForm={handleFormUpdate} />
-                <Input inputType="number" inputVal={formValues.left_forearm || ''} label="Left Forearm cm" targetVal="left_forearm" updateForm={handleFormUpdate} />
-                <Input inputType="number" inputVal={formValues.right_forearm || ''} label="Right Forearm cm" targetVal="right_forearm" updateForm={handleFormUpdate} />
-                <Input inputType="number" inputVal={formValues.left_leg || ''} label="Left Leg cm" targetVal="left_leg" updateForm={handleFormUpdate} />
-                <Input inputType="number" inputVal={formValues.right_leg || ''} label="Right Leg cm" targetVal="right_leg" updateForm={handleFormUpdate} />
-                </>: null}
+                <span className="moreOrLess" onClick={() => setFormVisibility(!showCompleteForm)}>{showCompleteForm ? 'Less' : 'More'}</span>
+                {showCompleteForm ?
+                    <>
+                        <Input inputType="number" inputVal={formValues.neck || ''} label="Neck cm" targetVal="neck" updateForm={handleFormUpdate} />
+                        <Input inputType="number" inputVal={formValues.chest || ''} label="Chest cm" targetVal="chest" updateForm={handleFormUpdate} />
+                        <Input inputType="number" inputVal={formValues.belly || ''} label="Belly cm" targetVal="belly" updateForm={handleFormUpdate} />
+                        <Input inputType="number" inputVal={formValues.butt || ''} label="Butt cm" targetVal="butt" updateForm={handleFormUpdate} />
+                        <Input inputType="number" inputVal={formValues.left_arm || ''} label="Left Arm cm" targetVal="left_arm" updateForm={handleFormUpdate} />
+                        <Input inputType="number" inputVal={formValues.right_arm || ''} label="Right Arm cm" targetVal="right_arm" updateForm={handleFormUpdate} />
+                        <Input inputType="number" inputVal={formValues.left_forearm || ''} label="Left Forearm cm" targetVal="left_forearm" updateForm={handleFormUpdate} />
+                        <Input inputType="number" inputVal={formValues.right_forearm || ''} label="Right Forearm cm" targetVal="right_forearm" updateForm={handleFormUpdate} />
+                        <Input inputType="number" inputVal={formValues.left_leg || ''} label="Left Leg cm" targetVal="left_leg" updateForm={handleFormUpdate} />
+                        <Input inputType="number" inputVal={formValues.right_leg || ''} label="Right Leg cm" targetVal="right_leg" updateForm={handleFormUpdate} />
+                    </> : null}
                 <div className="action-container">
                     <Button handleClick={handleCancel} styleName="action-container__btn--secondary">Cancel</Button>
                     <Button isDisabled={!isReady} styleName="action-container__btn--primary" inputType="save">Save</Button>

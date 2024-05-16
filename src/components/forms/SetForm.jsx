@@ -25,7 +25,10 @@ const SetForm = ({ initData, title, isEditing }) => {
         setBtnAvailability(false);
         isEditing ? patchSet() : postSet();
         setBtnAvailability(true);
-
+    }
+    
+    const onResetForm = () => {
+        setFormValues({...initData})
     }
 
     const patchSet = async () => {
@@ -51,12 +54,12 @@ const SetForm = ({ initData, title, isEditing }) => {
         try {
             const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/create_set`,
                 { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
-            const { status, message } = await response.json();
-            if (status < 300) {
+            const data = await response.json();
+            if (data) {
                 alert('POST Set Success');
                 updateSets();
             } else {
-                alert(`Add Set Failed. ${message}`);
+                alert(`Add Set Failed.`);
             }
         } catch (err) {
             console.error(err);
@@ -126,6 +129,7 @@ const SetForm = ({ initData, title, isEditing }) => {
             }
             <div className="action-container">
                 <Button
+                    handleClick={onResetForm}
                     styleName="action-container__btn--secondary"
                     type="reset">Reset</Button>
                 <Button
