@@ -1,12 +1,21 @@
+import { lazy, useEffect } from 'react';
 import { useData } from '../hooks/useData';
-import AddStats from '../components/AddStats';
-import Table from '../components/UI/Table';
-import { STATS_KEY_LABELS } from '../data/constants';
+import { useAuth } from '../hooks/useAuth';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
+import AddStats from '../components/AddStats';
+import { STATS_KEY_LABELS } from '../data/constants';
 
+const Table = lazy(() => import('../components/UI/Table'));
 const StatsPage = () => {
-    const { stats } = useData();
-
+    const { stats, loadData } = useData();
+    const { reloadUser } = useAuth();
+    useEffect(() => {
+        if (!stats) {
+            reloadUser()
+                .then(user => loadData(user._id))
+                .catch(err => console.error(err));
+        }
+    }, [stats])
     return (
         <>
             <h3>Stats Hub</h3>

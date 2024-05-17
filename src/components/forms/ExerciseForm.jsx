@@ -20,33 +20,46 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
 
     const handleCancel = (e) => {
         e.preventDefault()
-        setFormValues({ name: "", muscle_group: "", primary_muscle: "", balance: "" });
+        setFormValues({ ...initData });
     }
 
     const handleSave = (e) => {
         e.preventDefault();
         setAvailability(false);
         isEditing ? patchExercise() : postExercise();
-        setAvailability(true);
         updateExercises();
     }
 
     const postExercise = async () => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises/create_exercise`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
-        response.message ? alert(`Failure: ${response.statusText}`) : alert('Success');
+        try {
+            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises/create_exercise`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+            const { message } = await response.json();
+            message ? alert(`Add exercise failed: ${message}`) : alert('Add exercise success!!');
+        } catch (err) {
+            console.error(err);
+            alert('Add Exercise request Failed. Servers are down. Please try again later.')
+        }
+        setAvailability(true);
     }
 
     const patchExercise = async () => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises/${formValues._id}/update_exercise`, { method: 'PUT', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
-        response.message ? alert(`Failure: ${response.statusText}`) : alert('Success');
+        try {
+            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises/${formValues._id}/update_exercise`, { method: 'PUT', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
+            const { message } = await response.json();
+            message ? alert(`Update request failed: ${message}`) : alert('Update exercise success!!');
+        } catch (err) {
+            console.error(err);
+            alert('Exercise Update Failed. Servers are down. Please try again later.')
+        }
+        setAvailability(true);
     }
     const muscleGroupOptions = MUSCLE_GROUPS.map((o, idx) => {
         return <option key={`option${idx}-${o}`} value={o.toLowerCase()}>{o}</option>
     })
-    const balanceOptions = ["Symmetrical","Asymmetrical"].map((o, idx) => {
+    const balanceOptions = ["Symmetrical", "Asymmetrical"].map((o, idx) => {
         return <option key={`option${idx}-${o}`} value={o.toLowerCase()}>{o}</option>
     });
-    const primaryMuscleOptions = PRIMARY_MUSCLES[formValues.muscle_group] && PRIMARY_MUSCLES[formValues.muscle_group].map((o,idx)=>{
+    const primaryMuscleOptions = PRIMARY_MUSCLES[formValues.muscle_group] && PRIMARY_MUSCLES[formValues.muscle_group].map((o, idx) => {
         return <option key={`option${idx}-${o}`} value={o.toLowerCase()}>{o}</option>
     });
 
@@ -56,34 +69,39 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
             label="Name"
             inputVal={formValues.name || ''}
             targetVal="name"
-            updateForm={handleFormUpdate} />
+            validations={{ required: true }}
+            updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
         <Select
             label="Balance"
             updateForm={handleFormUpdate}
             selectedVal={formValues['balance'] || 'Select form'}
             nameForId="balance"
-            options={balanceOptions} />
+            validations={{ required: true }}
+            options={balanceOptions}><span className="requiredMark">*</span></Select>
         <Select
             label="Muscle Group"
             updateForm={handleFormUpdate}
             selectedVal={formValues['muscle_group'] || 'Choose a muscle group'}
             nameForId="muscle_group"
-            options={muscleGroupOptions} />
+            validations={{ required: true }}
+            options={muscleGroupOptions}><span className="requiredMark">*</span></Select>
         {formValues["muscle_group"] &&
             <Select
                 label="Primary Muscle"
                 updateForm={handleFormUpdate}
                 selectedVal={formValues['primary_muscle'] || 'Select a primary muscle'}
                 nameForId={"primary_muscle"}
-                options={primaryMuscleOptions} />}
+                validations={{ required: true }}
+                options={primaryMuscleOptions}><span className="requiredMark">*</span></Select>}
         <div className="action-container">
             <Button
                 handleClick={handleCancel}
-                styleName="action-container__btn--secondary">Cancel</Button>
+                isDisabled={!isReady}
+                styleName="action-container__btn--secondary">CANCEL</Button>
             <Button
                 handleClick={handleSave}
                 isDisabled={!isReady}
-                styleName="action-container__btn--primary">Save</Button>
+                styleName="action-container__btn--primary">SAVE</Button>
         </div>
     </form>);
 }

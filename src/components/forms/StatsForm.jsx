@@ -24,11 +24,10 @@ function StatsForm({ initData, title, isEditing }) {
 
     const handleCancel = () => (setFormValues({ ...initData }));
 
-    const handleSave = async (e) => {
+    const handleSave = (e) => {
         e.preventDefault()
         setAvailability(false)
-        isEditing ? await patchStats() : await postStats();
-        setAvailability(true);
+        isEditing ? patchStats() : postStats();
     }
 
     const postStats = async () => {
@@ -41,7 +40,7 @@ function StatsForm({ initData, title, isEditing }) {
             console.error(err);
             alert(`Add Stats request has failed. Servers are down, please try again later.`)
         }
-
+        setAvailability(true);
     }
 
     const patchStats = async () => {
@@ -54,6 +53,7 @@ function StatsForm({ initData, title, isEditing }) {
             console.error(err);
             alert(`Update Stats request has failed. Servers are down, please try again later.`)
         }
+        setAvailability(true);
     }
 
     return (
@@ -81,8 +81,8 @@ function StatsForm({ initData, title, isEditing }) {
                         <Input inputType="number" inputVal={formValues.right_leg || ''} label="Right Leg cm" targetVal="right_leg" updateForm={handleFormUpdate} />
                     </> : null}
                 <div className="action-container">
-                    <Button handleClick={handleCancel} styleName="action-container__btn--secondary">Cancel</Button>
-                    <Button isDisabled={!isReady} styleName="action-container__btn--primary" inputType="save">Save</Button>
+                    <Button isDisabled={!isReady} handleClick={handleCancel} styleName="action-container__btn--secondary">CANCEL</Button>
+                    <Button isDisabled={!isReady} styleName="action-container__btn--primary" inputType="save">SAVE</Button>
                 </div>
             </form>
             <Modal show={showGuessModal} closeModal={() => setGuessVisibility(false)}>

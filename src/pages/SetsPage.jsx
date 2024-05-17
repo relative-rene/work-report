@@ -1,14 +1,22 @@
-import React from 'react';
-
-import AddSet from '../components/AddSet';
+import { lazy, useEffect } from 'react';
 import { useData } from '../hooks/useData';
+import { useAuth } from '../hooks/useAuth';
 import { SETS_KEY_LABELS } from '../data/constants';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
+import AddSet from '../components/AddSet';
 
-const Table = React.lazy(() => import('../components/UI/Table'));
+const Table = lazy(() => import('../components/UI/Table'));
 
 function SetsPage() {
-    const { exercises, sets } = useData();
+    const { exercises, sets, loadData } = useData();
+    const { reloadUser } = useAuth();
+    useEffect(() => {
+        if (!sets) {
+            reloadUser()
+                .then(user => loadData(user._id))
+                .catch(err => console.error(err));
+        }
+    }, [sets])
     return (
         <>
             <h3>Sets Hub</h3>

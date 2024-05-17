@@ -33,6 +33,27 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
         }
     }
 
+    const onFreeTrial = async (e) => {
+        e.preventDefault();
+        console.log('onFreeTrial')
+        setAvailability(false);
+        setLoading(true);
+        const data = await login({ email: "dd@hotmail.com", password: "realdeal" });
+        if (!data) {
+            setLoading(false);
+            setAvailability(true);
+            alert(`Login Failed`);
+            return;
+        } else {
+            alert('Free servers are slow, like 50 seconds delays. To alleviate the problem, I have added caching but that will only take effect after the first long wait. Sorry again, this is a result of frugality and not programming skill or experience. Thanks for your understanding')
+            setLoading(false);
+            setAvailability(true);
+            navigate('/hub/reports');
+            return onCloseLoginModal();
+        }
+
+    }
+
     const toggleView = () => {
         setPasswordVisability(!isPasswordVisible);
     }
@@ -79,12 +100,16 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
 
                 <div className="action-container">
                     <Button
+                        isDisabled={!isReady}
+                        styleName="action-container__btn--primary"
+                        handleClick={onFreeTrial}>TRIAL</Button>
+                    <Button
                         styleName="action-container__btn--secondary"
-                        handleClick={onCloseLoginModal}>Cancel</Button>
+                        handleClick={onCloseLoginModal}>CANCEL</Button>
                     <Button
                         isDisabled={!isReady}
                         styleName="action-container__btn--primary"
-                        inputType="save">Login</Button>
+                        inputType="save">LOGIN</Button>
                 </div>
             </form>
             {isLoading ? <LoadingSpinner hasBlur={true} /> : null}

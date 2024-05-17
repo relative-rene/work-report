@@ -1,8 +1,9 @@
+import { lazy } from 'react';
 import AddExercise from '../components/AddExercise';
 import { useData } from '../hooks/useData';
-import Table from '../components/UI/Table';
 import { EXERCISE_KEY_LABELS } from '../data/constants';
 
+const Table = lazy(() => import('../components/UI/Table'));
 const ExercisePage = () => {
     let { exercises } = useData();
 

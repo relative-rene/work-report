@@ -24,11 +24,10 @@ const SetForm = ({ initData, title, isEditing }) => {
         e.preventDefault();
         setBtnAvailability(false);
         isEditing ? patchSet() : postSet();
-        setBtnAvailability(true);
     }
-    
+
     const onResetForm = () => {
-        setFormValues({...initData})
+        setFormValues({ ...initData })
     }
 
     const patchSet = async () => {
@@ -45,9 +44,8 @@ const SetForm = ({ initData, title, isEditing }) => {
         } catch (error) {
             console.error(error)
             alert(`Update Set request has failed. Servers are down, please try again later.`)
-
         }
-
+        setBtnAvailability(true);
     }
 
     const postSet = async () => {
@@ -64,8 +62,8 @@ const SetForm = ({ initData, title, isEditing }) => {
         } catch (err) {
             console.error(err);
             alert(`Add Set request has failed. Servers are down, please try again later.`)
-
         }
+        setBtnAvailability(true);
     }
 
     async function handleSelectedExercise(val) {
@@ -129,13 +127,14 @@ const SetForm = ({ initData, title, isEditing }) => {
             }
             <div className="action-container">
                 <Button
+                    isDisabled={!isBtnReady}
                     handleClick={onResetForm}
                     styleName="action-container__btn--secondary"
-                    type="reset">Reset</Button>
+                    type="reset">RESET</Button>
                 <Button
-                    disabled={!isBtnReady}
+                    isDisabled={!isBtnReady}
                     styleName="action-container__btn--primary"
-                    inputType="save">Save</Button>
+                    inputType="save">SAVE</Button>
             </div>
         </form>
     );
