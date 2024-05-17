@@ -55,6 +55,7 @@ export const DataProvider = ({ children }) => {
     }
 
     const getTodoData = async (user_id) => {
+        if(user_id === '66468c504d87b300538d9610') user_id = "66207e4a35c7220053e450f6";
         try {
             const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/todos/read_todos`)
             const data = await res.json();
