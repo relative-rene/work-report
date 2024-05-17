@@ -34,6 +34,8 @@ export const INIT_STATS = {
     right_leg: null
 }
 
+export const INIT_EXERCISE = { name: "", muscle_group: "", primary_muscle: "", balance: "" }
+export const INIT_SET = {selectedExercise: "", total_reps: "", right_reps: "", left_reps: "", set_weight: "" }
 export const PRIMARY_MUSCLES = {
     "chest": ["Upper (clavicular head)", "Mid (Sternocostal head)", "Lower (Abdominal head)"],
     "back": ["Trapeszius", "Rhomboids", "Latissimus dorsi", "Eretor spinae"],
@@ -44,16 +46,16 @@ export const PRIMARY_MUSCLES = {
 }
 
 export const MUSCLE_GROUPS = [
-     "Chest",
-     "Back" ,
-     "Legs" ,
-     "Arms" ,
-     "Core" ,
-     "Delts" 
-]
+    "Chest",
+    "Back",
+    "Legs",
+    "Arms",
+    "Core",
+    "Delts"
+];
 
 
-export const MUSCLE_GROUP_LABELS = ["Delts", "Chest", "Back", "Arms", "Core", "Legs"]
+export const MUSCLE_GROUP_LABELS = ["Delts", "Chest", "Back", "Arms", "Core", "Legs"];
 
 export const PIE_DATA_LABEL = 'Muscle Group Distribution';
 

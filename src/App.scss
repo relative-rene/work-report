@@ -25,7 +25,8 @@ html {
   }
 
   ul {
-    list-style: inside lower-latin;
+    list-style: inside circle;
+    line-height: 1.5rem;
   }
 
   #root {
@@ -55,9 +56,8 @@ html {
   .logout-container {
     display: flex;
     align-items: flex-end;
-    padding: 1em;
+    padding: 0 1rem;
   }
-
 }
 
 .NavbarMenu {
@@ -127,9 +127,11 @@ html {
 }
 
 .Footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   background-color: $primaryLight-color;
   height: 5rem;
-  margin-top: auto;
 }
 
 
@@ -144,7 +146,7 @@ html {
       display: flex;
       flex-flow: column nowrap;
 
-      .fa-solid.fa-square-pen.fa-xl {
+      .fa-solid.fa-square-pen {
         color: rgb(241, 136, 136)
       }
 
@@ -193,15 +195,38 @@ html {
     padding: 0;
 
     .Todo {
+      display: flex;
+      align-items: center;
       padding: .2rem 1rem;
 
       &--checked {
         text-decoration: line-through;
-      }
 
-      .fa-solid.fa-trash-can {
-        color: rgb(109, 13, 13);
+        .fa-solid.fa-trash-can {
+          color: rgb(109, 13, 13);
+          border: ridge 2px $primary-color;
+          border-radius: 10%;
+          background-color: $primaryLight-color;
+          padding: 0.2rem .4em;
+        }
 
+        input {
+          font-size: 1.2em;
+        }
+
+        .fa-regular.fa-floppy-disk {
+          color: $primaryHover-color;
+          border: ridge 2px $primary-color;
+          border-radius: 10%;
+          background-color: $primaryLight-color;
+          padding: 0.2rem .4em;
+
+          &::before {
+            background-color: whitesmoke;
+            padding: 0.1px;
+            border-radius: 20px
+          }
+        }
       }
     }
   }
@@ -248,7 +273,6 @@ html {
   &:hover {
     border: 2px solid $primary-color;
   }
-
 }
 
 
@@ -263,7 +287,6 @@ html {
     font-size: 1.2em;
   }
 }
-
 
 :disabled {
   opacity: 30%;
@@ -295,7 +318,7 @@ input[type="range"] {
   input {
     width: 4.6rem;
     font-size: 1.2rem;
-    margin-top:.5rem;
+    margin-top: .5rem;
 
     &:focus {
       outline: 3px solid $primaryLight-color;
@@ -353,18 +376,17 @@ input[type="range"] {
   }
 }
 
-
-.getting-started_peel {
+.section-peak {
   padding: 1em 1em 3em;
   position: relative;
 }
 
-.getting-started_peel:nth-child(odd) {
+.section-peak:nth-child(odd) {
   background-color: $secondary-color;
 }
 
-.getting-started_peel:not(:last-child):after,
-.getting-started_peel:not(:last-child)::before {
+.section-peak:not(:last-child):after,
+.section-peak:not(:last-child)::before {
   position: absolute;
   content: '';
   width: 50px;
@@ -374,17 +396,35 @@ input[type="range"] {
   z-index: 100;
 }
 
-.getting-started_peel:nth-child(odd)::after,
-.getting-started_peel:nth-child(odd)::before {
+.section-peak:nth-child(odd)::after,
+.section-peak:nth-child(odd)::before {
   background-color: $secondary-color;
 }
 
-.getting-started_peel::after {
+.section-peak::after {
   left: 50%;
   transform: skew(0, -20deg)
 }
 
-.getting-started_peel::before {
+.section-peak::before {
   right: 50%;
   transform: skew(0, 20deg)
+}
+
+.fa-solid.fa-pencil {
+  border: ridge 2px $primary-color;
+  border-radius: 10%;
+  color: rgb(226, 148, 3);
+  background-color: $primaryLight-color;
+  padding: 0.2rem .4rem;
+}
+
+i {
+  padding: .5rem;
+  font-size: 1.1rem;
+}
+
+
+.ReleaseModal {
+  padding: 1rem;
 }

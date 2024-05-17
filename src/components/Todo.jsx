@@ -12,7 +12,7 @@ function Todo({ description, due_date_and_time, is_done, onDelete, onUpdate, tod
             <>
                 <i onClick={() => onDelete(todo_id)} className="fa-solid fa-trash-can" />
                 <input value={editedDescription} type="text" onChange={(e) => setEditedDescription(e.target.value)} />
-                <i onClick={() => onUpdate(todo_id, true, editedDescription)} className="fa-solid fa-file-medical" />
+                <i onClick={() => onUpdate(todo_id, true, editedDescription)} className="fa-regular fa-floppy-disk" />
             </> :
             <>
                 <input type="checkbox" onChange={() => onUpdate(todo_id)} checked={is_done} />

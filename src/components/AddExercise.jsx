@@ -1,13 +1,14 @@
 import ExerciseForm from '../components/forms/ExerciseForm';
-
+import { INIT_EXERCISE } from '../data/constants';
 export const AddExercise = () => {
 
-    return (<div>
-        <ExerciseForm 
-            title="Add Exercise" 
-            isEditing={false} 
-            initData={ {name: "", muscle_group: "", primary_muscle: "", balance: "" }} />
-    </div>)
+    return (
+        <>
+            <ExerciseForm
+                title="Add Exercise"
+                isEditing={false}
+                initData={INIT_EXERCISE} />
+        </>);
 }
 
 

@@ -4,7 +4,7 @@
 const GettingStartedPage = () => {
     return (
         <>
-            <section className="getting-started_peel">
+            <section className="section-peak">
                 <h3>Track Your Effort</h3>
                 <p>
                     The mind is a fickle thing, some folks focus on the good, others dwell on the bad.
@@ -16,7 +16,7 @@ const GettingStartedPage = () => {
                     This will not be an innovative program. Work report will take tried and true methods and use them.</p>
             </section>
 
-            <section className="getting-started_peel">
+            <section className="section-peak">
                 <h3>1. Progressive Overload</h3>
                 <p>
                     Milo of Croton was an olympic champion in late 600 century BC. At the time, he was known for carrying a bull around town.
@@ -30,7 +30,7 @@ const GettingStartedPage = () => {
                     </p>
 
             </section>
-            <section className="getting-started_peel">
+            <section className="section-peak">
                 <h3>2. Specificity</h3>
                 <p>The specificity principle states to become better at a particular exercise or skill, one should perform that exercise or skill. Neaural drive can be specific to Range of Motion, the speed at which the weight is moved, duration and
                     planes of motion. Adjusting these variables will result in progress in muscle gain, strength or power.
@@ -54,7 +54,7 @@ const GettingStartedPage = () => {
                 </ul>
 
             </section>
-            <section className="getting-started_peel">
+            <section className="section-peak">
                 <h3>3. Recovery</h3>
                 <p>
                     Never do a workout unless you can give it your all.
@@ -107,7 +107,7 @@ const GettingStartedPage = () => {
                 This is a great before bed routine. If this is too much work, you can just shake your muscles out or a better than nothing approach.
                     </p>
             </section>
-            <section className="getting-started_peel">
+            <section className="section-peak">
                 <h3>4. Diet</h3>
                 <p>What to eat is a big topic and their are many ways of living.</p>
                 <h5>Calories</h5>
@@ -152,7 +152,7 @@ const GettingStartedPage = () => {
                     If your trying to gain weight and this isn't working out, eat more meats and veggies.
                 </p>
             </section>
-            <section className="getting-started_peel">
+            <section className="section-peak">
                 <h3>5. In the Beginning</h3>
                 <p>
                     If your excited to get started, the first step is to create an account.

@@ -7,12 +7,13 @@ function EditStats() {
     const { stats } = useData();
     const stat = stats.find((s) => s._id === stat_id);
 
-    return (<div>
-        <StatsForm 
-            title={"Edit Stat"} 
-            initData={stat}
-            isEditing={true} />
-    </div>)
+    return (
+        <section className="section-peak">
+            <StatsForm
+                title={"Edit Stat"}
+                initData={stat}
+                isEditing={true} />
+        </section>);
 }
 
 export default EditStats;

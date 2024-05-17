@@ -1,13 +1,14 @@
 import SetForm from '../components/forms/SetForm';
+import { INIT_SET } from '../data/constants';
 
 const AddSet = () => {
-
-    return (<div>
-        <SetForm
-            title="Add Set"
-            isEditing={false}
-            initData={{ selectedExercise: "", total_reps: "", right_reps: "", left_reps: "", set_weight: "" }} />
-    </div>)
+    return (
+        <>
+            <SetForm
+                title="Add Set"
+                isEditing={false}
+                initData={{ INIT_SET }} />
+        </>);
 }
 
 

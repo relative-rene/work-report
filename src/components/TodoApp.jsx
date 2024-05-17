@@ -53,9 +53,10 @@ const TodoApp = () => {
 
     return (
         <div className="TodoApp">
+            <i className="fa-solid fa-pencil" onClick={() => setEditingMode(!onEditing)} title="Edit mode: remove task or edit description" />
             <div className="add-todo-form">
                 <div className="description-container">
-                    <label>What todo!?!?</label>
+                    <label>Future development task.</label>
                     <input className="description-container__input" value={description} type="text" onChange={(e) => setDescription(e.target.value)} />
                 </div>
                 {description &&
@@ -74,7 +75,6 @@ const TodoApp = () => {
             <ul className="TodoList">
                 {displayTodos}
             </ul>
-            <i disabled className="fa-solid fa-square-pen fa-2xl" onClick={() => setEditingMode(!onEditing)} title="Edit mode: remove task or edit description" />
         </div>
     );
 }

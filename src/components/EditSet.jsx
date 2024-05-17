@@ -7,17 +7,18 @@ const EditSet = () => {
     const { set_id } = useParams();
     const selectedSet = sets.find(o => o._id === set_id);
     const exerciseDetails = exercises.find(exercise => exercise.name === selectedSet.exercise_name);
-    return (<div>
-        <SetForm
-            title="Edit Set"
-            isEditing={true}
-            initData={
-                {
-                    ...selectedSet,
-                    exerciseDetails,
-                    selectedExercise: exerciseDetails.name + ':' + exerciseDetails._id
-                }} />
-    </div>)
+    return (
+        <section className="section-peak">
+            <SetForm
+                title="Edit Set"
+                isEditing={true}
+                initData={
+                    {
+                        ...selectedSet,
+                        exerciseDetails,
+                        selectedExercise: exerciseDetails.name + ':' + exerciseDetails._id
+                    }} />
+        </section>)
 }
 
 
