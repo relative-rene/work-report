@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.74d11db1.css",
-    "main.js": "./static/js/main.c7941aa6.js",
+    "main.js": "./static/js/main.c2461153.js",
     "static/js/453.2ad836ff.chunk.js": "./static/js/453.2ad836ff.chunk.js",
     "static/js/455.fcca35f5.chunk.js": "./static/js/455.fcca35f5.chunk.js",
     "static/media/femaleBFComparison.jpeg": "./static/media/femaleBFComparison.9cadda8e59ec85cae678.jpeg",
@@ -9,12 +9,12 @@
     "static/media/vutruvianLogo.jpeg": "./static/media/vutruvianLogo.b7e032c205f25c88eb67.jpeg",
     "index.html": "./index.html",
     "main.74d11db1.css.map": "./static/css/main.74d11db1.css.map",
-    "main.c7941aa6.js.map": "./static/js/main.c7941aa6.js.map",
+    "main.c2461153.js.map": "./static/js/main.c2461153.js.map",
     "453.2ad836ff.chunk.js.map": "./static/js/453.2ad836ff.chunk.js.map",
     "455.fcca35f5.chunk.js.map": "./static/js/455.fcca35f5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.74d11db1.css",
-    "static/js/main.c7941aa6.js"
+    "static/js/main.c2461153.js"
   ]
 }
