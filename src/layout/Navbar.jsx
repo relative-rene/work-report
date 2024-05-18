@@ -25,7 +25,7 @@ const Navbar = ({ handleLogin }) => {
         }
     }
 
-    const options = quickLinksMenu.map((vm, idx) => <li key={"menu-" + idx} onClick={() => readyToGo(vm.path)}>{vm.pageTitle}</li>);
+    const options = quickLinksMenu.map((vm, idx) => <li className="nav-routes" key={"menu-" + idx} onClick={() => readyToGo(vm.path)}>{vm.pageTitle}</li>);
     return (
         <>
             <header className="Navbar">
