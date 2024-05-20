@@ -14,7 +14,7 @@ const ExercisePage = () => {
             <section className="section-peak">
                 <h3>Exercise Hub</h3>
                 <div className="table-container">
-                    {exercises ? <Table editPath="/hub/exercises/edit/" tableData={exercises} keys={EXERCISE_KEY_LABELS} /> : <LoadingSpinner />}
+                    {exercises ? <Table tName="ExerciseTable" editPath="/hub/exercises/edit/" tableData={exercises} keys={EXERCISE_KEY_LABELS} /> : <LoadingSpinner />}
                 </div><br />
             </section>
             <AddExercise />

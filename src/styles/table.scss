@@ -20,7 +20,8 @@
             padding: .6rem .9rem;
             position: relative;
             text-shadow: 0 1px 0 #000;
-            z-index:10;
+            z-index: 10;
+
             &:after {
                 background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.08));
                 content: '';
@@ -57,6 +58,7 @@
             }
         }
 
+
         td {
             border-right: 1px solid #fff;
             border-left: 1px solid #e8e8e8;
@@ -66,6 +68,7 @@
             position: relative;
             transition: all 300ms;
             z-index: 1;
+
             &:first-child {
                 box-shadow: inset 1px 0 0 #fff;
             }
@@ -101,5 +104,172 @@
     .Table .TableHead th {
         position: sticky;
         top: 0;
+    }
+}
+
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+    /* Force table to not be like tables anymore */
+
+    .Table,
+    .TableHead,
+    .TableBody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+
+    .TableHead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+
+    }
+
+    tr:nth-of-type(odd) {
+        background: #eee;
+    }
+
+    .Table .TableBody td {
+        padding: .3rem 0 .3rem 50%;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+
+        &:before {
+            /* Now like a table header */
+            position: absolute;
+
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+    }
+
+    /*
+	Label the data
+	*/
+    .Table.SetsTable .TableBody{
+        td:nth-of-type(1):before {
+            content: "Date";
+        }
+
+        td:nth-of-type(2):before {
+            content: "Exercise";
+        }
+
+        td:nth-of-type(3):before {
+            content: "Set Weight";
+        }
+
+        td:nth-of-type(4):before {
+            content: "Total Reps";
+        }
+
+        td:nth-of-type(5):before {
+            content: "Left Reps";
+        }
+
+        td:nth-of-type(6):before {
+            content: "Right Reps";
+        }
+    }
+
+    .Table.StatsTable .TableBody {
+        td:nth-of-type(1):before {
+            content: "Date";
+        }
+
+        td:nth-of-type(2):before {
+            content: "Age";
+        }
+
+        td:nth-of-type(3):before {
+            content: "Weight";
+        }
+
+        td:nth-of-type(4):before {
+            content: "Body Fat%";
+        }
+
+        td:nth-of-type(5):before {
+            content: "Height";
+        }
+
+        td:nth-of-type(6):before {
+            content: "Neck";
+        }
+        td:nth-of-type(7):before {
+            content: "Chest";
+        }
+
+        td:nth-of-type(8):before {
+            content: "Belly";
+        }
+
+        td:nth-of-type(9):before {
+            content: "Butt";
+        }
+
+        td:nth-of-type(10):before {
+            content: "Left Arm";
+        }
+
+        td:nth-of-type(11):before {
+            content: "Right Arm";
+        }
+
+        td:nth-of-type(12):before {
+            content: "Left Forearm";
+        }
+        td:nth-of-type(13):before {
+            content: "Right Forearm";
+        }
+
+        td:nth-of-type(14):before {
+            content: "Left Leg";
+        }
+
+        td:nth-of-type(15):before {
+            content: "Right Leg";
+        }
+    }
+    .Table.ExerciseTable .TableBody{
+        td:nth-of-type(1):before {
+            content: "Exercise";
+        }
+
+        td:nth-of-type(2):before {
+            content: "Balance";
+        }
+
+        td:nth-of-type(3):before {
+            content: "Muscle Group";
+        }
+
+        td:nth-of-type(4):before {
+            content: "Primary Muscle";
+        }
     }
 }

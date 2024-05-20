@@ -12,7 +12,7 @@ const StatsPage = () => {
         <section className="section-peak">
             <h3>Stats Hub</h3>
             <div className="table-container">
-                {stats ? <Table editPath="/hub/stats/edit/" tableData={stats} keys={STATS_KEY_LABELS} sortBy="date" /> : <LoadingSpinner />}
+                {stats ? <Table tName="StatsTable" editPath="/hub/stats/edit/" tableData={stats} keys={STATS_KEY_LABELS} sortBy="date" /> : <LoadingSpinner />}
             </div><br />
         </section>
         

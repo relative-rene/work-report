@@ -331,7 +331,6 @@ input[type="range"] {
   }
 }
 
-
 .Backdrop {
   width: 100%;
   height: 100%;
@@ -355,7 +354,6 @@ input[type="range"] {
 
 .Modal {
   position: fixed;
-  z-index: 500;
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 7px 9px 4px $black;
@@ -366,13 +364,15 @@ input[type="range"] {
   width: clamp(320px, 510px, 650px);
 
   &.--closed {
-    transform: translateY(-100vh);
+    transform: translateY(-120vh);
     opacity: 0;
   }
 
   &.--open {
     transform: translateY(0);
     opacity: 1;
+    z-index: 100;
+
   }
 }
 

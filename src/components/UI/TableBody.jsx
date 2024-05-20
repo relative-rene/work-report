@@ -8,7 +8,7 @@ const TableBody = ({ data, editPath, keys }) => {
     const display = data && data.map((entry) => {
         return (<tr key={entry._id} onClick={() => editEntry(editPath + entry._id)}>{Object.entries(entry).map(([key,val], i) => {
             if (keys.hasOwnProperty(key)) {
-                return <td key={`${val}${-i}`}>{val || ''}</td>
+                return <td key={`${val}${-i}`}>{val|| '-'}</td>
             }
             return false;
         })}</tr>);

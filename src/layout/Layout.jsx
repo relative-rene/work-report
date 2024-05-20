@@ -9,12 +9,15 @@ import { useEffect, useState } from 'react';
 import SignUp from '../components/SignUp';
 import { useAuth } from '../hooks/useAuth';
 import { useData } from '../hooks/useData';
+import ReleaseNotes from '../components/ReleaseNotes';
 
 function Layout() {
     const { reloadUser } = useAuth();
     const { loadData } = useData();
     const [isSignupVisible, setSignupVisibility] = useState(false);
     const [isLoginVisible, setLoginVisibility] = useState(false);
+    const [displayLatestFeatures, setReleaseVisibility] = useState(false);
+
 
     useEffect(() => {
         reloadUser()
@@ -35,7 +38,7 @@ function Layout() {
                     <Outlet />
                 </Main>
             </main>
-            <Footer />
+            <Footer openNotes={() => setReleaseVisibility(true)}/>
             <Modal show={isLoginVisible} closeModal={() => setLoginVisibility(false)}>
                 <Login
                     onOpenSignupModal={() => setSignupVisibility(true)}
@@ -46,6 +49,11 @@ function Layout() {
                     onCloseLoginModal={() => setLoginVisibility(false)}
                     onOpenSignupModal={() => setSignupVisibility(true)}
                     onCloseSignupModal={() => setSignupVisibility(false)} />
+            </Modal>
+            <Modal show={displayLatestFeatures} closeModal={() => setReleaseVisibility(false)}>
+                <ReleaseNotes
+                    
+                    onCloseNotesModal={() => setReleaseVisibility(false)} />
             </Modal>
         </div>
     )

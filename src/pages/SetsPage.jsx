@@ -14,7 +14,7 @@ function SetsPage() {
         <section className="section-peak">
             <h3>Sets Hub</h3>
             <div className="table-container">
-                {sets ? <Table editPath="/hub/sets/edit/" tableData={sets} sortBy="date_and_time" keys={SETS_KEY_LABELS} /> : <LoadingSpinner />}
+                {sets ? <Table tName="SetsTable" editPath="/hub/sets/edit/" tableData={sets} sortBy="date_and_time" keys={SETS_KEY_LABELS} /> : <LoadingSpinner />}
             </div> <br />
         </section>
             <AddSet exercises={exercises} />
