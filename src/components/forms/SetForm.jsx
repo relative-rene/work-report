@@ -11,6 +11,9 @@ const SetForm = ({ initData, title, isEditing }) => {
     const [isBtnReady, setBtnAvailability] = useState(true);
     const [formValues, setFormValues] = useState({ ...initData });
     const [selectedExercise, setSelected] = useState(initData.selectedExercise);;
+    const [showClientError, setClientFailedAlert] = useState(false);
+    const [showServerError, setServerFailedAlert] = useState(false);
+    const [showSuccess, setSuccessAlert] = useState(false);
     const { user } = useAuth();
 
     const handleFormUpdate = (target, val) => {
@@ -36,14 +39,17 @@ const SetForm = ({ initData, title, isEditing }) => {
                 { method: 'PUT', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
             const { message, status } = await response.json();
             if (status >= 300) {
-                alert(`Add Set Failed ${message}`);
+                setClientFailedAlert(true);
+                setTimeout(() => setClientFailedAlert(false), 7000);
             } else {
-                alert('PATCH Set Success');
+                setSuccessAlert(true);
+                setTimeout(() => setSuccessAlert(false), 7000);
                 updateSets();
             }
         } catch (error) {
             console.error(error)
-            alert(`Update Set request has failed. Servers are down, please try again later.`)
+            setServerFailedAlert(true)
+            setTimeout(() => setServerFailedAlert(false), 7000);
         }
         setBtnAvailability(true);
     }
@@ -54,14 +60,17 @@ const SetForm = ({ initData, title, isEditing }) => {
                 { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
             const data = await response.json();
             if (data) {
-                alert('POST Set Success');
+                setSuccessAlert(true);
+                setTimeout(() => setSuccessAlert(false), 7000);
                 updateSets();
             } else {
-                alert(`Add Set Failed.`);
+                setClientFailedAlert(true);
+                setTimeout(() => setClientFailedAlert(false), 7000);
             }
         } catch (err) {
             console.error(err);
-            alert(`Add Set request has failed. Servers are down, please try again later.`)
+            setServerFailedAlert(true);
+            setTimeout(() => setServerFailedAlert(false), 7000);
         }
         setBtnAvailability(true);
     }
@@ -76,67 +85,72 @@ const SetForm = ({ initData, title, isEditing }) => {
     })
 
     return (
-        <form className="FormWR" method="post" onSubmit={handleSubmit}>
-            <h2 className="form-title">{title}</h2>
-            <Input
-                label="Date"
-                inputType="date"
-                inputVal={formValues.date_and_time ? formatUSDateToIsoString(formValues.date_and_time) : ''}
-                targetVal="date_and_time"
-                validations={{ required: true }}
-                updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
-            <Select
-                label="Select an exercise"
-                updateForm={handleFormUpdate}
-                selectedVal={formValues['selectedExercise'] || 'Select Exercise'}
-                nameForId="selectedExercise"
-                validations={{ required: true }}
-                options={optionsList}><span className="requiredMark">*</span></Select>
-
-            <Input
-                label="Weight in lbs"
-                inputType="number"
-                inputVal={formValues.set_weight}
-                targetVal="set_weight"
-                validations={{ required: true }}
-                updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
-            { selectedExercise && selectedExercise.balance === 'asymmetrical' ?
-                <>
-                    <Input
-                        label="Left Reps"
-                        inputType="number"
-                        inputVal={formValues.left_reps}
-                        targetVal="left_reps"
-                        validations={{ required: true }}
-                        updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
-                    <Input
-                        label="Right Reps"
-                        inputType="number"
-                        inputVal={formValues.right_reps}
-                        targetVal="right_reps"
-                        validations={{ required: true }}
-                        updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
-                </> :
+        <>
+            <form className="FormWR" method="POST" onSubmit={handleSubmit}>
+                <h2 className="form-title">{title}</h2>
                 <Input
-                    label="Total Reps"
-                    inputType="number"
-                    inputVal={formValues.total_reps}
-                    targetVal="total_reps"
+                    label="Date"
+                    inputType="date"
+                    inputVal={formValues.date_and_time ? formatUSDateToIsoString(formValues.date_and_time) : ''}
+                    targetVal="date_and_time"
                     validations={{ required: true }}
                     updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
-            }
-            <div className="action-container">
-                <Button
-                    isDisabled={!isBtnReady}
-                    handleClick={onResetForm}
-                    styleName="action-container__btn--secondary"
-                    type="reset">RESET</Button>
-                <Button
-                    isDisabled={!isBtnReady}
-                    styleName="action-container__btn--primary"
-                    inputType="save">SAVE</Button>
-            </div>
-        </form>
+                <Select
+                    label="Select an exercise"
+                    updateForm={handleFormUpdate}
+                    selectedVal={formValues['selectedExercise'] || 'Select Exercise'}
+                    nameForId="selectedExercise"
+                    validations={{ required: true }}
+                    options={optionsList}><span className="requiredMark">*</span></Select>
+
+                <Input
+                    label="Weight in lbs"
+                    inputType="number"
+                    inputVal={formValues.set_weight}
+                    targetVal="set_weight"
+                    validations={{ required: true }}
+                    updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
+                {selectedExercise && selectedExercise.balance === 'asymmetrical' ?
+                    <>
+                        <Input
+                            label="Left Reps"
+                            inputType="number"
+                            inputVal={formValues.left_reps}
+                            targetVal="left_reps"
+                            validations={{ required: true }}
+                            updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
+                        <Input
+                            label="Right Reps"
+                            inputType="number"
+                            inputVal={formValues.right_reps}
+                            targetVal="right_reps"
+                            validations={{ required: true }}
+                            updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
+                    </> :
+                    <Input
+                        label="Total Reps"
+                        inputType="number"
+                        inputVal={formValues.total_reps}
+                        targetVal="total_reps"
+                        validations={{ required: true }}
+                        updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
+                }
+                <div className="action-container">
+                    <Button
+                        isDisabled={!isBtnReady}
+                        handleClick={onResetForm}
+                        styleName="action-container__btn--secondary"
+                        type="reset">RESET</Button>
+                    <Button
+                        isDisabled={!isBtnReady}
+                        styleName="action-container__btn--primary"
+                        inputType="save">SAVE</Button>
+                </div>
+            </form>
+            { showSuccess ? <Alert handleClick={() => setSuccessAlert(false)} alertType="__success" message="Successfully logged set!" /> : null}
+            { showClientError ? <Alert handleClick={() => setClientFailedAlert(false)} alertType="__fail" message={isEditing ? 'Edit' : 'Add' + ' set request unexpectedly failed. Please try again.'} /> : null}
+            { showServerError ? <Alert handleClick={() => setServerFailedAlert(false)} alertType="__fail" message={isEditing ? 'Edit' : 'Add' + ' set request Failed. Servers are down. Please try again later.'} /> : null}
+        </>
     );
 }
 

@@ -4,6 +4,7 @@
 @import './styles/splash.scss';
 @import './styles/table.scss';
 @import './styles/loading_spinners.scss';
+@import './styles/ui_components.scss';
 
 body,
 html {
@@ -432,3 +433,5 @@ i {
 .nav-routes{
   cursor: pointer;
 }
+
+

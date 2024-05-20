@@ -102,7 +102,7 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
                     <Button
                         isDisabled={!isReady}
                         styleName="action-container__btn--primary"
-                        handleClick={onFreeTrial}>TRIAL</Button>
+                        handleClick={onFreeTrial}>Mock User</Button>
                     <Button
                         styleName="action-container__btn--secondary"
                         handleClick={onCloseLoginModal}>CANCEL</Button>

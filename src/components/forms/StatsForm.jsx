@@ -14,6 +14,9 @@ function StatsForm({ initData, title, isEditing }) {
     const [isReady, setAvailability] = useState(true);
     const [showGuessModal, setGuessVisibility] = useState(false);
     const [showCompleteForm, setFormVisibility] = useState(false);
+    const [showClientError, setClientFailedAlert] = useState(false);
+    const [showServerError, setServerFailedAlert] = useState(false);
+    const [showSuccess, setSuccessAlert] = useState(false);
     const [formValues, setFormValues] = useState({ ...initData, date: initData.date ? formatUSDateToIsoString(initData.date) : '' });
     const { user } = useAuth();
     const { updateStats } = useData();
@@ -34,11 +37,18 @@ function StatsForm({ initData, title, isEditing }) {
         try {
             const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/create_stats`, { method: 'POST', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
             const data = await response.json()
-            data.message ? alert(`Add Stats FAILED" ${data.message}`) : alert(`Add Stats SUCCEED`);
-            updateStats();
+            if (data.message) {
+                setClientFailedAlert(true);
+                setTimeout(() => setClientFailedAlert(false), 7000);
+            } else {
+                setSuccessAlert(true);
+                setTimeout(() => setSuccessAlert(false), 7000);
+                updateStats();
+            }
         } catch (err) {
             console.error(err);
-            alert(`Add Stats request has failed. Servers are down, please try again later.`)
+            setServerFailedAlert(true)
+            setTimeout(() => setServerFailedAlert(false), 7000);
         }
         setAvailability(true);
     }
@@ -47,11 +57,20 @@ function StatsForm({ initData, title, isEditing }) {
         try {
             const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/${formValues._id}/patch_stats`, { method: 'PUT', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
             const data = await response.json();
-            data.message ? alert(`Add Stats FAILED ${data.message}`) : alert(`Add Stats SUCCEED`);
-            updateStats();
+            if (data.message) {
+                setClientFailedAlert(true);
+                setTimeout(() => setClientFailedAlert(false), 7000);
+
+            } else {
+                setSuccessAlert(true);
+                setTimeout(() => setSuccessAlert(false), 7000);
+
+                updateStats();
+            }
         } catch (err) {
             console.error(err);
-            alert(`Update Stats request has failed. Servers are down, please try again later.`)
+            setServerFailedAlert(true)
+            setTimeout(() => setServerFailedAlert(false), 7000);
         }
         setAvailability(true);
     }
@@ -85,6 +104,9 @@ function StatsForm({ initData, title, isEditing }) {
                     <Button isDisabled={!isReady} styleName="action-container__btn--primary" inputType="save">SAVE</Button>
                 </div>
             </form>
+            { showSuccess ? <Alert handleClick={() => setSuccessAlert(false)} alertType="__success" message="Successfully logged stats!" /> : null}
+            { showClientError ? <Alert handleClick={() => setClientFailedAlert(false)} alertType="__fail" message={isEditing ? 'Edit' : 'Add' + ' stats request unexpectedly failed. Please try again.'} /> : null}
+            { showServerError ? <Alert handleClick={() => setServerFailedAlert(false)} alertType="__fail" message={isEditing ? 'Edit' : 'Add' + ' stats request Failed. Servers are down. Please try again later.'} /> : null}
             <Modal show={showGuessModal} closeModal={() => setGuessVisibility(false)}>
                 <GuessBodyFat onCloseGuessModal={() => setGuessVisibility(false)} />
             </Modal>
