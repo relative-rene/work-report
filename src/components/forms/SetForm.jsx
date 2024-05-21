@@ -4,6 +4,8 @@ import { useData } from '../../hooks/useData';
 import Input from '../../components/UI/Input';
 import Select from '../../components/UI/Select';
 import Button from '../../components/UI/Button';
+import Alert from '../../components/UI/Alert';
+
 import { capitalizeStr, formatUSDateToIsoString } from '../../utility/transformers';
 
 const SetForm = ({ initData, title, isEditing }) => {
@@ -147,9 +149,9 @@ const SetForm = ({ initData, title, isEditing }) => {
                         inputType="save">SAVE</Button>
                 </div>
             </form>
-            { showSuccess ? <Alert handleClick={() => setSuccessAlert(false)} alertType="__success" message="Successfully logged set!" /> : null}
-            { showClientError ? <Alert handleClick={() => setClientFailedAlert(false)} alertType="__fail" message={isEditing ? 'Edit' : 'Add' + ' set request unexpectedly failed. Please try again.'} /> : null}
-            { showServerError ? <Alert handleClick={() => setServerFailedAlert(false)} alertType="__fail" message={isEditing ? 'Edit' : 'Add' + ' set request Failed. Servers are down. Please try again later.'} /> : null}
+            { showSuccess ? <Alert handleClick={() => setSuccessAlert(false)} alertType="__success" message={`Successfully ${isEditing ? 'updated' : 'logged'} set!`} /> : null}
+            { showClientError ? <Alert handleClick={() => setClientFailedAlert(false)} alertType="__fail" message={`${isEditing ? 'Edit' : 'Add'} set request unexpectedly failed. Please try again.`} /> : null}
+            { showServerError ? <Alert handleClick={() => setServerFailedAlert(false)} alertType="__fail" message={`${isEditing ? 'Edit' : 'Add'} set request failed. Servers are down. Please try again later.`} /> : null}
         </>
     );
 }

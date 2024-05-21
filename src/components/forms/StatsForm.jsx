@@ -4,6 +4,8 @@ import InputHeight from '../UI/InputHeight';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 import Modal from '../UI/Modal';
+import Alert from '../../components/UI/Alert';
+
 import GuessBodyFat from '../GuessBodyFat';
 import { useAuth } from '../../hooks/useAuth';
 import { useData } from '../../hooks/useData';
@@ -104,9 +106,9 @@ function StatsForm({ initData, title, isEditing }) {
                     <Button isDisabled={!isReady} styleName="action-container__btn--primary" inputType="save">SAVE</Button>
                 </div>
             </form>
-            { showSuccess ? <Alert handleClick={() => setSuccessAlert(false)} alertType="__success" message="Successfully logged stats!" /> : null}
-            { showClientError ? <Alert handleClick={() => setClientFailedAlert(false)} alertType="__fail" message={isEditing ? 'Edit' : 'Add' + ' stats request unexpectedly failed. Please try again.'} /> : null}
-            { showServerError ? <Alert handleClick={() => setServerFailedAlert(false)} alertType="__fail" message={isEditing ? 'Edit' : 'Add' + ' stats request Failed. Servers are down. Please try again later.'} /> : null}
+            { showSuccess ? <Alert handleClick={() => setSuccessAlert(false)} alertType="__success" message={`Successfully ${isEditing ? "updated" : "logged"} stats!`} /> : null}
+            { showClientError ? <Alert handleClick={() => setClientFailedAlert(false)} alertType="__fail" message={`${isEditing ? 'Edit' : 'Add'} stats request unexpectedly failed. Please try again.`} /> : null}
+            { showServerError ? <Alert handleClick={() => setServerFailedAlert(false)} alertType="__fail" message={`${isEditing ? 'Edit' : 'Add'} stats request failed. Servers are down. Please try again later.`} /> : null}
             <Modal show={showGuessModal} closeModal={() => setGuessVisibility(false)}>
                 <GuessBodyFat onCloseGuessModal={() => setGuessVisibility(false)} />
             </Modal>

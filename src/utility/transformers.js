@@ -29,14 +29,29 @@ export const lowerCaseSnakeCaseStr = (str) => {
     return str.toLowerCase().replaceAll(' ', '_');
 }
 
-export function formatTimeStampToUS(timestamp) {
-    const date = new Date(timestamp);
-    date.setDate(date.getDate() + 1);
+export const formatTimeStampToUS = (timestamp) => {
+    let date = offSetUTC(timestamp);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return date.toLocaleDateString("en-US", options);
 }
 
-export function formatUSDateToIsoString(localDate) {
+export const offSetUTC = (timestamp)=>{
+    let date = new Date(timestamp);
+    date.setMinutes(date.getMinutes()+ date.getTimezoneOffset());
+    return date;
+}
+
+export const formatUSDateToIsoString = (localDate) => {
     return localDate !== 'Invalid Date' ? new Date(localDate).toISOString().substring(0, 10) : 'Invalid Date';
 
+}
+
+
+export const addWorkLoad = (curr) => {
+    let { total_reps, right_reps, left_reps, set_weight } = curr;
+    total_reps = total_reps || 0;
+    right_reps = right_reps || 0;
+    left_reps = left_reps || 0;
+    set_weight = set_weight || 0;
+    return set_weight * (right_reps + left_reps + total_reps);
 }

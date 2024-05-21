@@ -123,9 +123,9 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
                     styleName="action-container__btn--primary">SAVE</Button>
             </div>
         </form>
-        { showSuccess ? <Alert handleClick={() => setSuccessAlert(false)} alertType="__success" message="Successfully added exercises!" /> : null}
-        { showClientError ? <Alert handleClick={() => setClientFailedAlert(false)} alertType="__fail" message={isEditing ? 'Edit' : 'Add' + ' unexpectedly failed. Please try again.'} /> : null}
-        { showServerError ? <Alert handleClick={() => setServerFailedAlert(false)} alertType="__fail" message="Add Exercise request Failed. Servers are down. Please try again later." /> : null}
+        { showSuccess ? <Alert handleClick={() => setSuccessAlert(false)} alertType="__success" message={`Successfully ${isEditing ? "updated" : "added"} exercises!`} /> : null}
+        { showClientError ? <Alert handleClick={() => setClientFailedAlert(false)} alertType="__fail" message={`${isEditing ? 'Edit' : 'Add'} exercise unexpectedly failed. Please try again.`} /> : null}
+        { showServerError ? <Alert handleClick={() => setServerFailedAlert(false)} alertType="__fail" message={`${isEditing ? 'Edit' : 'Add'} exercise request failed. Servers are down. Please try again later.`} /> : null}
     </>);
 }
 
