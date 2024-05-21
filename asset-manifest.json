@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.ecfea65e.css",
-    "main.js": "./static/js/main.3758b3dd.js",
+    "main.js": "./static/js/main.c2e4318d.js",
     "static/js/453.d0743133.chunk.js": "./static/js/453.d0743133.chunk.js",
     "static/js/455.3af528d6.chunk.js": "./static/js/455.3af528d6.chunk.js",
     "static/media/femaleBFComparison.jpeg": "./static/media/femaleBFComparison.9cadda8e59ec85cae678.jpeg",
@@ -9,12 +9,12 @@
     "static/media/vutruvianLogo.jpeg": "./static/media/vutruvianLogo.b7e032c205f25c88eb67.jpeg",
     "index.html": "./index.html",
     "main.ecfea65e.css.map": "./static/css/main.ecfea65e.css.map",
-    "main.3758b3dd.js.map": "./static/js/main.3758b3dd.js.map",
+    "main.c2e4318d.js.map": "./static/js/main.c2e4318d.js.map",
     "453.d0743133.chunk.js.map": "./static/js/453.d0743133.chunk.js.map",
     "455.3af528d6.chunk.js.map": "./static/js/455.3af528d6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ecfea65e.css",
-    "static/js/main.3758b3dd.js"
+    "static/js/main.c2e4318d.js"
   ]
 }
