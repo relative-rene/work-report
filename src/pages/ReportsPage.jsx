@@ -27,15 +27,15 @@ const ReportsPage = () => {
     Object.keys(groupedByExerciseName).forEach(exercise_name => musclesWorkedData[dictionary[exercise_name]] += +groupedByExerciseName[exercise_name].length);
     const chartData = pieChartConfig(MUSCLE_GROUP_LABELS, BGCOLOR_CONFIG, BORDERCOLOR_CONFIG, PIE_DATA_LABEL, Object.values(musclesWorkedData));
     // console.log(groupedByDate, groupedByExerciseName, sets);
-    const muscleWork = sets.reduce((acc, curr)=>{
-        if(!(curr["exercise_name"] in acc)){
-            acc[curr['exercise_name']][curr['date_and_time']]=0;
-        };
-        acc[curr['exercise_name']][curr['date_and_time']] += addWorkLoad(curr);
+    // const muscleWork = sets.reduce((acc, curr)=>{
+    //     if(!(curr["exercise_name"] in acc)){
+    //         acc[curr['exercise_name']][curr['date_and_time']]=0;
+    //     };
+    //     acc[curr['exercise_name']][curr['date_and_time']] += addWorkLoad(curr);
 
-        return acc;
-    },{});
-    console.log('muscleWork', muscleWork);
+    //     return acc;
+    // },{});
+    // console.log('muscleWork', muscleWork);
     return (
         <>
             <h3>Reports Hub</h3>
