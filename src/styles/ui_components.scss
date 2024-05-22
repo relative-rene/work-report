@@ -37,3 +37,32 @@
     display: none;
     transition: display 2s ease-in-out 1s;
 }
+
+
+.Modal {
+    position: fixed;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 7px 9px 4px $black;
+    left: clamp(22%, 28%, 40%);
+    top: 8em;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    width: clamp(320px, 510px, 650px);
+
+    &.--closed {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
+
+    &.--open {
+        transform: translateY(0);
+        opacity: 1;
+        z-index: 100;
+
+    }
+}
+
+.--open-modal{
+    overflow: hidden;
+}

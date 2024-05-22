@@ -5,7 +5,7 @@ const GettingStartedPage = () => {
     return (
         <>
             <section className="section-peak">
-                <h3>Track Your Effort</h3>
+                <h2>Track Your Effort</h2>
                 <p>
                     The mind is a fickle thing, some folks focus on the good, others dwell on the bad.
                     Regardless of your disposition there is a preference and in time there will be blind spots.
@@ -17,7 +17,7 @@ const GettingStartedPage = () => {
             </section>
 
             <section className="section-peak">
-                <h3>1. Progressive Overload</h3>
+                <h2>1. Progressive Overload</h2>
                 <p>
                     Milo of Croton was an olympic champion in late 600 century BC. At the time, he was known for carrying a bull around town.
                     As the bull grew, so did Milo. This is the first documented case for progressive overload.
@@ -31,7 +31,7 @@ const GettingStartedPage = () => {
 
             </section>
             <section className="section-peak">
-                <h3>2. Specificity</h3>
+                <h2>2. Specificity</h2>
                 <p>The specificity principle states to become better at a particular exercise or skill, one should perform that exercise or skill. Neaural drive can be specific to Range of Motion, the speed at which the weight is moved, duration and
                     planes of motion. Adjusting these variables will result in progress in muscle gain, strength or power.
                 </p>
@@ -55,12 +55,12 @@ const GettingStartedPage = () => {
 
             </section>
             <section className="section-peak">
-                <h3>3. Recovery</h3>
+                <h2>3. Recovery</h2>
                 <p>
                     Never do a workout unless you can give it your all.
                     Its better to take the day off if you don't have the energy.
                 </p>
-                <h5>Fatigue</h5>
+                <h3>Fatigue</h3>
                 <p>
                     To understand recovery we must have a working knowledge of fatigue.
                     During an exercise the muscles being worked will tire or be unable to produce the same output.
@@ -70,7 +70,7 @@ const GettingStartedPage = () => {
                     triggers the growth process. Pushing too far beyound this point will prolong recovery time, and working out while exhausted will lead to injury.
                     </p>
 
-                <h5>Deload</h5>
+                <h3>Deload</h3>
                 <p>
                     From time to time Work Report will recommend a deload period.
                     A Deload period is a week when you barely exercise. You literally drop your weight and sets to 50% of work.
@@ -81,17 +81,17 @@ const GettingStartedPage = () => {
                     Work Report mainly recommends high stimulous low fatigue exercises, if you prefer to Deadlift, Squat and Overhead Press. They will make
                     you stronger but you will need more days to recover and more deload periods.
                 </p>
-                <h5> Are you lazy or exhausted?</h5>
-                If your good at ignoring your needs or just lack that mind body connection, you may want something other than feelings to tell you if when to rest.
-                    <ul>Your morning resting heart rate can help you determine if your body hasn't recovered.
+                <h3> Are you lazy or exhausted?</h3>
+                <p>If your good at ignoring your needs or just lack that mind body connection, you may want something other than feelings to tell you if when to rest.</p>
+                <ul>Your morning resting heart rate can help you determine if your body hasn't recovered.
                     <li>First establish a baseline heart rate first thing in morning.</li>
                     <li>If your heart rate is higher than normal take the day off.
                     This can be a hard line, like a 15% increase in beats per minute or
                     just higher than normal and not feeling it.</li>
                 </ul>
 
-                <h5> Active Recovery</h5>
-                <li>Going for a 30 minute walk or jog can help recover.</li>
+                <h3> Active Recovery</h3>
+                <p>Going for a 30 minute walk or jog can help recover.</p>
                 <p> 5x 6 minute run or 3x10 minute run with 1 min rest should suffice.</p>
                 <ul>Progressive Relaxation: is also another recommended way to relax.
                     <li>To perform you flex a muscle for six seconds and then relax it for 3 breaths.</li>
@@ -108,9 +108,9 @@ const GettingStartedPage = () => {
                     </p>
             </section>
             <section className="section-peak">
-                <h3>4. Diet</h3>
+                <h2>4. Diet</h2>
                 <p>What to eat is a big topic and their are many ways of living.</p>
-                <h5>Calories</h5>
+                <h3>Calories</h3>
                 <ul>
                     The scientific literature on this topic is pretty clear.
                         <li>Crash dieting is unsustainable and can cause adverse affects on the body, so it should be avoided.</li>
@@ -131,17 +131,17 @@ const GettingStartedPage = () => {
                         Meat and fibrous legumes will fill you up, so sure you can eat a lot but your body will eventually demand you stop.
                         </p>
 
-                <h5>Breakfast</h5>
+                <h3>Breakfast</h3>
                 <p>
                     Eat as many eggs and cheese as you want, a slice of bread or fruit.
                     Oats and smoothies are also a great idea.
                 </p>
-                <h5>Lunch</h5>
+                <h3>Lunch</h3>
                 <p>
                     Eat as much meat and veggies as you want.
                     Eat very little to know carbs, unless your a vegetarian.
                  </p>
-                <h5>Dinner</h5>
+                <h3>Dinner</h3>
                 <p>
                     Eat as much meat and veggies as you want.
                     Carbs are limited to two palm fulls.
@@ -153,7 +153,7 @@ const GettingStartedPage = () => {
                 </p>
             </section>
             <section className="section-peak">
-                <h3>5. In the Beginning</h3>
+                <h2>5. In the Beginning</h2>
                 <p>
                     If your excited to get started, the first step is to create an account.
                     Once that is created, you will have access to our logging platform.

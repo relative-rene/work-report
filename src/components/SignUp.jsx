@@ -35,9 +35,9 @@ const SignUp = ({ onCloseSignupModal }) => {
     }
 
     return (
-        <form className="FormWR" onSubmit={handleSave}>
+        <form className="modal-form " onSubmit={handleSave}>
             <ModalNavbar closeModal={onCloseSignupModal} />
-            <h2 className="form-title">Sign Up</h2>
+            <h2 className="wr-title">Sign Up</h2>
             <Input 
                 label="First Name" 
                 inputVal={formValues.first_name} 

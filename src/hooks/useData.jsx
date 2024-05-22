@@ -38,7 +38,6 @@ export const DataProvider = ({ children }) => {
         } catch (err) {
             console.error(err);
         }
-
     }
 
     const getStatsData = async (user_id) => {

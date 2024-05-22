@@ -12,7 +12,7 @@ function SetsPage() {
     return (
         <>
         <section className="section-peak">
-            <h3>Sets Hub</h3>
+            <h1 className="wr-title">Sets Hub</h1>
             <div className="table-container">
                 {sets ? <Table tName="SetsTable" editPath="/hub/sets/edit/" tableData={sets} sortBy="date_and_time" keys={SETS_KEY_LABELS} /> : <LoadingSpinner />}
             </div> <br />

@@ -12,7 +12,7 @@ const ExercisePage = () => {
     return (
         <>
             <section className="section-peak">
-                <h3>Exercise Hub</h3>
+                <h1 className="wr-title">Exercise Hub</h1>
                 <div className="table-container">
                     {exercises ? <Table tName="ExerciseTable" editPath="/hub/exercises/edit/" tableData={exercises} keys={EXERCISE_KEY_LABELS} /> : <LoadingSpinner />}
                 </div><br />

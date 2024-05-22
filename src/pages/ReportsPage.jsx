@@ -68,8 +68,8 @@ const ReportsPage = () => {
         acc[exerciseName] = curr[exerciseName];
         return acc;
     }, {});
-    console.log(repRangeData, groupedByExerciseName)
-    let rep_ranges = Object.entries(repRangeData)
+
+    const rep_ranges = Object.entries(repRangeData)
         .map(([key, val], i) => {
             return <div className="rep-ranges" key={`${val}-${i}`}><b>{key}</b>
                 <p><span>{val.low} </span> <span>{val.mid}</span> <span>{val.high}</span></p>
@@ -100,7 +100,7 @@ const ReportsPage = () => {
     let recommendation = Object.keys(recommendWeightIncrease).map((curr)=>{
         let vm = recommendWeightIncrease[curr];
         if(vm.high >= 1 && vm.mid >=2) {
-            return `${curr}: is higly recommended to increase weight`;
+            return `${curr}: is highly recommended to increase weight`;
         }else if((vm.mid+vm.high) > 3){
             return `${curr}: consider increasing weight`; 
         }else if(vm.mid < vm.low-3){
@@ -112,7 +112,7 @@ const ReportsPage = () => {
     const recommendationDisplay = recommendation.map(curr=> <li>{curr}</li>);
     return (
         <>
-            <h3>Reports Hub</h3>
+            <h1 className="wr-title">Reports Hub</h1>
             <div className="reports-page-content">
                 <div>
                     <h3>Weight Recommendations</h3>

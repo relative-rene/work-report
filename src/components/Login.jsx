@@ -35,7 +35,6 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
 
     const onFreeTrial = async (e) => {
         e.preventDefault();
-        console.log('onFreeTrial')
         setAvailability(false);
         setLoading(true);
         const data = await login({ email: "dd@hotmail.com", password: "realdeal" });
@@ -71,9 +70,9 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
 
     return (
         <>
-            <form className="FormWR" onSubmit={onSubmit}>
+            <form className="modal-form" onSubmit={onSubmit}>
                 <ModalNavbar closeModal={onCloseLoginModal} />
-                <h1 className="form-title">Login</h1>
+                <h1 className="wr-title">Login</h1>
                 <Input
                     label="Email"
                     inputVal={formValues.email}
@@ -101,8 +100,8 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
                 <div className="action-container">
                     <Button
                         isDisabled={!isReady}
-                        styleName="action-container__btn--primary"
-                        handleClick={onFreeTrial}>Mock User</Button>
+                        styleName="action-container__btn--neon"
+                        handleClick={onFreeTrial}>MOCK USER</Button>
                     <Button
                         styleName="action-container__btn--secondary"
                         handleClick={onCloseLoginModal}>CANCEL</Button>

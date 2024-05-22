@@ -23,13 +23,13 @@ function CalculateCalories() {
     }
     return (
         <>
-            <form ClassName="FormWR"action="GET" onSubmit={handleSubmit}>
+            <form ClassName="wr-form "action="GET" onSubmit={handleSubmit}>
                 <label htmlFor="">What did you eat?</label>
                 <input type="text" />
                 <button type="submit">Submit</button>
                 <button type="reset">Clear</button>
             </form>
-            <h1>{caloriesEaten}</h1>
+            <h1 className="wr-title">{caloriesEaten}</h1>
         </>
     )
 }

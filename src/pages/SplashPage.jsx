@@ -9,15 +9,13 @@ import { useData } from '../hooks/useData';
 const SplashPage = () => {
     const navigate = useNavigate();
     const [isModalOpen, setVisibility] = useState(false);
-    const { exercises, sets, stats } = useData();
-    const [isLoading, setLoading] = useState(false);
 
     return (
         <>
             <div className="text">
-                <p className="project-name">Work Report</p>
+                <p>Work Report</p>
                 <span>by</span>
-                <p className="credit">Rene Arellano</p>
+                <p>Rene Arellano</p>
                 <button onClick={() => setVisibility(true)}>Welcome Back</button>
                 <button onClick={() => navigate('/hub/getting-started')}>Getting Started</button>
             </div>

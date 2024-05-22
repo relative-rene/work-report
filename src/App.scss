@@ -5,30 +5,14 @@
 @import './styles/table.scss';
 @import './styles/loading_spinners.scss';
 @import './styles/ui_components.scss';
+@import './styles/wr-tags.scss';
 
 body,
 html {
-  font-family: 'Open Sans', sans-serif;
   margin: 0;
   font-size: 16px;
   display: flex;
   flex-flow: column nowrap;
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: Verdana;
-    display: grid;
-    place-items: center;
-  }
-
-  ul {
-    list-style: inside circle;
-    line-height: 1.5rem;
-  }
 
   #root {
     flex: 100%;
@@ -150,7 +134,7 @@ html {
 
       &__button {
         color: $primary-color;
-        font-family: Tahoma;
+        font-family: "Lato" sans-serif;
       }
 
       &__input {
@@ -181,7 +165,7 @@ html {
         border-radius: 10px;
         height: 3em;
         font-size: 1em;
-        font-family: Tahoma;
+        font-family: "Lato" sans-serif;
       }
     }
   }
@@ -337,6 +321,7 @@ input[type="range"] {
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: hidden;
 }
 
 .BlurBackdrop {
@@ -348,31 +333,9 @@ input[type="range"] {
   top: 0;
   backdrop-filter: blur(2px);
   background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
 }
 
-.Modal {
-  position: fixed;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 7px 9px 4px $black;
-  left: clamp(22%, 28%, 40%);
-  top: 8em;
-  box-sizing: border-box;
-  transition: all 0.3s ease-out;
-  width: clamp(320px, 510px, 650px);
-
-  &.--closed {
-    transform: translateY(-120vh);
-    opacity: 0;
-  }
-
-  &.--open {
-    transform: translateY(0);
-    opacity: 1;
-    z-index: 100;
-
-  }
-}
 
 .section-peak {
   padding: 1em 1em 3em;
@@ -429,6 +392,11 @@ i {
 
 .nav-routes {
   cursor: pointer;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5rem;
+  font-size: 1rem;
 }
 
 
@@ -478,9 +446,10 @@ i {
     display: flex;
     justify-content: space-between;
 
-    b{
+    b {
       flex: 0 1 40%;
     }
+
     p {
       display: flex;
       justify-content: space-around;
@@ -488,4 +457,8 @@ i {
       flex: 1 2 60%;
     }
   }
+}
+
+.ReleaseNotes {
+  padding: 1rem;
 }

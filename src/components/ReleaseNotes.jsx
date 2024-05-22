@@ -1,6 +1,6 @@
 const ReleaseNotes = () => {
-    return (<>
-        <h2>Work Report Features</h2>
+    return (<div className="ReleaseNotes">
+        <h2 className="wr-title">Work Report Features</h2>
         <ul>
             <li>The backend was written in <b>Typescript</b> with Express.js on Mongo Atlas Database. </li>
             <li>The frontend what created with <b>React</b> and no other libraries or premade components.</li>
@@ -14,7 +14,7 @@ const ReleaseNotes = () => {
             <li>Work Report Logo is a custom effort using Bing Copilot AI.</li>
         </ul>
         <h4>The quill icon on the side panel, will offer insight into future application development</h4>
-    </>);
+    </div>);
 }
 
 

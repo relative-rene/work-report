@@ -54,10 +54,16 @@
   left: 50%;
   font-size: 3rem;
   font-weight: 700;
+  font-family: "Lato", sans-serif;
+
   span {
-    font-size:1.2rem;
+    font-size: 1.2rem;
   }
+
   p {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin: 1rem 0;
     white-space: nowrap;
     width: 100%;
     @include animation('type .3s steps(60, end) 3.7s');
@@ -89,8 +95,9 @@
       color: $splashBlack;
       border: 1px solid $splashBlack;
     }
-    &-play{
-      animation:stretch;
+
+    &-play {
+      animation: stretch;
     }
   }
 }
@@ -117,10 +124,11 @@
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
-    color:$primary-color;
+    color: $primary-color;
     opacity: 1;
     will-change: opacity;
     @include animation('logo .3s ease-in 1.5s forwards, off .6s ease-in-out 3.2s forwards');
+
     img {
       object-fit: contain;
       height: 100%;
@@ -181,9 +189,6 @@
       }
     }
   }
-}
-.credit, .project-name {
-  margin:0;
 }
 
 @include keyframes(scale) {
@@ -271,9 +276,11 @@
     border-radius: 100%;
     background-color: $primary-color;
   }
+
   50% {
     background-color: $primaryLight-color;
   }
+
   100% {
     transform: scale(4);
     background-color: white;
