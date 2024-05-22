@@ -88,8 +88,8 @@ const SetForm = ({ initData, title, isEditing }) => {
 
     return (
         <>
-            <form className="FormWR" method="POST" onSubmit={handleSubmit}>
-                <h2 className="form-title">{title}</h2>
+            <form className="wr-form " method="POST" onSubmit={handleSubmit}>
+                <h2 className="wr-title">{title}</h2>
                 <Input
                     label="Date"
                     inputType="date"

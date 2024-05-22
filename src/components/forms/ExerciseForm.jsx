@@ -82,8 +82,8 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
     });
 
     return (<>
-        <form className="FormWR" onSubmit={handleSave}>
-            <h2 className="form-title">{title}</h2>
+        <form className="wr-form " onSubmit={handleSave}>
+            <h2 className="wr-title">{title}</h2>
             <Input
                 label="Name"
                 inputVal={formValues.name || ''}

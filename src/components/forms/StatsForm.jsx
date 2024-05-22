@@ -79,8 +79,8 @@ function StatsForm({ initData, title, isEditing }) {
 
     return (
         <>
-            <form className="FormWR" onSubmit={handleSave}>
-                <h2 className="form-title">{title}</h2>
+            <form className="wr-form " onSubmit={handleSave}>
+                <h2 className="wr-title">{title}</h2>
                 <Input inputType="date" inputVal={formValues.date || ''} validations={{ required: true }} label="Date" targetVal="date" updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
                 <Input inputType="number" inputVal={formValues.age || ''} label="Age" targetVal="age" updateForm={handleFormUpdate} />
                 <Input inputType="number" inputVal={formValues.weight || ''} validations={{ required: true }} label="Weight in lbs" targetVal="weight" updateForm={handleFormUpdate}><span className="requiredMark">*</span></Input>
