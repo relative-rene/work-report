@@ -5,7 +5,7 @@
     font: 1rem/1.2rem'Helvetica Neue', helvetica, arial, sans-serif;
     margin: 30px auto;
     text-align: left;
-    width: clamp(60%, 80%, 100%);
+    width: auto;
 
     .TableHead {
         th {
@@ -97,8 +97,8 @@
 
 
 .table-container {
-    width: 80vw;
     height: 560px;
+    width: auto;
     overflow: auto;
 
     .Table .TableHead th {
@@ -108,11 +108,14 @@
 }
 
 
+
 /* 
 Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
+
+
 @media only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px) {
     /* Force table to not be like tables anymore */

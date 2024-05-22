@@ -7,9 +7,11 @@ const options = {
     responsive: true
 }
 function PieChart({ data }) {
-    return (<div>
-                <Pie data={data} options={options} />
-            </div>);
+    return (
+        <div>
+            <Pie data={data} options={options} />
+        </div>
+    );
 }
 
 export default PieChart;

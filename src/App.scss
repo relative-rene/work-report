@@ -119,9 +119,6 @@ html {
   }
 
   .MainContent {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
     flex: 2 1 100%;
     padding: 2rem;
   }
@@ -430,8 +427,65 @@ i {
   padding: 1rem;
 }
 
-.nav-routes{
+.nav-routes {
   cursor: pointer;
 }
 
 
+.exercise-weight-container {
+  padding: 0;
+
+  .exercise-weight:nth-child(odd) {
+    background-color: $secondary-color;
+  }
+
+  .exercise-weight {
+    display: flex;
+    justify-content: space-between;
+
+    li {
+      display: flex;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
+
+.reports-page-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+  grid-auto-rows: minmax(23rem, auto);
+  grid-gap: 1rem;
+
+}
+
+.rep-ranges-container {
+  padding: 0;
+
+  .rep-ranges-container:first-child {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .rep-ranges:nth-child(even) {
+    background-color: $secondary-color;
+  }
+
+  .rep-ranges {
+    display: flex;
+    justify-content: space-between;
+
+    b{
+      flex: 0 1 40%;
+    }
+    p {
+      display: flex;
+      justify-content: space-around;
+      margin: 0;
+      flex: 1 2 60%;
+    }
+  }
+}

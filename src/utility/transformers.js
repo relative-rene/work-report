@@ -6,7 +6,7 @@ export const groupByKey = (arr, key) =>
         return acc;
     }, {});
 
-export const pieChartConfig = (muscle_group_label, backgroundColor, borderColor, pieDataLabel, pieData) => {
+export const buildChartData = (muscle_group_label, backgroundColor, borderColor, pieDataLabel, pieData) => {
     return {
         labels: muscle_group_label,
         datasets: [
@@ -35,9 +35,9 @@ export const formatTimeStampToUS = (timestamp) => {
     return date.toLocaleDateString("en-US", options);
 }
 
-export const offSetUTC = (timestamp)=>{
+export const offSetUTC = (timestamp) => {
     let date = new Date(timestamp);
-    date.setMinutes(date.getMinutes()+ date.getTimezoneOffset());
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
     return date;
 }
 
@@ -46,7 +46,6 @@ export const formatUSDateToIsoString = (localDate) => {
 
 }
 
-
 export const addWorkLoad = (curr) => {
     let { total_reps, right_reps, left_reps, set_weight } = curr;
     total_reps = total_reps || 0;
@@ -54,4 +53,10 @@ export const addWorkLoad = (curr) => {
     left_reps = left_reps || 0;
     set_weight = set_weight || 0;
     return set_weight * (right_reps + left_reps + total_reps);
+}
+
+export const filterByMonths = (monthsBack, list) => {
+    const monthRange = new Date();
+    monthRange.setMonth(monthRange.getMonth() - monthsBack);
+    return list.filter(({date_and_time}) => new Date(date_and_time) >= monthRange);
 }

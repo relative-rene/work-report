@@ -8,10 +8,14 @@
     inset 0 -3em 3em rgba(0, 0, 0, 0.1),
     0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-    .form-title{
-      display:flex;
-      justify-content: center;
-    }
+
+  .form-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  width:45%;
+  margin: 0 auto;
 }
 
 .action-container {
@@ -49,7 +53,7 @@
   margin: 1rem;
   border-radius: 4%;
   font-size: 1rem;
-  font-family: Lato, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: "Abril Fatface", serif;
   border: none;
 }
 
@@ -58,13 +62,13 @@
 }
 
 .create-account {
-  display:inline;
-  float:right;
+  display: inline;
+  float: right;
   font-size: .8rem;
 }
 
-.browser-back{
-  font-size:.8rem;
+.browser-back {
+  font-size: .8rem;
 }
 
 .InputComponent {
@@ -72,8 +76,10 @@
   label {
     justify-content: space-between;
     font-size: 1rem;
-    .fa.solid.fa-eye-slash, .fa.solid.fa-eye{
-      display:flex;
+
+    .fa.solid.fa-eye-slash,
+    .fa.solid.fa-eye {
+      display: flex;
       justify-content: flex-end;
     }
 
@@ -84,7 +90,8 @@
       padding: .3rem .1rem;
       border-radius: 2%;
       border: 1px solid gainsboro;
-      &.--invalid{
+
+      &.--invalid {
         outline: solid 1px red;
       }
     }
@@ -194,18 +201,19 @@
 }
 
 
-.error-message, .requiredMark{
-  color:rgb(231, 3, 3);
+.error-message,
+.requiredMark {
+  color: rgb(231, 3, 3);
 }
 
 
 .modal-navbar {
-    display:flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .moreOrLess {
-  display:flex;
+  display: flex;
   justify-content: flex-end;
-  color:rgb(52, 112, 243);
+  color: rgb(52, 112, 243);
 }
