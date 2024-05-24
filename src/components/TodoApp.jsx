@@ -23,8 +23,6 @@ const TodoApp = () => {
             key={"todo-" + entry._id} {...entry} />
     });
 
-
-
     async function onAddHandler() {
         const saveTodo = { description, isDone: false, dueDateAndTime: new Date(dueDateAndTime).toUTCString() }
         if (description.length !== 0) {

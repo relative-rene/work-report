@@ -1,53 +1,70 @@
 import PieChart from '../components/graphs/PieChart';
 import BarChart from '../components/graphs/BarChart';
 import LineChart from '../components/graphs/LineChart';
-import { addWorkLoad, filterByMonths} from '../utility/transformers';
+import { addWorkLoad, filterByMonths } from '../utility/transformers';
 import { groupByKey, buildChartData } from '../utility/transformers';
 import { MUSCLE_GROUP_LABELS, PIE_DATA_LABEL, BORDERCOLOR_CONFIG, BGCOLOR_CONFIG } from '../data/constants';
 import { useData } from '../hooks/useData';
+import { useRef } from 'react';
 
 const ReportsPage = () => {
     const { exercises, sets } = useData();
-    const groupedByExerciseName = groupByKey(sets, 'exercise_name');
+    let recommendationDisplay = useRef(),
+        groupedByExerciseName = useRef(),
+        musclesWorkedData = useRef(),
+        exerciseWork = useRef(),
+        exerciseWeight = useRef(),
+        recommendation = useRef(),
+        repRangeData = useRef(),
+        dictionary = useRef(),
+        recommendWeightIncrease = useRef(),
+        setsWithinAMonth = useRef(),
+        rep_ranges = useRef(),
+        exercise_weight = useRef(),
+        chartData = useRef(),
+        exerciseWorkCharts = useRef(),
+        exerciseWorkPie = useRef(),
+        exerciseWorkData = useRef();
 
-    const dictionary = exercises.reduce((acc, curr) => {
+    groupedByExerciseName = groupByKey(sets, 'exercise_name');
+
+    dictionary = exercises.reduce((acc, curr) => {
         if (!(curr['name'] in acc)) acc[curr['name']] = curr['muscle_group'];
         return acc;
     }, {});
 
-    let musclesWorkedData = MUSCLE_GROUP_LABELS.reduce((acc, curr) => {
+    musclesWorkedData = MUSCLE_GROUP_LABELS.reduce((acc, curr) => {
         acc[curr.toLowerCase()] = 0;
         return acc;
     }, {});
 
     Object.keys(groupedByExerciseName).forEach(exercise_name => musclesWorkedData[dictionary[exercise_name]] += +groupedByExerciseName[exercise_name].length);
-    const chartData = buildChartData(MUSCLE_GROUP_LABELS, BGCOLOR_CONFIG, BORDERCOLOR_CONFIG, PIE_DATA_LABEL, Object.values(musclesWorkedData));
-    const exerciseWork = sets.reduce((acc, curr) => {
+    chartData = buildChartData(MUSCLE_GROUP_LABELS, BGCOLOR_CONFIG, BORDERCOLOR_CONFIG, PIE_DATA_LABEL, Object.values(musclesWorkedData));
+    exerciseWork = sets.reduce((acc, curr) => {
         if (!(curr['exercise_name'] in acc)) acc[curr['exercise_name']] = {}
         if (!(curr['date_and_time'] in acc[curr['exercise_name']])) acc[curr['exercise_name']][curr['date_and_time']] = 0;
         acc[curr['exercise_name']][curr['date_and_time']] += addWorkLoad(curr);
         return acc;
     }, {});
 
-    const exerciseWeight = sets.reduce((acc, curr) => {
+    exerciseWeight = sets.reduce((acc, curr) => {
         if (!(curr['exercise_name'] in acc)) acc[curr['exercise_name']] = 0;
         if (acc[curr['exercise_name']] < curr.set_weight) acc[curr['exercise_name']] = curr.set_weight;
         return acc;
     }, {});
 
-    let exercise_weight = Object.entries(exerciseWeight)
+    exercise_weight = Object.entries(exerciseWeight)
         .map(([key, val], i) => {
             return <li className="exercise-weight" key={`${val}-${i}`}><b>{key}</b><span>{`${val}`}</span></li>
         });
 
-    const exerciseWorkData = Object.keys(exerciseWork).map((key, i) => {
+    exerciseWorkData = Object.keys(exerciseWork).map((key, i) => {
         return buildChartData(Object.keys(exerciseWork[key]), BGCOLOR_CONFIG, BORDERCOLOR_CONFIG, key, Object.values(exerciseWork[key]));
     });
 
-    const exerciseWorkCharts = exerciseWorkData.map(e => [].concat(<LineChart data={e} />).concat(<BarChart data={e} />));
-    // const exerciseWorkBar = exerciseWorkData.map(e => <BarChart data={e} />);
-    const exerciseWorkPie = exerciseWorkData.map(e => <PieChart data={e} />);
-    const repRangeData = Object.keys(groupedByExerciseName).map((key) => {
+    exerciseWorkCharts = exerciseWorkData.map(e => [].concat(<LineChart data={e} />).concat(<BarChart data={e} />));
+    exerciseWorkPie = exerciseWorkData.map(e => <PieChart data={e} />);
+    repRangeData = Object.keys(groupedByExerciseName).map((key) => {
         return groupedByExerciseName[key].reduce((acc, curr) => {
             if (!(curr.exercise_name in acc)) acc[curr.exercise_name] = { low: 0, mid: 0, high: 0 }
             if (curr.total_reps && curr.total_reps <= 5) acc[curr.exercise_name].low++;
@@ -69,47 +86,46 @@ const ReportsPage = () => {
         return acc;
     }, {});
 
-    const rep_ranges = Object.entries(repRangeData)
+    rep_ranges = Object.entries(repRangeData)
         .map(([key, val], i) => {
             return <div className="rep-ranges" key={`${val}-${i}`}><b>{key}</b>
                 <p><span>{val.low} </span> <span>{val.mid}</span> <span>{val.high}</span></p>
             </div>
         });
 
+    rep_ranges.unshift(<div key="range-lables" className="rep-ranges"><b></b> <p><span>low</span>    <span>mid</span>   <span>high</span></p></div>);
 
+    setsWithinAMonth = filterByMonths(1, sets);
+    recommendWeightIncrease = setsWithinAMonth.reduce((acc, curr) => {
+        if (!(curr.exercise_name in acc)) acc[curr.exercise_name] = { low: 0, mid: 0, high: 0 };
+        if (curr.total_reps && curr.total_reps < 5) acc[curr.exercise_name].low++;
+        if (curr.total_reps && curr.total_reps >= 5 && curr.total_reps <= 12) acc[curr.exercise_name].mid++;
+        if (curr.total_reps && curr.total_reps > 12) acc[curr.exercise_name].high++;
 
-    rep_ranges.unshift(<div className="rep-ranges"><b></b> <p><span>low</span>    <span>mid</span>   <span>high</span></p></div>);
+        if (curr.right_reps && curr.right_reps < 5) acc[curr.exercise_name].low++;
+        if (curr.right_reps && curr.right_reps >= 5 && curr.right_reps <= 12) acc[curr.exercise_name].mid++;
+        if (curr.right_reps && curr.right_reps > 12) acc[curr.exercise_name].high++;
 
+        if (curr.left_reps && curr.left_reps < 5) acc[curr.exercise_name].low++;
+        if (curr.left_reps && curr.left_reps >= 5 && curr.left_reps <= 12) acc[curr.exercise_name].mid++;
+        if (curr.left_reps && curr.left_reps > 12) acc[curr.exercise_name].high++;
+        return acc;
+    }, {});
 
-    const setsWithinAMonth = filterByMonths(1, sets);
-    let recommendWeightIncrease = setsWithinAMonth.reduce((acc,curr)=>{
-            if(!(curr.exercise_name in acc)) acc[curr.exercise_name] = {low:0, mid:0, high:0};
-            if (curr.total_reps && curr.total_reps < 5) acc[curr.exercise_name].low++;
-            if (curr.total_reps && curr.total_reps >= 5 && curr.total_reps <= 12) acc[curr.exercise_name].mid++;
-            if (curr.total_reps && curr.total_reps > 12) acc[curr.exercise_name].high++;
-    
-            if (curr.right_reps && curr.right_reps < 5) acc[curr.exercise_name].low++;
-            if (curr.right_reps && curr.right_reps >= 5 && curr.right_reps <= 12) acc[curr.exercise_name].mid++;
-            if (curr.right_reps && curr.right_reps > 12) acc[curr.exercise_name].high++;
-    
-            if (curr.left_reps && curr.left_reps < 5) acc[curr.exercise_name].low++;
-            if (curr.left_reps && curr.left_reps >= 5 && curr.left_reps <= 12) acc[curr.exercise_name].mid++;
-            if (curr.left_reps && curr.left_reps > 12) acc[curr.exercise_name].high++;
-                return acc;
-    },{});
-    let recommendation = Object.keys(recommendWeightIncrease).map((curr)=>{
+    recommendation = Object.keys(recommendWeightIncrease).map((curr) => {
         let vm = recommendWeightIncrease[curr];
-        if(vm.high >= 1 && vm.mid >=2) {
+        if (vm.high >= 1 && vm.mid >= 2) {
             return `${curr}: is highly recommended to increase weight`;
-        }else if((vm.mid+vm.high) > 3){
-            return `${curr}: consider increasing weight`; 
-        }else if(vm.mid < vm.low-3){
+        } else if ((vm.mid + vm.high) > 3) {
+            return `${curr}: consider increasing weight`;
+        } else if (vm.mid < vm.low - 3) {
             return `${curr}: consider lowering weight`;
         }
         return false;
-    }).filter(e=>e);
-    console.log('recommendations', recommendation)
-    const recommendationDisplay = recommendation.map(curr=> <li>{curr}</li>);
+    }).filter(e => e);
+
+    recommendationDisplay = recommendation.map((curr,i) => <li key={`${curr}-${i}`}>{curr}</li>);
+
     return (
         <>
             <h1 className="wr-title">Reports Hub</h1>
@@ -117,7 +133,7 @@ const ReportsPage = () => {
                 <div>
                     <h3>Weight Recommendations</h3>
                     <ul>{recommendationDisplay}</ul>
-                    </div>
+                </div>
                 <div>
                     <h3> Rep Range</h3>
                     <ul className="rep-ranges-container">

@@ -80,15 +80,16 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
                     targetVal="email"
                     inputType="email"
                     autoComplete="email"
-                    validations={{ required: true, minLength: 3, maxLength: 20 }} />
+                    validations={{ required: true, minLength: 4, maxLength: 20 }} />
                 <Input
                     label="Password"
                     inputVal={formValues.password}
                     targetVal="password"
                     updateForm={onUpdateFormValue}
                     autoComplete="current-password"
+
                     inputType={isPasswordVisible ? "text" : "password"}
-                    validations={{ required: true, minLength: 3, maxLength: 20 }}>
+                    validations={{ required: true, minLength: 5, maxLength: 20}}>
                     <i
                         onClick={toggleView}
                         className={isPasswordVisible ? "fa solid fa-eye" : "fa solid fa-eye-slash"}></i>

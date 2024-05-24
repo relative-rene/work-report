@@ -20,7 +20,7 @@ ChartJS.register(
 );
 
 
-export function BarChart({ data, chartTitle }) {
+function BarChart({ data, chartTitle }) {
   const options = {
     responsive: true,
     plugins: {

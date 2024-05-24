@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useData } from '../../hooks/useData';
 import Input from '../../components/UI/Input';
@@ -86,6 +86,12 @@ const SetForm = ({ initData, title, isEditing }) => {
         return <option key={`option-${o}${idx}`} value={o.name + ":" + o._id}>{capitalizeStr(o.name)}</option>
     })
 
+    useEffect(() => {
+        if (isEditing) {
+            handleFormUpdate('selectedExercise', initData.selectedExercise);
+        }
+    }, []);
+    
     return (
         <>
             <form className="wr-form " method="POST" onSubmit={handleSubmit}>

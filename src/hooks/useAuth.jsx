@@ -2,11 +2,12 @@
 
 import { createContext, useContext, useState, useMemo } from 'react';
 import { useLocalStorage } from './useLocalStorage';
-// Create a context for authentication
+
+// Create a context for authenticatfion
 const AuthContext = createContext();
 
 // Custom hook to provide authentication functionality
-export const useAuth = () => {
+export const useAuth = () => { 
     return useContext(AuthContext);
 }
 

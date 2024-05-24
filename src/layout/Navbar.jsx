@@ -24,17 +24,21 @@ const Navbar = ({ handleLogin }) => {
             handleLogin(true)
         }
     }
-
+    
+    const onHandleLogout = () => {
+        logout();
+        navigate('/hub/getting-started');
+    }
     const options = quickLinksMenu.map((vm, idx) => <li className="nav-routes" key={"menu-" + idx} onClick={() => readyToGo(vm.path)}>{vm.pageTitle}</li>);
     return (
         <>
             <header className="Navbar">
-                <div className="Logo" onClick={()=>navigate('/hub/getting-started')}>
+                <div className="Logo" onClick={() => navigate('/hub/getting-started')}>
                     <img src={vutruvianLogo} alt="vutruvian logo" />
                 </div>
                 {user?._id ?
                     <div className="logout-container">
-                        <i className="fa-solid fa-user-lock fa-xl" onClick={logout} />
+                        <i className="fa-solid fa-user-lock fa-xl" onClick={onHandleLogout} />
                     </div> :
                     <div>
                         <Button handleClick={() => handleLogin(false)} styleName="signUp-btn">Sign Up</Button>
