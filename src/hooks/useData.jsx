@@ -96,7 +96,8 @@ export const DataProvider = ({ children }) => {
         sets,
         stats,
         todos,
-        user]
+        user,
+        loadData]
     );
 
     return <DataContext.Provider value={value}> {children} </DataContext.Provider>
