@@ -5,88 +5,84 @@ import { addWorkLoad, filterByMonths } from '../utility/transformers';
 import { groupByKey, buildChartData } from '../utility/transformers';
 import { MUSCLE_GROUP_LABELS, PIE_DATA_LABEL, BORDERCOLOR_CONFIG, BGCOLOR_CONFIG } from '../data/constants';
 import { useData } from '../hooks/useData';
-import { useRef } from 'react';
+import { useMemo, useState } from 'react';
 
 const ReportsPage = () => {
     const { exercises, sets } = useData();
-    let recommendationDisplay = useRef(),
-        groupedByExerciseName = useRef(),
-        musclesWorkedData = useRef(),
-        exerciseWork = useRef(),
-        exerciseWeight = useRef(),
-        recommendation = useRef(),
-        repRangeData = useRef(),
-        dictionary = useRef(),
-        recommendWeightIncrease = useRef(),
-        setsWithinAMonth = useRef(),
-        rep_ranges = useRef(),
-        exercise_weight = useRef(),
-        chartData = useRef(),
-        exerciseWorkCharts = useRef(),
-        exerciseWorkPie = useRef(),
-        exerciseWorkData = useRef();
+    const [chartType, setChart] = useState('line')// ['line', 'bar', 'pie']
+    const groupedByExerciseName = useMemo(() => groupByKey(sets, 'exercise_name'), [sets]);
 
-    groupedByExerciseName = groupByKey(sets, 'exercise_name');
+    const dictionary = useMemo(() => {
+        return exercises.reduce((acc, curr) => {
+            if (!(curr['name'] in acc)) acc[curr['name']] = curr['muscle_group'];
+            return acc;
+        }, {});
+    }, [exercises]);
 
-    dictionary = exercises.reduce((acc, curr) => {
-        if (!(curr['name'] in acc)) acc[curr['name']] = curr['muscle_group'];
-        return acc;
-    }, {});
-
-    musclesWorkedData = MUSCLE_GROUP_LABELS.reduce((acc, curr) => {
-        acc[curr.toLowerCase()] = 0;
-        return acc;
-    }, {});
+    const musclesWorkedData = useMemo(() => {
+        return MUSCLE_GROUP_LABELS.reduce((acc, curr) => {
+            acc[curr.toLowerCase()] = 0;
+            return acc;
+        }, {});
+    }, []);
 
     Object.keys(groupedByExerciseName).forEach(exercise_name => musclesWorkedData[dictionary[exercise_name]] += +groupedByExerciseName[exercise_name].length);
-    chartData = buildChartData(MUSCLE_GROUP_LABELS, BGCOLOR_CONFIG, BORDERCOLOR_CONFIG, PIE_DATA_LABEL, Object.values(musclesWorkedData));
-    exerciseWork = sets.reduce((acc, curr) => {
-        if (!(curr['exercise_name'] in acc)) acc[curr['exercise_name']] = {}
-        if (!(curr['date_and_time'] in acc[curr['exercise_name']])) acc[curr['exercise_name']][curr['date_and_time']] = 0;
-        acc[curr['exercise_name']][curr['date_and_time']] += addWorkLoad(curr);
-        return acc;
-    }, {});
 
-    exerciseWeight = sets.reduce((acc, curr) => {
-        if (!(curr['exercise_name'] in acc)) acc[curr['exercise_name']] = 0;
-        if (acc[curr['exercise_name']] < curr.set_weight) acc[curr['exercise_name']] = curr.set_weight;
-        return acc;
-    }, {});
+    const chartData = buildChartData(MUSCLE_GROUP_LABELS, BGCOLOR_CONFIG, BORDERCOLOR_CONFIG, PIE_DATA_LABEL, Object.values(musclesWorkedData));
+    const exerciseWork = useMemo(() => {
+        return sets.reduce((acc, curr) => {
+            if (!(curr['exercise_name'] in acc)) acc[curr['exercise_name']] = {}
+            if (!(curr['date_and_time'] in acc[curr['exercise_name']])) acc[curr['exercise_name']][curr['date_and_time']] = 0;
+            acc[curr['exercise_name']][curr['date_and_time']] += addWorkLoad(curr);
+            return acc;
+        }, {});
+    }, [sets]);
 
-    exercise_weight = Object.entries(exerciseWeight)
+    const exerciseWeight = useMemo(() => {
+        return sets.reduce((acc, curr) => {
+            if (!(curr['exercise_name'] in acc)) acc[curr['exercise_name']] = 0;
+            if (acc[curr['exercise_name']] < curr.set_weight) acc[curr['exercise_name']] = curr.set_weight;
+            return acc;
+        }, {});
+    }, [sets]);
+
+    const exercise_weight = Object.entries(exerciseWeight)
         .map(([key, val], i) => {
             return <li className="exercise-weight" key={`${val}-${i}`}><b>{key}</b><span>{`${val}`}</span></li>
         });
 
-    exerciseWorkData = Object.keys(exerciseWork).map((key, i) => {
+    const exerciseWorkData = Object.keys(exerciseWork).map((key, i) => {
         return buildChartData(Object.keys(exerciseWork[key]), BGCOLOR_CONFIG, BORDERCOLOR_CONFIG, key, Object.values(exerciseWork[key]));
     });
 
-    exerciseWorkCharts = exerciseWorkData.map(e => [].concat(<LineChart data={e} />).concat(<BarChart data={e} />));
-    exerciseWorkPie = exerciseWorkData.map(e => <PieChart data={e} />);
-    repRangeData = Object.keys(groupedByExerciseName).map((key) => {
-        return groupedByExerciseName[key].reduce((acc, curr) => {
-            if (!(curr.exercise_name in acc)) acc[curr.exercise_name] = { low: 0, mid: 0, high: 0 }
-            if (curr.total_reps && curr.total_reps <= 5) acc[curr.exercise_name].low++;
-            if (curr.total_reps && curr.total_reps > 5 && curr.total_reps <= 12) acc[curr.exercise_name].mid++;
-            if (curr.total_reps && curr.total_reps > 12) acc[curr.exercise_name].high++;
+    const lineCharts = exerciseWorkData.map(e => <LineChart data={e} />).concat(<LineChart data={chartData} />);
+    const barCharts = exerciseWorkData.map(e => <BarChart data={e} />).concat(<BarChart data={chartData} />);
+    const pieCharts = exerciseWorkData.map(e => <PieChart data={e} />).concat(<PieChart data={chartData} />);
+    const repRangeData = useMemo(() => {
+        return Object.keys(groupedByExerciseName).map((key) => {
+            return groupedByExerciseName[key].reduce((acc, curr) => {
+                if (!(curr.exercise_name in acc)) acc[curr.exercise_name] = { low: 0, mid: 0, high: 0 }
+                if (curr.total_reps && curr.total_reps <= 5) acc[curr.exercise_name].low++;
+                if (curr.total_reps && curr.total_reps > 5 && curr.total_reps <= 12) acc[curr.exercise_name].mid++;
+                if (curr.total_reps && curr.total_reps > 12) acc[curr.exercise_name].high++;
 
-            if (curr.right_reps && curr.right_reps <= 5) acc[curr.exercise_name].low++;
-            if (curr.right_reps && curr.right_reps > 5 && curr.right_reps <= 12) acc[curr.exercise_name].mid++;
-            if (curr.right_reps && curr.right_reps > 12) acc[curr.exercise_name].high++;
+                if (curr.right_reps && curr.right_reps <= 5) acc[curr.exercise_name].low++;
+                if (curr.right_reps && curr.right_reps > 5 && curr.right_reps <= 12) acc[curr.exercise_name].mid++;
+                if (curr.right_reps && curr.right_reps > 12) acc[curr.exercise_name].high++;
 
-            if (curr.left_reps && curr.left_reps <= 5) acc[curr.exercise_name].low++;
-            if (curr.left_reps && curr.left_reps > 5 && curr.left_reps <= 12) acc[curr.exercise_name].mid++;
-            if (curr.left_reps && curr.left_reps > 12) acc[curr.exercise_name].high++;
+                if (curr.left_reps && curr.left_reps <= 5) acc[curr.exercise_name].low++;
+                if (curr.left_reps && curr.left_reps > 5 && curr.left_reps <= 12) acc[curr.exercise_name].mid++;
+                if (curr.left_reps && curr.left_reps > 12) acc[curr.exercise_name].high++;
+                return acc;
+            }, {})
+        }).reduce((acc, curr) => {
+            const [exerciseName] = Object.keys(curr);
+            acc[exerciseName] = curr[exerciseName];
             return acc;
-        }, {})
-    }).reduce((acc, curr) => {
-        const [exerciseName] = Object.keys(curr);
-        acc[exerciseName] = curr[exerciseName];
-        return acc;
-    }, {});
+        }, {});
+    }, [groupedByExerciseName]);
 
-    rep_ranges = Object.entries(repRangeData)
+    const rep_ranges = Object.entries(repRangeData)
         .map(([key, val], i) => {
             return <div className="rep-ranges" key={`${val}-${i}`}><b>{key}</b>
                 <p><span>{val.low} </span> <span>{val.mid}</span> <span>{val.high}</span></p>
@@ -95,24 +91,27 @@ const ReportsPage = () => {
 
     rep_ranges.unshift(<div key="range-lables" className="rep-ranges"><b></b> <p><span>low</span>    <span>mid</span>   <span>high</span></p></div>);
 
-    setsWithinAMonth = filterByMonths(1, sets);
-    recommendWeightIncrease = setsWithinAMonth.reduce((acc, curr) => {
-        if (!(curr.exercise_name in acc)) acc[curr.exercise_name] = { low: 0, mid: 0, high: 0 };
-        if (curr.total_reps && curr.total_reps < 5) acc[curr.exercise_name].low++;
-        if (curr.total_reps && curr.total_reps >= 5 && curr.total_reps <= 12) acc[curr.exercise_name].mid++;
-        if (curr.total_reps && curr.total_reps > 12) acc[curr.exercise_name].high++;
+    const setsWithinAMonth = filterByMonths(1, sets);
 
-        if (curr.right_reps && curr.right_reps < 5) acc[curr.exercise_name].low++;
-        if (curr.right_reps && curr.right_reps >= 5 && curr.right_reps <= 12) acc[curr.exercise_name].mid++;
-        if (curr.right_reps && curr.right_reps > 12) acc[curr.exercise_name].high++;
+    const recommendWeightIncrease = useMemo(() => {
+        return setsWithinAMonth.reduce((acc, curr) => {
+            if (!(curr.exercise_name in acc)) acc[curr.exercise_name] = { low: 0, mid: 0, high: 0 };
+            if (curr.total_reps && curr.total_reps < 5) acc[curr.exercise_name].low++;
+            if (curr.total_reps && curr.total_reps >= 5 && curr.total_reps <= 12) acc[curr.exercise_name].mid++;
+            if (curr.total_reps && curr.total_reps > 12) acc[curr.exercise_name].high++;
 
-        if (curr.left_reps && curr.left_reps < 5) acc[curr.exercise_name].low++;
-        if (curr.left_reps && curr.left_reps >= 5 && curr.left_reps <= 12) acc[curr.exercise_name].mid++;
-        if (curr.left_reps && curr.left_reps > 12) acc[curr.exercise_name].high++;
-        return acc;
-    }, {});
+            if (curr.right_reps && curr.right_reps < 5) acc[curr.exercise_name].low++;
+            if (curr.right_reps && curr.right_reps >= 5 && curr.right_reps <= 12) acc[curr.exercise_name].mid++;
+            if (curr.right_reps && curr.right_reps > 12) acc[curr.exercise_name].high++;
 
-    recommendation = Object.keys(recommendWeightIncrease).map((curr) => {
+            if (curr.left_reps && curr.left_reps < 5) acc[curr.exercise_name].low++;
+            if (curr.left_reps && curr.left_reps >= 5 && curr.left_reps <= 12) acc[curr.exercise_name].mid++;
+            if (curr.left_reps && curr.left_reps > 12) acc[curr.exercise_name].high++;
+            return acc;
+        }, {});
+    }, [setsWithinAMonth]);
+
+    const recommendation = Object.keys(recommendWeightIncrease).map((curr) => {
         let vm = recommendWeightIncrease[curr];
         if (vm.high >= 1 && vm.mid >= 2) {
             return `${curr}: is highly recommended to increase weight`;
@@ -124,8 +123,12 @@ const ReportsPage = () => {
         return false;
     }).filter(e => e);
 
-    recommendationDisplay = recommendation.map((curr,i) => <li key={`${curr}-${i}`}>{curr}</li>);
-
+    const recommendationDisplay = useMemo(() => recommendation.map((curr, i) => <li key={`${curr}-${i}`}>{curr}</li>), [recommendation]);
+    const displayChart = useMemo(()=>{
+        if(chartType === 'line') return lineCharts;
+        if(chartType === 'bar') return barCharts;
+        if(chartType === 'pie') return pieCharts;
+    },[chartType]);
     return (
         <>
             <h1 className="wr-title">Reports Hub</h1>
@@ -146,13 +149,12 @@ const ReportsPage = () => {
                         {exercise_weight}
                     </ul>
                 </div>
-
-                <LineChart data={chartData} />
-                <BarChart data={chartData} chartTitle="Muscle Group Bar Chart" />
-                {exerciseWorkCharts}
-                <PieChart data={chartData} />
-                {exerciseWorkPie}
-
+                <div style={{display:'flex', justifyContent:'space-evenly', alignItems:'flex-start'}}>
+                    <button onClick={()=>setChart('line')}>Line Chart</button>
+                    <button onClick={()=>setChart('bar')}>Bar Chart</button>
+                    <button onClick={()=>setChart('pie')}>Pie Chart</button>
+                </div>
+                {displayChart}
 
             </div>
         </>
