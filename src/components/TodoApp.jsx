@@ -4,7 +4,6 @@ import Button from './UI/Button';
 import { useAuth } from '../hooks/useAuth'
 import { useData } from '../hooks/useData';
 
-
 const TodoApp = () => {
     const { user } = useAuth();
     const [description, setDescription] = useState('');
@@ -26,27 +25,44 @@ const TodoApp = () => {
     async function onAddHandler() {
         const saveTodo = { description, isDone: false, dueDateAndTime: new Date(dueDateAndTime).toUTCString() }
         if (description.length !== 0) {
-            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/create_todo`,
-                { method: 'post', body: JSON.stringify(saveTodo), headers: { "Content-Type": "application/json" } })
-            const data = await response.json();
-            setDescription('') && setDueDate('');
-            data && updateTodos();
-        }
-    };
+            try {
+                const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/create_todo`,
+                    { method: 'post', body: JSON.stringify(saveTodo), headers: { "Content-Type": "application/json" } })
+                const data = await response.json();
+                setDescription('') && setDueDate('');
+                data ? updateTodos() : alert(`Add task failed. Cannot add task to future development with a MOCK USER.`);
+            }
+            catch (err) {
+                console.error(err);
+                alert('Add Task failed. Servers are down please try again later');
+            }
+        };
+    }
 
     async function onDeleteHandler(todo_id) {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/delete_todo`, { method: 'DELETE' });
-        const data = await response.json();
-        data && updateTodos();
-    };
+        try {
+            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/delete_todo`, { method: 'DELETE' });
+            const data = await response.json();
+            data ? updateTodos() : alert(`Cannot delete task with a MOCK USER`);
+        }
+        catch (err) {
+            console.error(err);
+            alert('Delete Task failed. Servers are down please try again later');
+        };
+    }
 
     async function onUpdateHandler(todo_id, hasNewDescription, newDescription) {
         const newTodo = hasNewDescription ?
             todos.filter(todo => todo._id === todo_id).map(todo => Object.assign({}, { ...todo, description: newDescription })) :
             todos.filter(todo => todo._id === todo_id).map(todo => Object.assign({}, { ...todo, is_done: !todo.is_done }));
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/updateOne_todo`, { method: 'PUT', body: JSON.stringify(newTodo), headers: { "Content-Type": "application/json" } });
-        const data = await response.json();
-        data && updateTodos();
+        try {
+            const response = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user._id}/todos/${todo_id}/updateOne_todo`, { method: 'PUT', body: JSON.stringify(newTodo), headers: { "Content-Type": "application/json" } });
+            const data = await response.json();
+            data ? updateTodos() : alert('Update failed. You cannot update with a MOCK USER.')
+        } catch (err) {
+            console.error(err);
+            alert('Update task failed. Servers are down. please try again later');
+        }
     }
 
     return (

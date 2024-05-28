@@ -134,7 +134,7 @@ html {
 
       &__button {
         color: $primary-color;
-        font-family: "Lato" sans-serif;
+        font-family: "Lato"sans-serif;
       }
 
       &__input {
@@ -165,7 +165,7 @@ html {
         border-radius: 10px;
         height: 3em;
         font-size: 1em;
-        font-family: "Lato" sans-serif;
+        font-family: "Lato"sans-serif;
       }
     }
   }
@@ -461,4 +461,33 @@ i {
 
 .ReleaseNotes {
   padding: 1rem;
+}
+
+.wr-search-table {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  .wr-label {
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+
+    .wr-input {
+      margin: .5rem;
+      font-size: 1.2rem;
+      padding: .3rem .1rem;
+      border-radius: 2%;
+      border: 1px solid gainsboro;
+      z-index: 12;
+
+      &.--invalid {
+        outline: solid 1px red;
+      }
+    }
+
+    input:focus {
+      outline: 3px solid $primaryLight-color;
+      border: 1px solid $primary-color;
+    }
+  }
 }
