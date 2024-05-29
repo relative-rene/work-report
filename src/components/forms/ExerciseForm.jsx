@@ -52,7 +52,7 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
         }
         setAvailability(true);
     }
-
+    
     const patchExercise = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_SERVER}/api/gains/exercises/${formValues._id}/update_exercise`, { method: 'PUT', body: JSON.stringify(formValues), headers: { "Content-Type": "application/json" } });
@@ -63,6 +63,7 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
             } else {
                 setSuccessAlert(true);
                 setTimeout(() => setSuccessAlert(false), 7000);
+                updateExercises();
             }
         } catch (err) {
             console.error(err);
