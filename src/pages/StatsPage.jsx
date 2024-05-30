@@ -13,8 +13,13 @@ const StatsPage = () => {
         if (stats.length === 0) return;
         return stats.filter(({ date }) => {
             return date.toLowerCase().includes(query.toLowerCase());
-        });
+        })
     }, [stats, query]);
+
+    const sortInit = Object.keys(STATS_KEY_LABELS).reduce((acc, curr) => {
+        acc[curr] = false;
+        return acc;
+    }, {});
 
 
     return (
@@ -32,7 +37,10 @@ const StatsPage = () => {
                     </label>
                 </div>
                 <div className="table-container">
-                    {filteredItems ? <Table tName="StatsTable" editPath="/hub/stats/edit/" tableData={filteredItems} keys={STATS_KEY_LABELS} sortBy="date" /> : <LoadingSpinner />}
+                    {filteredItems ?
+                     <Table tName="StatsTable" editPath="/hub/stats/edit/" initSortHash={sortInit} tableData={filteredItems} keys={STATS_KEY_LABELS} sortBy="date" /> :
+                      <LoadingSpinner />
+                    }
                 </div><br />
             </section>
 

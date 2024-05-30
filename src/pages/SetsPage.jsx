@@ -17,6 +17,11 @@ function SetsPage() {
         });
     }, [sets, query]);
 
+    const sortInit = Object.keys(SETS_KEY_LABELS).reduce((acc, curr) => {
+        acc[curr] = false;
+        return acc;
+    }, {});
+
     return (
         <>
             <section className="section-peak">
@@ -32,7 +37,9 @@ function SetsPage() {
                     </label>
                 </div>
                 <div className="table-container">
-                    {filteredItems ? <Table tName="SetsTable" editPath="/hub/sets/edit/" tableData={filteredItems} sortBy="date_and_time" keys={SETS_KEY_LABELS} /> : <LoadingSpinner />}
+                    {filteredItems ? <Table tName="SetsTable" editPath="/hub/sets/edit/" initSortHash={sortInit}tableData={filteredItems} sortBy="date_and_time" keys={SETS_KEY_LABELS} /> :
+                         <LoadingSpinner />
+                    }
                 </div> <br />
             </section>
             <AddSet exercises={exercises} />

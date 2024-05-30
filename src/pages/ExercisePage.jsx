@@ -17,6 +17,11 @@ const ExercisePage = () => {
         });
     }, [exercises, query]);
 
+    const initSort = Object.keys(EXERCISE_KEY_LABELS).reduce((acc, curr) => {
+        acc[curr] = false;
+        return acc;
+    }, {});
+
     return (
         <>
             <section className="section-peak">
@@ -31,7 +36,10 @@ const ExercisePage = () => {
                     </label>
                 </div>
                 <div className="table-container">
-                    {filteredItems ? <Table tName="ExerciseTable" editPath="/hub/exercises/edit/" tableData={filteredItems} keys={EXERCISE_KEY_LABELS} /> : <LoadingSpinner />}
+                    {filteredItems ?
+                        <Table tName="ExerciseTable" editPath="/hub/exercises/edit/" tableData={filteredItems} initSortHash={initSort} keys={EXERCISE_KEY_LABELS} /> :
+                        <LoadingSpinner />
+                    }
                 </div><br />
             </section>
             <AddExercise />
