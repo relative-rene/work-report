@@ -5,7 +5,7 @@ import TableBody from './TableBody';
 const Table = ({ tableData, sortBy, editPath, keys, tName, initSortHash }) => {
 
     const [sortHash, setSortHash] = useState(initSortHash);
-    const [sortedData, setSortedData] = useState([])
+    const [sortedData, setSortedData] = useState(tableData)
 
     const handleSelectedHead = (val) => {
         let selected = Object.entries(keys).find(([key, value]) => {
