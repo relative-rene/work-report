@@ -51,7 +51,7 @@
     width: clamp(320px, 510px, 650px);
 
     &.--closed {
-        transform: translateY(-120vh);
+        transform: translateY(-1000vh);
         opacity: 0;
     }
 
