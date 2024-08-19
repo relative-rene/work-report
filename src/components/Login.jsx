@@ -37,6 +37,7 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
         e.preventDefault();
         setAvailability(false);
         setLoading(true);
+        alert('Free servers are slow, like 50 seconds delays. To alleviate the problem, I have added caching but that will only take effect after the first long wait. Sorry again, this is a result of frugality and not programming skill or experience. Thanks for your understanding')
         const data = await login({ email: "dd@hotmail.com", password: "realdeal" });
         if (!data) {
             setLoading(false);
@@ -44,7 +45,6 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
             alert(`Login Failed`);
             return;
         } else {
-            alert('Free servers are slow, like 50 seconds delays. To alleviate the problem, I have added caching but that will only take effect after the first long wait. Sorry again, this is a result of frugality and not programming skill or experience. Thanks for your understanding')
             setLoading(false);
             setAvailability(true);
             navigate('/hub/reports');
