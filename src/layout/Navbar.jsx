@@ -1,9 +1,8 @@
 import React from "react";
 import Button from "../components/UI/Button";
 import { useAuth } from "../hooks/useAuth";
-import vutruvianLogo from "../assets/vutruvianLogo.jpeg";
+import vutruvianLogo from "../assets/images/vutruvianLogo.jpeg";
 import { useNavigate } from "react-router-dom";
-
 
 const quickLinksMenu = [
     { pageTitle: "Sets", path: "/hub/sets" },
@@ -24,7 +23,7 @@ const Navbar = ({ handleLogin }) => {
             handleLogin(true)
         }
     }
-    
+
     const onHandleLogout = () => {
         logout();
         navigate('/hub/getting-started');

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import vutruvianLogo from '../assets/vutruvianLogo.jpeg';
+import vutruvianLogo from '../assets/images/vutruvianLogo.jpeg';
 import Modal from '../components/UI/Modal';
 import Login from '../components/Login';
-import { useData } from '../hooks/useData';
 
 
 const SplashPage = () => {
