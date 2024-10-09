@@ -2,7 +2,7 @@
 
 function ModalNavbar({closeModal}) {
     return (<div className="modal-navbar">
-        <i onClick={closeModal} className="fa-solid fa-bug" />
+        <i onClick={closeModal} className="fa-solid fa-x" />
     </div>)
 }
 

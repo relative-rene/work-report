@@ -12,12 +12,12 @@ const Sidebar = () => {
         <section className={isOpen ? "Sidebar" : "Sidebar--closed"}>
             {isOpen ?
                 <>
-                    <i onClick={() => setVisibility(false)} className="fa-solid fa-bug" />
+                    <i onClick={() => setVisibility(false)} className="fa-solid fa-x" />
                     <h2 className="Title">Kaizen</h2>
                     <Rounds getRounds={onSetRounds}/>
                     <StopWatch rounds={roundsTimer}/>
                 </> :
-                <i onClick={() => setVisibility(true)} className="fa-solid fa-feather" />
+                <i onClick={() => setVisibility(true)} className="fa-solid fa-stopwatch" />
             }
 
         </section>

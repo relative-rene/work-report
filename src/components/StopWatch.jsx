@@ -27,7 +27,6 @@ export default function StopWatch({ rounds }) {
     if (alarmTime !== null && time > alarmTime) {
       setIsRunning(false);
       audio.play();
-      alert('Alarm!');
     }
   }, [time, alarmTime]);
 
@@ -51,16 +50,12 @@ export default function StopWatch({ rounds }) {
   const formatRounds = (roundsSet) => {
     const { hours, minutes, seconds } = roundsSet;
     let alarm = 0;
-    if (hours > 0) {
-      alarm += hours * 60 * 60;
-    }
-    if (minutes > 0) {
-      alarm += minutes * 60;
-
-    }
+    if (hours > 0) alarm += hours * 60 * 60;
+    if (minutes > 0) alarm += minutes * 60;
     alarm += seconds;
     return alarm;
   }
+
   return (
     <div className="stopWatchContainer">
       <div className="stopWatch">

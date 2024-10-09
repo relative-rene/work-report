@@ -10,37 +10,16 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.stopWatchContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-
-    .stopwatch {
-        text-align: center;
-
-        .time {
-            font-size: 48px;
-            margin-bottom: 20px;
-
-            .Btn {
-                font-size: 20px;
-                margin: 5px;
-                padding: 10px 20px;
-            }
-        }
-    }
-}
 
 
 .NumberInputContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .Btn {
+    .btn {
         background-color: #f0f0f0;
         border: 1px solid #ccc;
-        padding: 5px 10px;
+        font-size: 1.5em;
         cursor: pointer;
         
     }
