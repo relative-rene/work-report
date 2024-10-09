@@ -15,7 +15,7 @@ const Sidebar = () => {
                     <i onClick={() => setVisibility(false)} className="fa-solid fa-x" />
                     <h2 className="Title">Kaizen</h2>
                     <Rounds getRounds={onSetRounds}/>
-                    <StopWatch rounds={roundsTimer}/>
+                    <StopWatch timer={roundsTimer}/>
                 </> :
                 <i onClick={() => setVisibility(true)} className="fa-solid fa-stopwatch" />
             }
