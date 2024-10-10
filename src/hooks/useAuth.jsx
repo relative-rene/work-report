@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }) => {
             const data = await response.json();
             setUser(data);
             setStoredUser(data);
+            
             return data;
         } catch (error) {
             console.error('error', error);

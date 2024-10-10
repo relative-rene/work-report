@@ -16,7 +16,6 @@ export const DataProvider = ({ children }) => {
     const [exercises, setExercises] = useState([]);
     const [sets, setSets] = useState([]);
     const [stats, setStats] = useState([]);
-    const [todos, setTodos] = useState([]);
 
     const getExerciseData = async () => {
         try {
@@ -53,30 +52,15 @@ export const DataProvider = ({ children }) => {
         }
     }
 
-    const getTodoData = async (user_id) => {
-        if (user_id === '66468c504d87b300538d9610') user_id = "66207e4a35c7220053e450f6";
-        try {
-            const res = await fetch(`${process.env.REACT_APP_SERVER}/api/profiles/${user_id}/todos/read_todos`)
-            const data = await res.json();
-            let sortByDueDate = data.sort((a, b) => new Date(a.due_date_and_time) - new Date(b.due_date_and_time));
-            let sortedByDone = sortByDueDate.sort((a, b) => a.is_done - b.is_done);
-            setTodos(sortedByDone);
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
     const updateExercises = () => getExerciseData(user._id);
     const updateStats = () => getStatsData(user._id);
     const updateSets = () => getSetsData(user._id);
-    const updateTodos = () => getTodoData(user._id);
 
     const loadData = async (user_id) => {
         await getExerciseData();
         if (user_id) {
             getStatsData(user_id);
             getSetsData(user_id);
-            getTodoData(user_id);
         }
     }
 
@@ -85,17 +69,14 @@ export const DataProvider = ({ children }) => {
             exercises,
             sets,
             stats,
-            todos,
             updateExercises,
             updateStats,
             updateSets,
-            updateTodos,
             loadData
         }), [
         exercises,
         sets,
         stats,
-        todos,
         user,
         loadData]
     );
