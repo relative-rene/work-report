@@ -17,7 +17,7 @@ const Sidebar = () => {
                     <Rounds getRounds={onSetRounds}/>
                     <StopWatch timer={roundsTimer}/>
                 </> :
-                <i onClick={() => setVisibility(true)} className="fa-solid fa-stopwatch" />
+                <i onClick={() => setVisibility(true)} className="fa-solid fa-hourglass fa-xl"></i>
             }
 
         </section>
