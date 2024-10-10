@@ -53,7 +53,7 @@ export default function Rounds({ getRounds }) {
 
                 <div className="action-container">
                     <button onClick={() => setTime(INITIAL_TIMER)} className="action-container__btn--secondary">Reset</button>
-                    <button onClick={() => getRounds(time)} className="action-container__btn--primary">Save</button>
+                    <button onClick={() => getRounds(time)} className="action-container__btn--primary">Set</button>
                 </div>
             </form>
         </div >

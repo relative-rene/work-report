@@ -33,7 +33,7 @@ function Layout() {
         <div className="Layout">
             <Navbar handleLogin={onLoginFlow} />
             <main className="MainContainer">
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <Main>
                     <Outlet />
                 </Main>
