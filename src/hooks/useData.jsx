@@ -57,6 +57,7 @@ export const DataProvider = ({ children }) => {
     const updateSets = () => getSetsData(user._id);
 
     const loadData = async (user_id) => {
+        console.log('loadData', user_id)
         await getExerciseData();
         if (user_id) {
             getStatsData(user_id);
@@ -77,7 +78,6 @@ export const DataProvider = ({ children }) => {
         exercises,
         sets,
         stats,
-        user,
         loadData]
     );
 

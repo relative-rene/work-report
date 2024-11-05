@@ -7,9 +7,10 @@ import { useLocalStorage } from './useLocalStorage';
 const AuthContext = createContext();
 
 // Custom hook to provide authentication functionality
-export const useAuth = () => { 
+export const useAuth = () => {
     return useContext(AuthContext);
 }
+
 
 // AuthProvider wraps your entire app to provide authentication context
 export const AuthProvider = ({ children }) => {
@@ -33,7 +34,6 @@ export const AuthProvider = ({ children }) => {
             const data = await response.json();
             setUser(data);
             setStoredUser(data);
-            
             return data;
         } catch (error) {
             console.error('error', error);
@@ -41,15 +41,18 @@ export const AuthProvider = ({ children }) => {
         }
     }
     const logout = async () => {
-        setUser(null);
         localStorage.clear();
+        setUser(null);
     }
 
-    const reloadUser = async () => {
+    const reloadUser = async (user) => {
+        console.log('reloadUser')
         if (!user && storedUser) {
+            console.log('storedUser', storedUser);
             setUser(storedUser);
             return storedUser;
         } else {
+            console.log('user', user);
             return user;
         }
     }
@@ -57,6 +60,7 @@ export const AuthProvider = ({ children }) => {
     const value = useMemo(
         () => ({
             user,
+            storedUser,
             login,
             logout,
             register,

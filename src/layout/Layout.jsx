@@ -3,7 +3,6 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import Login from '../components/Login';
 import Modal from '../components/UI/Modal';
-import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SignUp from '../components/SignUp';
@@ -12,7 +11,7 @@ import { useData } from '../hooks/useData';
 import ReleaseNotes from '../components/ReleaseNotes';
 
 function Layout() {
-    const { reloadUser } = useAuth();
+    const { reloadUser, storedUser} = useAuth();
     const { loadData } = useData();
     const [isSignupVisible, setSignupVisibility] = useState(false);
     const [isLoginVisible, setLoginVisibility] = useState(false);
@@ -20,10 +19,13 @@ function Layout() {
 
 
     useEffect(() => {
-        reloadUser()
+        if(storedUser){
+            console.log('storedUser', storedUser)
+            reloadUser()
             .then(user => loadData(user._id))
             .catch(err => console.error(err));
-    }, [])
+        }
+    }, [storedUser])
 
     const onLoginFlow = (hasAnAccount) => {
         return hasAnAccount ? setLoginVisibility(true) : setSignupVisibility(true);

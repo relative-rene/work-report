@@ -37,7 +37,7 @@ function SetsPage() {
                     </label>
                 </div>
                 <div className="table-container">
-                    {filteredItems ? <Table tName="SetsTable" editPath="/hub/sets/edit/" initSortHash={sortInit}tableData={filteredItems} sortBy="date_and_time" keys={SETS_KEY_LABELS} /> :
+                    {sets.length === 0? 'No Sets have been recorded': filteredItems ? <Table tName="SetsTable" editPath="/hub/sets/edit/" initSortHash={sortInit}tableData={filteredItems} sortBy="date_and_time" keys={SETS_KEY_LABELS} /> :
                          <LoadingSpinner />
                     }
                 </div> <br />

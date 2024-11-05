@@ -37,9 +37,10 @@ const StatsPage = () => {
                     </label>
                 </div>
                 <div className="table-container">
-                    {filteredItems ?
-                     <Table tName="StatsTable" editPath="/hub/stats/edit/" initSortHash={sortInit} tableData={filteredItems} keys={STATS_KEY_LABELS} sortBy="date" /> :
-                      <LoadingSpinner />
+                    {stats.length === 0 ? 'No Stats have been recorded' :
+                        filteredItems ?
+                            <Table tName="StatsTable" editPath="/hub/stats/edit/" initSortHash={sortInit} tableData={filteredItems} keys={STATS_KEY_LABELS} sortBy="date" /> :
+                            <LoadingSpinner />
                     }
                 </div><br />
             </section>
