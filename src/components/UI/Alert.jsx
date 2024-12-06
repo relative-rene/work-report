@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Alert = ({ alertType, message, handleClick }) => {
 
     return (

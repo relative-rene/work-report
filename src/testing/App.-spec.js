@@ -1,9 +1,5 @@
-
-import { expect } from 'chai'
-import { shallow } from 'enzyme'
-
-import App from './App'
-import styles from './styles.module.css'
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
 describe('<App />', () => {
   let wrapper;
@@ -21,8 +17,12 @@ describe('<App />', () => {
   it('passes a history prop', () => {
     const props = wrapper.find('Router').props();
 
-    expect(props.history)
-      .to.be.defined;
-  })
-
+    expect(props.history).to.be.defined})
+    
+    it('renders learn react link', () => {
+      render(<App />);
+      const linkElement = screen.getByText(/learn react/i);
+      expect(linkElement).toBeInTheDocument();
+    });
+    
 });
