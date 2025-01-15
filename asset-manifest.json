@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "./static/css/main.c702875f.css",
-    "main.js": "./static/js/main.fc849774.js",
+    "main.js": "./static/js/main.5223cb35.js",
     "static/js/453.d0743133.chunk.js": "./static/js/453.d0743133.chunk.js",
-    "static/js/455.0743c481.chunk.js": "./static/js/455.0743c481.chunk.js",
+    "static/js/455.0203f21d.chunk.js": "./static/js/455.0203f21d.chunk.js",
     "static/media/femaleBFComparison.jpeg": "./static/media/femaleBFComparison.9cadda8e59ec85cae678.jpeg",
     "static/media/maleBFComparison.jpeg": "./static/media/maleBFComparison.9f2947de1e3ff387c585.jpeg",
     "static/media/vutruvianLogo.jpeg": "./static/media/vutruvianLogo.b7e032c205f25c88eb67.jpeg",
     "index.html": "./index.html",
     "main.c702875f.css.map": "./static/css/main.c702875f.css.map",
-    "main.fc849774.js.map": "./static/js/main.fc849774.js.map",
+    "main.5223cb35.js.map": "./static/js/main.5223cb35.js.map",
     "453.d0743133.chunk.js.map": "./static/js/453.d0743133.chunk.js.map",
-    "455.0743c481.chunk.js.map": "./static/js/455.0743c481.chunk.js.map"
+    "455.0203f21d.chunk.js.map": "./static/js/455.0203f21d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c702875f.css",
-    "static/js/main.fc849774.js"
+    "static/js/main.5223cb35.js"
   ]
 }
