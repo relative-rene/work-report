@@ -5,6 +5,7 @@ import Select from '../../components/UI/Select'
 import { MUSCLE_GROUPS, PRIMARY_MUSCLES } from '../../data/constants';
 import { useData } from '../../hooks/useData';
 import Alert from '../../components/UI/Alert';
+import { useNavigate } from 'react-router-dom';
 
 const ExerciseForm = ({ title, initData, isEditing }) => {
     const [formValues, setFormValues] = useState({ ...initData });
@@ -13,6 +14,7 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
     const [showServerError, setServerFailedAlert] = useState(false);
     const [showSuccess, setSuccessAlert] = useState(false);
     const { updateExercises } = useData();
+    const navigate = useNavigate()
 
     const handleFormUpdate = (target, val) => {
         if (target === 'muscle_group') {
@@ -23,8 +25,8 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
     }
 
     const handleCancel = (e) => {
-        e.preventDefault()
-        setFormValues({ ...initData });
+        e.preventDefault();
+        navigate('/hub/exercises')
     }
 
     const handleSave = (e) => {
@@ -115,6 +117,7 @@ const ExerciseForm = ({ title, initData, isEditing }) => {
                     options={primaryMuscleOptions}><span className="requiredMark">*</span></Select> : null}
             <div className="action-container">
                 <Button
+                    inputType="reset"
                     handleClick={handleCancel}
                     isDisabled={!isReady}
                     styleName="action-container__btn--secondary">CANCEL</Button>

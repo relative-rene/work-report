@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ToggleCheckbox from '../UI/ToggleCheckbox';
 import InputHeight from '../UI/InputHeight';
 import Button from '../UI/Button';
@@ -22,12 +23,13 @@ function StatsForm({ initData, title, isEditing }) {
     const [formValues, setFormValues] = useState({ ...initData, date: initData.date ? formatUSDateToIsoString(initData.date) : '' });
     const { user } = useAuth();
     const { updateStats } = useData();
+    const navigate = useNavigate();
 
     const handleFormUpdate = (target, val) => {
         setFormValues({ ...formValues, [target]: val });
     }
 
-    const handleCancel = () => (setFormValues({ ...initData }));
+    const handleCancel = () => navigate('/hub/stats');
 
     const handleSave = (e) => {
         e.preventDefault()

@@ -5,8 +5,8 @@ import Input from '../../components/UI/Input';
 import Select from '../../components/UI/Select';
 import Button from '../../components/UI/Button';
 import Alert from '../../components/UI/Alert';
-
 import { capitalizeStr, formatUSDateToIsoString } from '../../utility/transformers';
+import { useNavigate } from 'react-router-dom';
 
 const SetForm = ({ initData, title, isEditing }) => {
     const { exercises, updateSets } = useData();
@@ -17,6 +17,7 @@ const SetForm = ({ initData, title, isEditing }) => {
     const [showServerError, setServerFailedAlert] = useState(false);
     const [showSuccess, setSuccessAlert] = useState(false);
     const { user } = useAuth();
+    const navigate = useNavigate()
 
     const handleFormUpdate = (target, val) => {
         if (target === 'selectedExercise') {
@@ -32,7 +33,7 @@ const SetForm = ({ initData, title, isEditing }) => {
     }
 
     const onResetForm = () => {
-        setFormValues({ ...initData })
+        navigate('/hub/sets')
     }
 
     const patchSet = async () => {
@@ -91,7 +92,7 @@ const SetForm = ({ initData, title, isEditing }) => {
             handleFormUpdate('selectedExercise', initData.selectedExercise);
         }
     }, []);
-    
+
     return (
         <>
             <form className="wr-form " method="POST" onSubmit={handleSubmit}>
@@ -148,7 +149,7 @@ const SetForm = ({ initData, title, isEditing }) => {
                         isDisabled={!isBtnReady}
                         handleClick={onResetForm}
                         styleName="action-container__btn--secondary"
-                        type="reset">RESET</Button>
+                        type="reset">CANCEL</Button>
                     <Button
                         isDisabled={!isBtnReady}
                         styleName="action-container__btn--primary"

@@ -18,7 +18,7 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
         e.preventDefault();
         setAvailability(false);
         setLoading(true)
-        alert('Free servers are slow, like 50 seconds delays. To alleviate the problem, I have added caching but that will only take effect after the first long wait. Sorry again, this is a result of frugality and not programming skill or experience. Thanks for your understanding')
+        alert('Free servers are slow, like 50 seconds delays. To alleviate the problem, I have added caching but that will only take effect after the first long wait. Sorry again, this is a result of frugality and not programming skill or experience. Thanks for your understanding');
         const data = await login(formValues);
         if (!data) {
             setLoading(false);
@@ -31,26 +31,6 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
             navigate('/hub/reports');
             return onCloseLoginModal();
         }
-    }
-
-    const onFreeTrial = async (e) => {
-        e.preventDefault();
-        setAvailability(false);
-        setLoading(true);
-        alert('Free servers are slow, like 50 seconds delays. To alleviate the problem, I have added caching but that will only take effect after the first long wait. Sorry again, this is a result of frugality and not programming skill or experience. Thanks for your understanding')
-        const data = await login({ email: "dd@hotmail.com", password: "realdeal" });
-        if (!data) {
-            setLoading(false);
-            setAvailability(true);
-            alert(`Login Failed`);
-            return;
-        } else {
-            setLoading(false);
-            setAvailability(true);
-            navigate('/hub/reports');
-            return onCloseLoginModal();
-        }
-
     }
 
     const toggleView = () => {
@@ -66,6 +46,9 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
         onCloseLoginModal();
         onOpenSignupModal();
 
+    }
+    const onSetMockUser = () => {
+        setFormValues({ email: "dd@hotmail.com", password: "realdeal" })
     }
 
     return (
@@ -89,7 +72,7 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
                     autoComplete="current-password"
 
                     inputType={isPasswordVisible ? "text" : "password"}
-                    validations={{ required: true, minLength: 5, maxLength: 20}}>
+                    validations={{ required: true, minLength: 5, maxLength: 20 }}>
                     <i
                         onClick={toggleView}
                         className={isPasswordVisible ? "fa solid fa-eye" : "fa solid fa-eye-slash"}></i>
@@ -99,10 +82,13 @@ const Login = ({ onOpenSignupModal, onCloseLoginModal }) => {
                 </div>
 
                 <div className="action-container">
-                    <Button
-                        isDisabled={!isReady}
-                        styleName="action-container__btn--neon"
-                        handleClick={onFreeTrial}>MOCK USER</Button>
+                    <label htmlFor="">
+                        <input
+                            type="checkbox"
+                            onClick={onSetMockUser} />
+                            Use Mock User
+
+                    </label>
                     <Button
                         styleName="action-container__btn--secondary"
                         handleClick={onCloseLoginModal}>CANCEL</Button>
